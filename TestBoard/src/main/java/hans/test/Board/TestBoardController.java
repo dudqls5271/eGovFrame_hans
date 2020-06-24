@@ -103,7 +103,7 @@ public class TestBoardController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "hansTest/login";
+		return "hansTest/login_re";
 	}
 
 	@RequestMapping(value="login_re.do", method=RequestMethod.POST)

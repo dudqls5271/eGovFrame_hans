@@ -15,7 +15,7 @@
 			location.href = '/test/join.do';
 		});
 		
-		var message = '${message}';
+		var message = '${	message}';
 	      if(message){
 	         alert(message);
 	      }
