@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bbs">
+	<select id="selectAll" resultType="TestBoardVO">
+		SELECT
+		seqno
+		,title
+		,contents
+		,date_format(regdate,'%Y-%m-%d') as regdate
+		FROM yb_board
+	</select>
+
+	<select id="selectBoard" parameterType="TestBoardVO"
+		resultType="TestBoardVO">
+		SELECT seqno, title, contents, regdate
+		FROM
+		yb_board
+		WHERE
+		seqno =#{seqno}
+	</select>
+
+	<update id="updateBoard" parameterType="TestBoardVO">
+		UPDATE yb_board
+		SET
+		title=#{title},
+		contents=#{contents}
+		WHERE seqno=#{seqno}
+	</update>
+
+	<insert id="insertBoard" parameterType="TestBoardVO">
+		INSERT INTO yb_board
+		(title, contents,
+		regdate)
+		VALUES(#{title}, #{contents}, now())
+	</insert>
+
+	<delete id="deleteBoard" parameterType="TestBoardVO">
+		DELETE FROM yb_board
+		WHERE seqno=#{seqno}
+
+	</delete>
+
+
+	<select id="selectLogin" parameterType="TestBoardVO"
+		resultType="TestBoardVO">
+		SELECT email, user_id FROM yb_join where user_id=#{user_id} and pw=#{pw}
+	</select>
+
+	<insert id="insertJoin" parameterType="TestBoardVO">
+		INSERT INTO
+		yb_join
+		(user_id, pw, email)
+		VALUES(#{user_id}, #{pw}, #{email})
+
+	</insert>
+
+	<update id="updateJoin" parameterType="TestBoardVO">
+		UPDATE yb_join
+		SET
+		pw=#{user_id}, email=#{email}
+		WHERE id=#{user_id}
+	</update>
+
+</mapper>
