@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="<c:url value='/css/login_re.css'/>" rel="stylesheet" type="text/css" >
+<link href="<c:url value='/css/login_style.css'/>" rel="stylesheet" type="text/css" >
 </head>
 <body>
 <div class="login-page">
@@ -21,7 +22,7 @@
     <form id="frm" action="/test/login_re.do" method=post>
       <input type="text" placeholder="username" name="user_id" id="user_id"/>
       <input type="password" placeholder="password" name="pw" id="pw"/>
-      <input type="submit" value="로그인">
+      <input type="submit" value="로그인" id="button">
       <p class="message">Not registered? <a href="#">Create an account</a></p>
     </form>
   </div>

@@ -1,53 +1,97 @@
 @charset "UTF-8";
-table {
-    border-collapse: collapse;
-    border-color: rgb(0, 0, 0);
-    width: 600px;
-    height: 100px;
-    
-    margin: auto;
-    padding: auto;
-}
-
-th {
+#header {
 	text-align: center;
+	color: #A4A4A4;
 }
 
+table {
+	margin: auto;
+/* 	border: 1px solid rgba(0, 0, 0, 0.12); */
+}
 td {
-    border-bottom: 1px solid black;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
+	padding-left: 1.6rem;
+	padding-right: 50px;	
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+th {
+	padding-left: 1.6rem;
+	text-align: left;	
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: #757575;
+	border-bottom: 2px solid #757575; 
 }
 
 .title {
-	margin:0 0 40px 0;
-	text-align: center;
-	border-bottom: 1px solid black;
+	width: 488px;
 }
 
-.userName, #logout, #login  {
- 	margin-left: 80%; 
-}
+/* ______________________________________________ */
 
-#writing {
-	margin-top: 10px;
-	margin-left: 66%;
-}
-
-
-.ID, .PW {
+.writing_div {
+	 vertical-align: top;
 	display: inline;
 }
-
-#user_id, #pw {
-	margin-bottom: 20px;
+#writing {
+	
+	margin-top: 30px;
+	color:#386781;
+	background-color: white;
+	border: 1px solid #386781;
+	width: 100px;
+    height: 30px;
 }
 
+.notice {
+	color:#91404a;
+	background-color: white;
+	border: 1px solid #91404a;
+	width: 100px;
+    height: 30px;
+
+}
+
+/* ___________________________________________________________ */
 .login_forme {
-	margin-left: 80%;
+	
+}
+.table_list {
+	margin-top:80px;
+	display: flex;
+	justify-content:center;
 }
 
-div > .login {
-	margin-top: 4px;
+
+#logout {
+	color:#386781;
+	background-color: white;
+	border: 1px solid #386781;
+	width: 100px;
+    height: 30px;
 }
+a {
+	 color: black; 
+	 text-decoration: none;
+}
+/* #modify { */
+/* 	color:#386781; */
+/* 	background-color: white; */
+/* 	border: 1px solid #386781; */
+/* 	width: 100px; */
+/*     height: 30px; */
+/* } */
+
+.user_name {
+	margin-top: 80px;
+    margin-left: 40px;
+    border: 1px solid #7daf9d;
+    height: 60px;
+    padding: 10px;
+    width: 280px;
+}
+
+.user_inform {
+	margin-top: 0;
+}
+

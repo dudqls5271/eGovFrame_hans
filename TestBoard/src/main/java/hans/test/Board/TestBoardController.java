@@ -105,6 +105,26 @@ public class TestBoardController {
 		}
 		return "hansTest/login_re";
 	}
+	
+	@RequestMapping("logout_list.do")
+	public String logout_list(Model model) {
+		try {
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "hansTest/logout_list";
+	}
+	
+	@RequestMapping("header.do")
+	public String header(Model model) {
+		try {
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "hansTest/header";
+	}
 
 	@RequestMapping(value="login_re.do", method=RequestMethod.POST)
 	public String login_re(Model model, RedirectAttributes rttr, HttpServletRequest request, TestBoardVO vo) {
@@ -169,5 +189,4 @@ public class TestBoardController {
 		}
 		return "hansTest/modifyMember";
 	}
-
 }

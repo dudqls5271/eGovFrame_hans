@@ -6,8 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="<c:url value='/css/style.css'/>" rel="stylesheet" type="text/css" >
-	
+<link href="<c:url value='/css/style.css'/>" rel="stylesheet"
+	type="text/css">
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
 	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
 	crossorigin="anonymous"></script>
@@ -18,7 +19,7 @@
 			$("#seqno").val($(this).data("id"));
 			$("#frm").submit();
 		});
-		
+
 		$("#join").click(function() {
 			location.href = '/test/join.do';
 		});
@@ -26,76 +27,69 @@
 		$("#writing").click(function() {
 			location.href = '/test/writing.do';
 		});
-		
+
 		$("#logout").click(function() {
 			location.href = '/test/logout.do';
+		});
+
+		$("strong").click(function() {
+			location.href = '/test/login.do';
 		});
 	});
 </script>
 
 </head>
 <body>
-	<h1 class="title">리스트</h1>
-	
+	<c:import url="/test/header.do" charEncoding="UTF-8"></c:import>
 	<c:if test="${empty sessionScope.sessionId}">
-	
-	<form action="/test/login_re.do" method=post>
-		<div class="login_forme">
-			<p class="ID">ID : </p>
-			<input type="text" name="user_id" id="user_id">
-			<br>
-			<p class="PW">PW :</p>
-			<input type="password" name="pw" id="pw">
-			<br>
-			<input type="submit" value="로그인" class="login">
-			<input type="button" value="회원 가입" id="join">
-		</div>
-	</form>
-	
-	<form id="frm" action='/test/view.do'>
-		<input type="hidden" name="seqno" id="seqno">
-		<table>
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>등록일</th>
-			</tr>
-			<c:forEach items="${resultList}" var="result" varStatus="status">
-				<tr data-id="${result.seqno}" class="board">
-					<td class="board">${status.count}</td>
-					<td class="board">${result.title}</td>
-					<td class="board">${result.regdate}</td>
-				</tr>
-			</c:forEach>
-		</table>
-	</form>
+		<c:import url="/test/logout_list.do" charEncoding="UTF-8"></c:import>
 	</c:if>
-	
+
+
 	<c:if test="${not empty sessionScope.sessionId}">
-	<h4 class="userName">${sessionScope.sessionId}님 반갑습니다.</h4>
-	<input type="button" value="로그아웃" id="logout">
-	<input type="button" value="정보 수정" id="modify">
-	
-	
-	
-	<form id="frm" action='/test/view.do'>
-		<input type="hidden" name="seqno" id="seqno">
-		<table>
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>등록일</th>
-			</tr>
-			<c:forEach items="${resultList}" var="result" varStatus="status">
-				<tr data-id="${result.seqno}" class="board">
-					<td class="board">${status.count}</td>
-					<td class="board">${result.title}</td>
-					<td class="board">${result.regdate}</td>
-				</tr>
-			</c:forEach>
-		</table>
-	</form>
-	<input type="button" value="글쓰기" id="writing">
+
+		<div class="table_list">
+			<form id="frm" action='/test/view.do'>
+				<input type="hidden" name="seqno" id="seqno">
+				<table>
+					<tr>
+						<td>
+							<div class="writing_div">
+								<input type="button" value="글쓰기" id="writing"> <input
+									type="button" value="공지" class="notice">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th class="num">번호</th>
+						<th class="title">제목</th>
+						<th class="date">글쓴이</th>
+						<th class="date">등록일</th>
+					</tr>
+					<c:forEach items="${resultList}" var="result" varStatus="status">
+						<tr data-id="${result.seqno}" class="board">
+							<td>${status.count}</td>
+							<td>${result.title}</td>
+							<td></td>
+							<td>${result.regdate}</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</form>
+			<div class="user_name">
+				<h4 class="user_inform"><strong>${sessionScope.sessionId}</strong> 님반갑습니다.</h4>
+				<div class="login_forme">
+					<a href="#" class="log">로그  |</a>
+					<a href="#" class="like">즐겨찾기  |</a>
+					<a href="#" class="bell">알림  |</a>
+					<a href="#" class="help">도음말 </a>
+					
+<!-- 					<input type="button" value="로그" class="log"> -->
+<!-- 					<input type="button" value="즐겨찾기" class="like"> -->
+<!-- 					<input type="button" value="알림" class="bell"> -->
+				</div>
+			</div>
+		</div>
 	</c:if>
 </body>
 </html>
