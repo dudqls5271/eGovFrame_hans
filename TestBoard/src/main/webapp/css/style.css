@@ -1,7 +1,24 @@
 @charset "UTF-8";
-#header {
+html{
+	display: flex;
+	justify-content: center;
+}
+body{
+	width: 70%;	
+}
+header{
 	text-align: center;
 	color: #A4A4A4;
+	height: 120px;
+}
+main {
+	margin-top: 100px;
+}
+
+.writing_bitton{
+	display: flex;
+/* 	justify-content: flex-end; */
+	margin-right: 320px;
 }
 
 table {
@@ -24,18 +41,21 @@ th {
 }
 
 .title {
-	width: 488px;
+	width: 550px;
+}
+
+.writer {
+	width: 100px;
 }
 
 /* ______________________________________________ */
 
 .writing_div {
-	 vertical-align: top;
-	display: inline;
+	display: flex;
+	justify-content: space-between;
 }
 #writing {
-	
-	margin-top: 30px;
+	margin-right:10px;
 	color:#386781;
 	background-color: white;
 	border: 1px solid #386781;
@@ -57,19 +77,10 @@ th {
 	
 }
 .table_list {
-	margin-top:80px;
 	display: flex;
 	justify-content:center;
 }
 
-
-#logout {
-	color:#386781;
-	background-color: white;
-	border: 1px solid #386781;
-	width: 100px;
-    height: 30px;
-}
 a {
 	 color: black; 
 	 text-decoration: none;
@@ -83,15 +94,15 @@ a {
 /* } */
 
 .user_name {
-	margin-top: 80px;
-    margin-left: 40px;
     border: 1px solid #7daf9d;
     height: 60px;
     padding: 10px;
     width: 280px;
 }
 
-.user_inform {
+.user_inform, .user_name_in {
 	margin-top: 0;
 }
+
+
 

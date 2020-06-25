@@ -1,0 +1,14 @@
+@charset "UTF-8";
+html{
+	display: flex;
+	justify-content: center;
+}
+body{
+	width: 70%;	
+}
+
+.control {
+	
+	margin:auto;
+	width: 25%;
+}

@@ -136,6 +136,7 @@ public class TestBoardController {
 				if (userVO.getUser_id() != null) {
 					HttpSession session = request.getSession();
 					session.setAttribute("sessionId", userVO.getUser_id());
+					session.setAttribute("sessionNick", userVO.getNickname());
 					session.setAttribute("sessionEmail", userVO.getEmail());
 				} 
 			}

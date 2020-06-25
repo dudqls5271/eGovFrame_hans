@@ -7,13 +7,15 @@
 		seqno
 		,title
 		,contents
+		,writer
 		,date_format(regdate,'%Y-%m-%d') as regdate
 		FROM yb_board
+		ORDER BY seqno DESC
 	</select>
 
 	<select id="selectBoard" parameterType="TestBoardVO"
 		resultType="TestBoardVO">
-		SELECT seqno, title, contents, regdate
+		SELECT seqno, title, contents, regdate, writer
 		FROM
 		yb_board
 		WHERE
@@ -25,14 +27,15 @@
 		SET
 		title=#{title},
 		contents=#{contents}
+		writer=#{writer}
 		WHERE seqno=#{seqno}
 	</update>
 
 	<insert id="insertBoard" parameterType="TestBoardVO">
 		INSERT INTO yb_board
 		(title, contents,
-		regdate)
-		VALUES(#{title}, #{contents}, now())
+		regdate, writer)
+		VALUES(#{title}, #{contents}, now(), #{writer})
 	</insert>
 
 	<delete id="deleteBoard" parameterType="TestBoardVO">
@@ -44,21 +47,21 @@
 
 	<select id="selectLogin" parameterType="TestBoardVO"
 		resultType="TestBoardVO">
-		SELECT email, user_id FROM yb_join where user_id=#{user_id} and pw=#{pw}
+		SELECT email, user_id, nickname FROM yb_join where user_id=#{user_id} and pw=#{pw}
 	</select>
 
 	<insert id="insertJoin" parameterType="TestBoardVO">
 		INSERT INTO
 		yb_join
-		(user_id, pw, email)
-		VALUES(#{user_id}, #{pw}, #{email})
+		(user_id, pw, email, nickname, name)
+		VALUES(#{user_id}, #{pw}, #{email}, #{nickname}, #{name})
 
 	</insert>
 
 	<update id="updateJoin" parameterType="TestBoardVO">
 		UPDATE yb_join
 		SET
-		pw=#{user_id}, email=#{email}
+		pw=#{user_id}, email=#{email}, nickname=#{nickname}, name=#{name}
 		WHERE id=#{user_id}
 	</update>
 

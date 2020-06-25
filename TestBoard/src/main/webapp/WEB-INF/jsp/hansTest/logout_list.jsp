@@ -9,31 +9,33 @@
 </head>
 <body>
 
-
-		<form action="/test/login_re.do" method=post>
-			<div class="login_forme">
-				<strong>로그인을 해 주시기 바랍니다.</strong>
-			</div>
-		</form>
-
-		<form id="frm" action='/test/view.do'>
-			<input type="hidden" name="seqno" id="seqno">
+	<section class="writing_div">			
 			<div class="table_list">
-				<table>
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>등록일</th>
-					</tr>
-					<c:forEach items="${resultList}" var="result" varStatus="status">
-						<tr data-id="${result.seqno}" class="board">
-							<td class="board">${status.count}</td>
-							<td class="board">${result.title}</td>
-							<td class="board">${result.regdate}</td>
+				<form id="frm" action='/test/view.do'>
+					<input type="hidden" name="seqno" id="seqno">
+					<table>
+						<tr>
+							<th class="num">번호</th>
+							<th class="title">제목</th>
+							<th class="writer">글쓴이</th>
+							<th class="date">등록일</th>
 						</tr>
-					</c:forEach>
-				</table>
+						<c:forEach items="${resultList}" var="result" varStatus="status">
+							<tr data-id="${result.seqno}" class="board">
+								<td>${status.count}</td>
+								<td>${result.title}</td>
+								<td>${result.writer }</td>
+								<td>${result.regdate}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</form>
 			</div>
-		</form>
+			<div class="user_name">
+				<h4 class="user_inform">
+					<strong class="login_forme">로그인을 해 주시기 바랍니다.</strong>
+				</h4>
+			</div>
+		</section>
 </body>
 </html>

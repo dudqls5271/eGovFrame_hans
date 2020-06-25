@@ -13,12 +13,22 @@ public class TestBoardVO {
 	private String title;
 	private String contents;
 	private String regdate;
+	private String writer;
 
-	
 	private String user_id;
 	private String pw;
 	private String email;
-	
+	private String nickname;
+	private String name;
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
 	public String getUser_id() {
 		return user_id;
 	}
@@ -75,11 +85,26 @@ public class TestBoardVO {
 		this.regdate = regdate;
 	}
 
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
 		return "TestBoardVO [seqno=" + seqno + ", title=" + title + ", contents=" + contents + ", regdate=" + regdate
 				+ ", user_id=" + user_id + ", pw=" + pw + ", email=" + email + "]";
 	}
-
 
 }
