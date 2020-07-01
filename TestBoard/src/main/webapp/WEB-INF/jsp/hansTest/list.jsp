@@ -34,6 +34,10 @@
 		$(".login_forme").click(function() {
 			location.href = '/test/login.do';
 		});
+		
+		$(".log").click(function(){
+			$('.user_nav_hid').animate({ opacity: "toggle"}, "slow");
+		});
 	});
 </script>
 
@@ -76,16 +80,17 @@
 					</table>
 				</form>
 			</div>
-			<div class="user_name">
-				<h4 class="user_name_in">
-					<strong>${sessionNick}(${sessionId})</strong> 님반갑습니다.
-				</h4>
-				<div class="login_forme">
-					<a href="#" class="log">로그 |</a> 
-					<a href="#" class="like">즐겨찾기 |</a> 
-					<a href="#" class="bell">알림 |</a> 
-					<a href="#" id="logout">로그아웃</a>
-				</div>
+			<div class="user_contariner">
+				<div class="user_name">
+					<h4 class="user_name_in"> <strong>${sessionNick}(${sessionId})</strong> 님반갑습니다 </h4>
+						<div class="user_nav">
+							<a href="#" class="log">로그 |</a> 
+							<a href="#" class="like">즐겨찾기 |</a> 
+							<a href="#" class="bell">알림 |</a> 
+							<a href="#" id="logout">로그아웃</a>
+						</div>
+				</div>	
+				<div class="user_nav_hid">	</div>
 			</div>
 		</section>
 	</main>

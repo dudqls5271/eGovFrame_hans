@@ -98,11 +98,31 @@ a {
     height: 60px;
     padding: 10px;
     width: 280px;
+    display: table;
 }
 
 .user_inform, .user_name_in {
 	margin-top: 0;
 }
+
+.user_nav_hid {
+	border: 1px solid #7daf9d;
+    height: 200px;
+    padding: 10px;
+    width: 280px;
+    z-index: 1;
+ 	display: none;
+}
+
+.user_contariner {
+	display: flex;
+  	flex-direction: column;
+  	 position: relative;
+  	 width: 302px;
+}
+
+
+
 
 
 
