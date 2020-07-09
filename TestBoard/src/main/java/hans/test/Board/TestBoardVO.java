@@ -1,5 +1,7 @@
 package hans.test.Board;
 
+import org.stringtemplate.v4.compiler.CodeGenerator.primary_return;
+
 public class TestBoardVO {
 	/*
 	 * CREATE TABLE `testboard` ( `seqno` int(11) NOT NULL AUTO_INCREMENT COMMENT
@@ -20,9 +22,49 @@ public class TestBoardVO {
 	private String email;
 	private String nickname;
 	private String name;
+	private String pw_boader;
+	
+	public String getPw_boader() {
+		return pw_boader;
+	}
+
+	public void setPw_boader(String pw_boader) {
+		this.pw_boader = pw_boader;
+	}
+
+	private String phone1;
+	private String phone2;
+	private String phone3;
+	
+	
+	
 
 	public String getWriter() {
 		return writer;
+	}
+
+	public String getPhone1() {
+		return phone1;
+	}
+
+	public void setPhone1(String phone1) {
+		this.phone1 = phone1;
+	}
+
+	public String getPhone2() {
+		return phone2;
+	}
+
+	public void setPhone2(String phone2) {
+		this.phone2 = phone2;
+	}
+
+	public String getPhone3() {
+		return phone3;
+	}
+
+	public void setPhone3(String phone3) {
+		this.phone3 = phone3;
 	}
 
 	public void setWriter(String writer) {

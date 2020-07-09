@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.wrap {
+	text-align: center;
+	color:black;
+	margin-right:10px;
+	color:#386781;
+	background-color: white;
+	border: 1px solid #386781;
+	width: 100px;
+    height: 30px;
+    text-decoration: none;
+    cursor:pointer;
+}
+
+.wrap > #sub > p {
+	width: 100px;
+}
+
+p {
+	margin-top: 4px;
+	padding-bottom: 5px;
+}
+
+#sub {
+    height: 1px;
+    width: 0px;
+    background:#98bf21;
+}
+
+.wrap {
+	margin-top: 3%;
+}

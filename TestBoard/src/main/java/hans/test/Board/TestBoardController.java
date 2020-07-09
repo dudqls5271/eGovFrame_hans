@@ -126,6 +126,36 @@ public class TestBoardController {
 		return "hansTest/header";
 	}
 
+	@RequestMapping("nav.do")
+	public String nav(Model model) {
+		try {
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "hansTest/layout/nav";
+	}
+	
+	@RequestMapping("button.do")
+	public String button(Model model) {
+		try {
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "hansTest/layout/button";
+	}
+	
+	@RequestMapping("user.do")
+	public String user(Model model) {
+		try {
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "hansTest/layout/user";
+	}
+	
 	@RequestMapping(value="login_re.do", method=RequestMethod.POST)
 	public String login_re(Model model, RedirectAttributes rttr, HttpServletRequest request, TestBoardVO vo) {
 		System.out.println("===============> post");
@@ -137,6 +167,7 @@ public class TestBoardController {
 					HttpSession session = request.getSession();
 					session.setAttribute("sessionId", userVO.getUser_id());
 					session.setAttribute("sessionNick", userVO.getNickname());
+					session.setAttribute("pw_boader", userVO.getPw_boader());
 					session.setAttribute("sessionEmail", userVO.getEmail());
 				} 
 			}
@@ -167,6 +198,17 @@ public class TestBoardController {
 		}
 		return "redirect:/test/list.do";
 	}
+	
+	@RequestMapping("idChack.do")
+	public String idChack(TestBoardVO vo) {
+		try {
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "hansTest/idChack";
+	}
+	
 
 	@RequestMapping("logout.do")
 	public String logout(TestBoardVO vo, HttpServletRequest request) {

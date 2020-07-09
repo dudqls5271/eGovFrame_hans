@@ -1,128 +1,143 @@
-@charset "UTF-8";
-html{
-	display: flex;
-	justify-content: center;
+body {
+  margin: 0px;
 }
-body{
-	width: 70%;	
+.item1 {
+  margin: auto;
+  grid-area: header;
 }
-header{
-	text-align: center;
-	color: #A4A4A4;
-	height: 120px;
+.item2 {
+  grid-area: nav;
 }
-main {
-	margin-top: 100px;
+.item3 {
+  grid-area: main;
 }
-
-.writing_bitton{
-	display: flex;
-/* 	justify-content: flex-end; */
-	margin-right: 320px;
+.item4 {
+  grid-area: right;
+}
+.item5 {
+  grid-area: footer;
 }
 
-table {
-	margin: auto;
-/* 	border: 1px solid rgba(0, 0, 0, 0.12); */
-}
-td {
-	padding-left: 1.6rem;
-	padding-right: 50px;	
-	padding-top: 4px;
-	padding-bottom: 4px;
-}
-th {
-	padding-left: 1.6rem;
-	text-align: left;	
-	padding-top: 10px;
-	padding-bottom: 10px;
-	color: #757575;
-	border-bottom: 2px solid #757575; 
+.nav {
+  background-color: #4a56a8;
+  padding-left: 10.4%;
+  text-align: left;
+  margin: 0;
+  height: 50px;
 }
 
-.title {
-	width: 550px;
+.pk {
+  color: darkorange;
+}
+.nav > li {
+  list-style: none;
+  display: inline;
+
+  color: azure;
+
+  position: relative;
+  padding: 16px;
+  float: left;
+  margin-left: 20px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 10% repeat(3, auto) 25%;
+  grid-template-rows: 3fr 2fr 1fr 6fr;
+  grid-template-areas:
+    " header header header header header"
+    " nav nav nav nav nav"
+    " . btn . . ."
+    " . main main main right"
+    " footer footer footer footer footer";
+  grid-gap: 10px;
 }
 
-.writer {
-	width: 100px;
+.grid-container1 {
+  display: grid;
+  grid-template-columns: 5% 50% 15% 25%;
+  grid-auto-rows: 25px;
+  row-gap: 10px;
+  align-items: center;
+  grid-template-areas:
+    " header header header header "
+    " main main main right "
+    " footer footer footer footer ";
 }
 
-/* ______________________________________________ */
-
-.writing_div {
-	display: flex;
-	justify-content: space-between;
-}
-#writing {
-	margin-right:10px;
-	color:#386781;
-	background-color: white;
-	border: 1px solid #386781;
-	width: 100px;
-    height: 30px;
-}
-
-.notice {
-	color:#91404a;
-	background-color: white;
-	border: 1px solid #91404a;
-	width: 100px;
-    height: 30px;
-
-}
-
-/* ___________________________________________________________ */
-.login_forme {
-	
-}
-.table_list {
-	display: flex;
-	justify-content:center;
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
 }
 
 a {
-	 color: black; 
-	 text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
-/* #modify { */
-/* 	color:#386781; */
-/* 	background-color: white; */
-/* 	border: 1px solid #386781; */
-/* 	width: 100px; */
-/*     height: 30px; */
-/* } */
-
 .user_name {
-    border: 1px solid #7daf9d;
-    height: 60px;
-    padding: 10px;
-    width: 280px;
-    display: table;
+  border: 1px solid #7daf9d;
+  height: 60px;
+  padding: 10px;
+  width: 280px;
+  display: table;
 }
 
-.user_inform, .user_name_in {
-	margin-top: 0;
+.user_inform,
+.user_name_in {
+  margin-top: 0;
 }
 
 .user_nav_hid {
-	border: 1px solid #7daf9d;
-    height: 200px;
-    padding: 10px;
-    width: 280px;
-    z-index: 1;
- 	display: none;
+  border: 1px solid #7daf9d;
+  height: 200px;
+  padding: 10px;
+  width: 280px;
+  z-index: 1;
+  display: none;
 }
 
 .user_contariner {
-	display: flex;
-  	flex-direction: column;
-  	 position: relative;
-  	 width: 302px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 302px;
 }
 
+.seqno,
+.title,
+.writer,
+.date {
+  text-align: center;
+  padding: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  border-top: 1px solid rgba(0, 0, 0, 0.8);
+}
 
+.grid-container > .grid-container1 > div {
+  padding: 30%;
+}
 
+.writing_bitton {
+  grid-area: btn;
+}
 
+.writing_div {
+  display: flex;
+  justify-content: space-between;
+}
+#writing {
+  margin-right: 10px;
+  color: white;
+  background-color: #4a57a8;
+  border: 1px solid #444647;
+  width: 100px;
+  height: 30px;
+}
 
-
+.notice {
+  color: #91404a;
+  background-color: white;
+  border: 1px solid #91404a;
+  width: 100px;
+  height: 30px;
+}

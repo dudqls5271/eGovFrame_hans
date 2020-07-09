@@ -39,7 +39,9 @@ p {
 }
 
 
-
+.user {
+	margin-bottom: 30px;
+}
 
 
 
@@ -71,7 +73,6 @@ h2 small {
 /* form starting stylings ------------------------------- */
 .group 			  { 
   position:relative; 
-  margin-bottom:45px; 
 }
 input 				{
   font-size:18px;
@@ -81,7 +82,7 @@ input 				{
   border:none;
   border-bottom:1px solid #757575;
 }
-input:focus 		{ outline:none; }
+input 		{ outline:none; }
 
 /* LABEL ======================================= */
 label 				 {
@@ -98,7 +99,7 @@ label 				 {
 }
 
 /* active state */
-input:focus ~ label, input:valid ~ label 		{
+input ~ label, input:valid ~ label 		{
   top:-20px;
   font-size:14px;
   color:#5264AE;
@@ -125,7 +126,7 @@ input:focus ~ label, input:valid ~ label 		{
 }
 
 /* active state */
-input:focus ~ .bar:before, input:focus ~ .bar:after {
+input ~ .bar:before, input ~ .bar:after {
   width:50%;
 }
 
@@ -141,7 +142,7 @@ input:focus ~ .bar:before, input:focus ~ .bar:after {
 }
 
 /* active state */
-input:focus ~ .highlight {
+input ~ .highlight {
   -webkit-animation:inputHighlighter 0.3s ease;
   -moz-animation:inputHighlighter 0.3s ease;
   animation:inputHighlighter 0.3s ease;

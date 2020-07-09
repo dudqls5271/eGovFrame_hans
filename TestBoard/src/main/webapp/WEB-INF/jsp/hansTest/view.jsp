@@ -6,34 +6,72 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="<c:url value='/css/view.css'/>" rel="stylesheet" type="text/css">
+<link href="<c:url value='/css/button.css'/>" rel="stylesheet" type="text/css">
+	
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
 	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
 	crossorigin="anonymous"></script>
 <script>
-	$(document).redy(function() {
-		$("#delete").click(function() {
-		});
+$(document).ready(function() {
+	
+    var index = $("#fontSize option").index($("#fontSize option:selected"));
+    
+    $('.wrap').click(function() {
+    	if ($('.title').val() == "") {
+    		alert("제목을 입력 하세요")
+    		$('.title').focus();
+    	} else if ($('.text').val() == ""){
+    		alert("내용을 입력해 주세요");
+    		$('.text').focus();
+			$('.text').css('border', '2px solid #5264AE');
+    	} else {
+    		$("#frm").submit();
+    	}
+    });
+    $('.text').blur(function(){
+    	if($('.text').val() != ""){
+    		$('.text').css('border', '1px solid black');	
+    	}    	
+    });
+    
+    
+    $('.wrap').mouseover(function() {
+		$('#sub').stop().animate({
+			width: "100px"
+		}, 100, "linear");
 	});
+    
+    $('.wrap').mouseout(function() {
+		$('#sub').stop().animate({
+			width: "0px"
+		}, 100, "linear");
+	});
+    
+	$('#fontSize').change(function() {
+		$('.text').css('font-size',this.value);
+	});
+});
 </script>
-
 
 </head>
 <body>
-	<h1>리스트</h1>
 	<form id="frm" action='/test/modify.do'>
-		<input type="hidden" name="seqno" id="seqno" value="${result.seqno}">
-		<h3>제목 : ${result.title}</h3>
-		<h4>작성일 : ${result.regdate}</h4>
-		<p>내용 : ${result.contents}</p>
-		<c:if test="${not empty sessionScope.sessionId}">
-		<input type="submit" value="수정" id="modify">
-		</c:if>
+	<input type="hidden" name="seqno" id="seqno" value="${result.seqno}">
+		<div class="writing">  
+	    	<div class="user">
+	    		<p>${result.title}</p>
+	    		<span>${result.writer}	|	</span>
+	    		<span>${result.regdate}</span>
+	    		<input type="hidden" value="${sessionId}" name="user_id">
+	    	</div>
+	    	
+			<div>
+				<textarea name="contents" class="text" readonly="readonly">${result.contents}</textarea>
+			</div>	
+			<input type="submit" value="수정">
+			<input type="button" value="삭제">
+	    </div>
 	</form>
-	<c:if test="${not empty sessionScope.sessionId}">
-		<form id="frm" action='/test/delete.do'>
-			<input type="hidden" name="seqno" id="seqno" value="${result.seqno}">
-			<input type="submit" value="삭제" id="delete">
-		</form>
-	</c:if>
 </body>
 </html>
