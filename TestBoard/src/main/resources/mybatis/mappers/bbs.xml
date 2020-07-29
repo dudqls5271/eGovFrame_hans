@@ -16,7 +16,7 @@
 
 	<select id="selectBoard" parameterType="TestBoardVO"
 		resultType="TestBoardVO">
-		SELECT seqno, title, contents, regdate, writer, user_id
+		SELECT seqno, title, contents, regdate, writer
 		FROM
 		yb_board
 		WHERE
@@ -55,8 +55,8 @@
 	<insert id="insertJoin" parameterType="TestBoardVO">
 		INSERT INTO
 		yb_join
-		(user_id, pw, email, nickname, name, phone)
-		VALUES(#{user_id}, #{pw}, #{email}, #{nickname}, #{name}, concat(#{phone1}, '-', #{phone2}, '-', #{phone3}))
+		(user_id, pw, email, nickname, name, phone, addr)
+		VALUES(#{user_id}, #{pw}, concat(#{email1},'@',#{email2}), #{nickname}, #{name}, concat(#{phone1}, '-', #{phone2}, '-', #{phone3}), concat(#{add1},' ',#{add2},' ',#{add3}, ' ', #{add4}))
 
 	</insert>
 

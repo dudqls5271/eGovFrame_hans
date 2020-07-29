@@ -43,7 +43,7 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: 10% repeat(3, auto) 25%;
-  grid-template-rows: 3fr 2fr 1fr 6fr;
+  grid-template-rows: 2fr 2fr 1fr 6fr;
   grid-template-areas:
     " header header header header header"
     " nav nav nav nav nav"

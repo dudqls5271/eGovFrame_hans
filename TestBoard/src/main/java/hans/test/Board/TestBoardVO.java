@@ -17,15 +17,69 @@ public class TestBoardVO {
 	private String regdate;
 	private String writer;
 
+	private String add1;
+	private String add2;
+	private String add3;
+	private String add4;
+	
 	private String user_id;
 	private String pw;
-	private String email;
+	private String email1;
+	private String email2;
 	private String nickname;
 	private String name;
 	private String pw_boader;
 	
 	public String getPw_boader() {
 		return pw_boader;
+	}
+
+	public String getAdd1() {
+		return add1;
+	}
+
+	public void setAdd1(String add1) {
+		this.add1 = add1;
+	}
+
+	public String getAdd2() {
+		return add2;
+	}
+
+	public void setAdd2(String add2) {
+		this.add2 = add2;
+	}
+
+	public String getAdd3() {
+		return add3;
+	}
+
+	public void setAdd3(String add3) {
+		this.add3 = add3;
+	}
+
+	public String getAdd4() {
+		return add4;
+	}
+
+	public void setAdd4(String add4) {
+		this.add4 = add4;
+	}
+
+	public String getEmail1() {
+		return email1;
+	}
+
+	public void setEmail1(String email1) {
+		this.email1 = email1;
+	}
+
+	public String getEmail2() {
+		return email2;
+	}
+
+	public void setEmail2(String email2) {
+		this.email2 = email2;
 	}
 
 	public void setPw_boader(String pw_boader) {
@@ -87,14 +141,6 @@ public class TestBoardVO {
 		this.pw = pw;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public int getSeqno() {
 		return seqno;
 	}
@@ -146,7 +192,16 @@ public class TestBoardVO {
 	@Override
 	public String toString() {
 		return "TestBoardVO [seqno=" + seqno + ", title=" + title + ", contents=" + contents + ", regdate=" + regdate
-				+ ", user_id=" + user_id + ", pw=" + pw + ", email=" + email + "]";
+				+ ", writer=" + writer + ", add1=" + add1 + ", add2=" + add2 + ", add3=" + add3 + ", add4=" + add4
+				+ ", user_id=" + user_id + ", pw=" + pw + ", email1=" + email1 + ", email2=" + email2 + ", nickname="
+				+ nickname + ", name=" + name + ", pw_boader=" + pw_boader + ", phone1=" + phone1 + ", phone2=" + phone2
+				+ ", phone3=" + phone3 + ", getPw_boader()=" + getPw_boader() + ", getWriter()=" + getWriter()
+				+ ", getPhone1()=" + getPhone1() + ", getPhone2()=" + getPhone2() + ", getPhone3()=" + getPhone3()
+				+ ", getUser_id()=" + getUser_id() + ", getPw()=" + getPw() + ", getSeqno()=" + getSeqno()
+				+ ", getTitle()=" + getTitle() + ", getContents()=" + getContents() + ", getRegdate()=" + getRegdate()
+				+ ", getNickname()=" + getNickname() + ", getName()=" + getName() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
+
 
 }

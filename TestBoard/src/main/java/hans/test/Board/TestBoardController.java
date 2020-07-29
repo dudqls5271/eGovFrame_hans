@@ -168,7 +168,6 @@ public class TestBoardController {
 					session.setAttribute("sessionId", userVO.getUser_id());
 					session.setAttribute("sessionNick", userVO.getNickname());
 					session.setAttribute("pw_boader", userVO.getPw_boader());
-					session.setAttribute("sessionEmail", userVO.getEmail());
 				} 
 			}
 		} catch (Exception e) {

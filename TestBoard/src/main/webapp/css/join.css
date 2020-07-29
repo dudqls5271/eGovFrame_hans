@@ -1,0 +1,166 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.content {
+  margin: 37px auto 0;
+  width: 866px;
+}
+
+.join {
+  margin: 0px;
+  padding: 0px;
+}
+.title_div {
+  border-bottom: 3px solid #3c4790;
+  width: 866px;
+}
+
+.title {
+  color: #3c4790;
+  font-size: 14px;
+  vertical-align: -3px;
+}
+
+.from > input {
+  display: block;
+  margin-top: 10px;
+}
+
+.con {
+  width: 690px;
+  padding-top: 48px;
+  margin: 0 auto;
+}
+
+.from {
+  width: 866px;
+  height: 800px;
+  margin-top: 30px;
+  min-height: 398px;
+  border: 1px #cecdce solid;
+  border-radius: 5px;
+}
+
+.div_in {
+  display: inline;
+}
+.from_text {
+  float: left;
+  width: 500px;
+}
+
+.text_g {
+  float: left;
+  display: flex;
+  width: 177px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+}
+
+.text_D {
+  clear: both;
+  margin-top: 11px;
+  font-size: 12px;
+  color: #999;
+  text-align: left;
+}
+
+.int,
+.pw_ch {
+  width: 100%;
+  height: 35px;
+  padding: 0px 9px 0 9px;
+  line-height: 33px;
+  border: 1px #cecdce solid;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #555;
+}
+
+.int_add_num {
+  width: 30%;
+  height: 35px;
+  padding: 0px 9px 0 9px;
+  line-height: 33px;
+  border: 1px #cecdce solid;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #555;
+}
+.add_int_s {
+  width: 100%;
+  height: 35px;
+  padding: 0px 9px 0 9px;
+  line-height: 33px;
+  border: 1px #cecdce solid;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.add_int {
+  width: 49.4%;
+  height: 35px;
+  padding: 0px 9px 0 9px;
+  line-height: 33px;
+  border: 1px #cecdce solid;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #555;
+}
+
+.add {
+  height: 155px;
+}
+.pw {
+  height: 100px;
+}
+.id,
+.nekname,
+.name,
+.hp {
+  height: 65px;
+}
+
+.nekname,
+.pw,
+.name,
+.add,
+.hp {
+  margin-top: 25px;
+}
+
+.pw_ch {
+  margin-top: 5px;
+}
+
+.int_e {
+  height: 35px;
+  padding: 0px 9px 0 9px;
+  line-height: 33px;
+  border: 1px #cecdce solid;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #555;
+}
+
+.sub {
+  margin-top: 25px;
+}
+
+.ok {
+  background: #666;
+  border-color: #444;
+  text-shadow: 0px -1px #474747;
+  color: #fff;
+  width: 100px;
+  height: 38px;
+}
+
+.button {
+  float: right;
+}

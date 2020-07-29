@@ -80,9 +80,8 @@ $(document).ready(function() {
 	      		<label>제목</label>
 	      <c:if test="${empty sessionScope.sessionId}">		
 	      	<div>
-	    		<input type="text" name="writer">
-	    		<input type="text" name="pw_boader">
-	    		<input type="text" name="user_id">
+	    		<input type="text" name="writer" placeholder="작성자">
+	    		<input type="password" name="pw_boader" placeholder="비밀번호">
 	    	</div>
 	    	</c:if>
 	    	</div>
@@ -107,7 +106,8 @@ $(document).ready(function() {
 	    	
 	    	<div class="wrap">
 	    		<p>완료</p>
-	    		<div id="sub"></div>
+	    		<div id="sub">
+	    		</div>
    			</div>
 	    </div>
 	</form>
