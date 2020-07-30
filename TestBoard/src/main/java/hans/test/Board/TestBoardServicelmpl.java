@@ -55,4 +55,9 @@ public class TestBoardServicelmpl implements TestBoardService {
 		return dao.selectLogin(vo);
 	}
 
+	@Override
+	public TestBoardVO selectidChack(TestBoardVO vo) throws Exception {
+		return dao.selectidChack(vo);
+	}
+
 }

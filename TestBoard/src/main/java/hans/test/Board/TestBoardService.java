@@ -11,5 +11,6 @@ public interface TestBoardService {
 	int insertJoin(TestBoardVO vo) throws Exception;
 	int updateJoin(TestBoardVO vo) throws Exception;
 	TestBoardVO selectLogin(TestBoardVO vo) throws Exception;
+	TestBoardVO selectidChack(TestBoardVO vo) throws Exception;
 
 }

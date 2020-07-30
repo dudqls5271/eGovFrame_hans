@@ -8,6 +8,11 @@
 <title>Insert title here</title>
 <link href="<c:url value='/css/join.css'/>" rel="stylesheet"
 	type="text/css">
+	<link href="<c:url value='/css/button.css'/>" rel="stylesheet"
+	type="text/css">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+	crossorigin="anonymous"></script>
 <script defer
 	src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 <link rel="stylesheet"
@@ -65,6 +70,97 @@
           },
         }).open();
       }
+      
+      
+      $(document).ready(function() {
+    	//공백, 한글을 못사용하게 한다.
+    	  $('#user_id').on("blur keyup", function() {
+    			$(this).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '' ) );
+    			$(this).val( $(this).val().replace( /\s/g,'' ) );
+    		});
+    		$('#pw').on("blur keyup", function() {
+    			$(this).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '' ) );
+    			$(this).val( $(this).val().replace( /\s/g,'' ) );
+    		});
+    		$('#pw_re').on("blur keyup", function() {
+    			$(this).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '' ) );
+    			$(this).val( $(this).val().replace( /\s/g,'' ) );
+    		});
+    		
+    		
+    		//숫자만 입력가능하게
+    		$('#mem_tel1').focus(function() {
+    			$('#hp1').val("");
+    		});
+    		$('#mem_tel2').focus(function() {
+    			$('#hp2').val("");
+    		});
+    		$('#mem_tel3').focus(function() {
+    			$('#hp3').val("");
+    		});
+    		$('#hp1').keydown(function(){
+    			$(this).val( $(this).val().replace( /[^0-9]/g,'' ) );
+    		
+    			if($(this).val().length > 2){
+    				$('#hp2').focus();
+    			}
+    		});
+    		$('#hp2').keydown(function(event){
+    			$(this).val( $(this).val().replace( /[^0-9]/g,'' ) );
+    			
+    			if($(this).val().length > 3){
+    				$('#hp3').focus();
+    			}
+    		});
+    		$('#hp3').keydown(function(event){
+    			$(this).val( $(this).val().replace( /[^0-9]/g,'' ) );
+    			
+    		});
+    		
+			$("#user_id").blur(function(){
+				var jsonv = {user_id : $("#user_id").val()};
+				$.ajax({
+					type:"POST", 
+					url:'<c:url value="idChack.do" />',
+					data:jsonv, 
+					success:function(data){
+						if(data == "Y"){
+							$("#idcheck").text("회원가입이 가능합니다.");
+							$("#idcheck").css("color","#29d616");
+						}else if(data == "N"){
+							$("#idcheck").text("이미 가입한 ID입니다.");
+							$("#idcheck").css("color","red");
+							$("#user_id").val("");
+							$("#user_id").focus();
+						}
+					}//END OF 콜백함수 즉 DB상 중복체크를 해온결과가 data
+				});//END OF AJAX
+			});
+    			
+    	  
+    	  $('.wrap').click(function() {
+    		  if ($('#user_id').val() == "") {
+    			  alert("아이디를 입력해 주세요.");
+    		  } else if ($('#alert').val() == "") {
+    			  alert("닉네임를 입력해 주세요.");
+    		  } else if ($('#pw').val() == "") {
+    			  alert("비밀번호를 입력해 주세요.");
+    		  } else if ($('#pw_re').val() == "") {
+    			  alert("비밀번호를 제입력해 주세요.");
+    		  } else if ($('#name').val() == "") {
+    			  alert("이름을 입력해주세요");
+    		  } else if ($('#hp1').val() == "" && $('#hp2').val() == "" && $('#hp3').val() == "") {
+    			  alert("전화번호를 입력해 주세요");
+    		  } else if ($('#sample6_postcode').val() == "") {
+    			  alert("우편번호를 입력해 주세요.");
+    		  } else if ($('#sample6_address').val() == "") {
+    			  alert("상세주소를 입력해 주세요.")
+    		  } else {
+    			  $(".register-form").submit();
+    		  }
+    	  });
+      });
+      
     </script>
 </head>
 <body>
@@ -75,7 +171,7 @@
 				<div class="title_div">
 					<h3 class="title">기본 정보 입력</h3>
 				</div>
-
+				
 				<div class="from">
 					<div class="con">
 						<div class="id">
@@ -85,7 +181,7 @@
 									<input type="text" class="int" placeholder="아이디를 입력해 주세요"
 										name="user_id" id="user_id" maxlength="20" />
 								</div>
-								<div class="text_D">5~20자 영문, 숫자로 입력해 주세요.</div>
+								<div class="text_D">5~20자 영문, 숫자로 입력해 주세요. <span id="idcheck"></span> </div>
 							</div>
 						</div>
 
@@ -94,7 +190,7 @@
 							<div class="from_text">
 								<div class="div_in">
 									<input type="text" class="int" placeholder="닉네임를 입력해 주세요"
-										name="nickname" maxlength="20" />
+										name="nickname" maxlength="20" id="nickname"/>
 								</div>
 								<div class="text_D">2~20자 닉네임을 입력해 주세요.(띄어쓰기는 할 수없습니다.)</div>
 							</div>
@@ -105,11 +201,11 @@
 							<div class="from_text">
 								<div class="div_in">
 									<input type="password" class="int" placeholder="비밀번호를 입력해 주세요"
-										name="pw" maxlength="20" />
+										name="pw" maxlength="20" id="pw" />
 								</div>
 								<div class="div_in">
 									<input type="password" class="pw_ch"
-										placeholder="비밀번호를 제확인해 주세요" maxlength="20" name="pw_re" />
+										placeholder="비밀번호를 제확인해 주세요" maxlength="20" name="pw_re" id="pw_re" />
 								</div>
 								<div class="text_D">5~20자 영문, 숫자로 입력해 주세요.</div>
 							</div>
@@ -120,7 +216,7 @@
 							<div class="from_text">
 								<div class="div_in">
 									<input type="text" class="int" placeholder="이름를 입력해 주세요"
-										name="name" />
+										name="name" id="name"/>
 								</div>
 								<div class="text_D">ID/PW 분실 시 가입 정보를 통해 찾을 수 있으므로 정확히 입력해
 									주시기 바랍니다.</div>
@@ -131,11 +227,9 @@
 							<div class="text_g">전화번호</div>
 							<div class="from_text">
 								<div class="div_in">
-									<input type="text" placeholder="Phone" name="phone1"
-										class="int_add_num" maxlength="3" />- <input type="text"
-										placeholder="" name="phone2" class="int_add_num" maxlength="4" />-
-									<input type="text" placeholder="" name="phone3"
-										class="int_add_num" maxlength="4" />
+									<input type="text" placeholder="Phone" name="phone1" class="int_add_num" maxlength="3" id="hp1"/>- 
+									<input type="text" placeholder="" name="phone2" class="int_add_num" maxlength="4" id="hp2"/>-
+									<input type="text" placeholder="" name="phone3" class="int_add_num" maxlength="4" id="hp3"/>
 								</div>
 								<div class="text_D">'-' 없이 입력해주세요</div>
 							</div>
@@ -145,15 +239,10 @@
 							<div class="text_g">주소</div>
 							<div class="from_text">
 								<div class="div_in">
-									<input type="text" id="sample6_postcode" placeholder="우편번호"
-										onclick="sample6_execDaumPostcode()" class="int_add_num"
-										readonly name="add1" /> <input type="text"
-										id="sample6_address" placeholder="주소" class="add_int_s"
-										readonly name="add2" /><br /> <input
-										type="text" id="sample6_extraAddress" placeholder="참고항목"
-										class="add_int" readonly name="add3" /> <input
-										type="text" id="sample6_detailAddress" placeholder="상세주소"
-										class="add_int" name="add4" />
+									<input type="text" id="sample6_postcode" placeholder="우편번호" onclick="sample6_execDaumPostcode()" class="int_add_num" readonly name="add1" /> 
+									<input type="text" id="sample6_address" placeholder="주소" class="add_int_s" readonly name="add2" /><br /> 
+									<input type="text" id="sample6_extraAddress" placeholder="참고항목" class="add_int" readonly name="add3" /> 
+									<input type="text" id="sample6_detailAddress" placeholder="상세주소" class="add_int" name="add4" />
 								</div>
 								<div class="text_D">우편번호를 클릭 하여 입력해주세요</div>
 							</div>
@@ -184,9 +273,11 @@
 				</div>
 			</div>
 			<div class="sub">
-				<div class="button">
-					<input type="submit" class="ok" value="완료"></input>
-				</div>
+				<div class="wrap">
+	    			<p>완료</p>
+	    			<div id="sub">
+	    			</div>
+   				</div>
 			</div>
 		</div>
 	</form>

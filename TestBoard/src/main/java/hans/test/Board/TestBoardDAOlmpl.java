@@ -51,4 +51,9 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 		return selectOne("selectLogin", vo);
 	}
 
+	@Override
+	public TestBoardVO selectidChack(TestBoardVO vo) throws Exception {
+		return selectOne("selectidChack", vo);
+	}
+
 }
