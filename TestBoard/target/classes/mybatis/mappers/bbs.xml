@@ -13,6 +13,26 @@
 		FROM yb_board
 		ORDER BY seqno DESC
 	</select>
+	
+	<select id="countPaging" resultType="int">
+		select
+		count(seqno)
+		from yb_board
+		where seqno > 0
+	</select>
+	
+	<select id="selectPage" resultType="TestBoardVO">
+		select 
+		seqno 
+		,title
+		,contents
+		,writer
+		,date_format(regdate,'%Y-%m-%d') as regdate
+		,user_id
+		from yb_board
+		ORDER BY seqno DESC
+		limit #{pageStart}, #{perPageNum}
+	</select>
 
 	<select id="selectBoard" parameterType="TestBoardVO"
 		resultType="TestBoardVO">

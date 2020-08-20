@@ -12,4 +12,7 @@ public interface TestBoardDAO {
 	int insertJoin(TestBoardVO vo) throws Exception;
 	TestBoardVO selectLogin(TestBoardVO vo) throws Exception;
 	TestBoardVO selectidChack(TestBoardVO vo) throws Exception;
+	List<TestBoardVO> listPage(int page) throws Exception;
+	List<TestBoardVO> listCrieria(Criteria cri) throws Exception;
+	int countPaging(Criteria cri) throws Exception;
 }

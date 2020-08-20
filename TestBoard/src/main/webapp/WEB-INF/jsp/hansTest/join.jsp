@@ -138,23 +138,46 @@
 			});
     			
     	  
+			$("#pw_re").blur(function(){
+				if($("#pw").val() == $("#pw_re").val()) {
+					$(".pw_chack").text("비밀번호 일치");
+					$(".pw_chack").css("color","#29d616");
+				} else {
+					$(".pw_chack").text("비밀번호 재입력");
+					$(".pw_chack").css("color","red");
+				}
+				
+			});
+			
+			
     	  $('.wrap').click(function() {
     		  if ($('#user_id').val() == "") {
     			  alert("아이디를 입력해 주세요.");
+    			   $("#user_id").focus();
     		  } else if ($('#alert').val() == "") {
     			  alert("닉네임를 입력해 주세요.");
+    			   $("#nickname").focus();
     		  } else if ($('#pw').val() == "") {
     			  alert("비밀번호를 입력해 주세요.");
+    			  $("#pw").focus();
     		  } else if ($('#pw_re').val() == "") {
     			  alert("비밀번호를 제입력해 주세요.");
+    			  $("#pw_re").focus();
     		  } else if ($('#name').val() == "") {
     			  alert("이름을 입력해주세요");
+    			  $("#name").focus();
     		  } else if ($('#hp1').val() == "" && $('#hp2').val() == "" && $('#hp3').val() == "") {
     			  alert("전화번호를 입력해 주세요");
+    			  $("#hp1").focus();
     		  } else if ($('#sample6_postcode').val() == "") {
     			  alert("우편번호를 입력해 주세요.");
+    			  $("#sample6_postcode").focus();
     		  } else if ($('#sample6_address').val() == "") {
     			  alert("상세주소를 입력해 주세요.")
+    			  $("#sample6_address").focus;
+    		  } else if ($("#pw").val() != $("#pw_re").val()) {	
+    			   $("#pw").focus();
+    			  alert("비밀번호를 다시 입력 해주세요");
     		  } else {
     			  $(".register-form").submit();
     		  }
@@ -207,8 +230,8 @@
 									<input type="password" class="pw_ch"
 										placeholder="비밀번호를 제확인해 주세요" maxlength="20" name="pw_re" id="pw_re" />
 								</div>
-								<div class="text_D">5~20자 영문, 숫자로 입력해 주세요.</div>
-							</div>
+								<div class="text_D">5~20자 영문, 숫자로 입력해 주세요. <span class="pw_chack"></span> </div>
+							</div> 
 						</div>
 
 						<div class="name">

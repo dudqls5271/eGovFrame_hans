@@ -3,6 +3,7 @@ package hans.test.Board;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
+import org.hsqldb.Session;
 import org.springframework.stereotype.Repository;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
@@ -54,6 +55,28 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 	@Override
 	public TestBoardVO selectidChack(TestBoardVO vo) throws Exception {
 		return selectOne("selectidChack", vo);
+	}
+	
+	@Override
+	public List<TestBoardVO> listPage(int page) throws Exception {
+		
+		if(page <= 0) {
+			page = 1;
+		}
+		
+		page = (page - 1) * 10;
+		
+		return selectList("selectAll", page);
+	}
+
+	@Override
+	public List<TestBoardVO> listCrieria(Criteria cri) throws Exception {
+		return selectList("selectAll", cri);
+	}
+
+	@Override
+	public int countPaging(Criteria cri) throws Exception {
+		return selectOne("testBoardList"+".countPaging", cri) ;
 	}
 
 }

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,6 +33,21 @@ public class TestBoardController {
 			e.printStackTrace();
 		}
 		return "hansTest/list";
+	}
+	
+	@RequestMapping(value = "/listPage.do", method = RequestMethod.GET)
+	public void listPage(@ModelAttribute("cri")Criteria cri,
+			Model model) throws Exception {
+		
+		logger.info(cri.toString());
+		
+		model.addAttribute("list", service.listCriteria(cri));
+		pageMaker pageMaker = new pageMaker();
+		pageMaker.setCri(cri);
+		
+		pageMaker.setTotalCount(service.listCountCriteria(cri));
+		
+		model.addAttribute("PageMaker", pageMaker);
 	}
 
 	@RequestMapping("view.do")
@@ -128,6 +144,16 @@ public class TestBoardController {
 			e.printStackTrace();
 		}
 		return "hansTest/header";
+	}
+	
+	@RequestMapping("page.do")
+	public String page(Model model) {
+		try {
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "hansTest/listPage";
 	}
 
 	@RequestMapping("nav.do")
