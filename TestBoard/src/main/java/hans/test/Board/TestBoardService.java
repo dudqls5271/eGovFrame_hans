@@ -12,7 +12,11 @@ public interface TestBoardService {
 	int insertJoin(TestBoardVO vo) throws Exception;
 	int updateJoin(TestBoardVO vo) throws Exception;
 	TestBoardVO selectLogin(TestBoardVO vo) throws Exception;
+<<<<<<< HEAD
 	TestBoardVO selectidChack(TestBoardVO vo) throws Exception;
 	int listCountCriteria(Criteria cri) throws Exception;
 		
+=======
+
+>>>>>>> parent of 7ccb025... 제이슨 아이디 중복 체크
 }

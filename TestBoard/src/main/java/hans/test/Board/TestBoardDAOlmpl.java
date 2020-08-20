@@ -52,6 +52,7 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 		return selectOne("selectLogin", vo);
 	}
 
+<<<<<<< HEAD
 	@Override
 	public TestBoardVO selectidChack(TestBoardVO vo) throws Exception {
 		return selectOne("selectidChack", vo);
@@ -79,4 +80,6 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 		return selectOne("testBoardList"+".countPaging", cri) ;
 	}
 
+=======
+>>>>>>> parent of 7ccb025... 제이슨 아이디 중복 체크
 }

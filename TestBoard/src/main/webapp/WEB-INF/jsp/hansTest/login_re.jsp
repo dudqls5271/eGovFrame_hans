@@ -15,22 +15,13 @@
 	
 <script>
 $(document).ready(function() {
-	if('${msg}' != ''){
-		alert("${msg}")
-	}
 	
 	$(".join").click(function(){
 		   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
 		});
 	
-	$('.login').click(function() {
-		if ($('#user_id').val() == "") {
-			alert("아이디를 입력해 주세요.");
-		} else if ($('#pw').val() == "") {
-			alert("비밀번호를 입력해 주세요.");
-		} else {
-			$("#frm").submit();
-		}
+	$('.id_re').click(function() {
+		window.open("/test/idChack.do", "win_popup", "width=468, height=500");
 	});
 });
 </script>
@@ -41,9 +32,22 @@ $(document).ready(function() {
     <div class="se">
       <div class="from">
         <div class="ping">
-          <input type="text" class="id" placeholder="아이디" name="user_id" id="user_id" />
-          <input type="password" class="pw" placeholder="비밀번호" name="pw" id="pw" />
-          <input type="button" value="로그인" class="login" />
+          <input
+            type="text"
+            class="id"
+            placeholder="아이디"
+            name="user_id"
+            id="user_id"
+          />
+          <input
+            type="password"
+            class="pw"
+            placeholder="비밀번호"
+            name="pw"
+            id="pw"
+          />
+
+          <input type="submit" value="로그인" class="login" />
 
           <div class="nav">
             <a href="#">아이디 찾기</a>

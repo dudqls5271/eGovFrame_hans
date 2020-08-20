@@ -42,12 +42,6 @@
 		WHERE
 		seqno =#{seqno}
 	</select>
-	
-		<select id="selectidChack" parameterType="TestBoardVO" resultType="TestBoardVO">
-			select user_id
-			from yb_join
-			where user_id = #{user_id}
-		</select>
 
 	<update id="updateBoard" parameterType="TestBoardVO">
 		UPDATE yb_board

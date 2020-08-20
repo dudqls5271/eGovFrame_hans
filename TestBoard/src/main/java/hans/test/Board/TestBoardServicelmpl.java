@@ -55,6 +55,7 @@ public class TestBoardServicelmpl implements TestBoardService {
 		return dao.selectLogin(vo);
 	}
 
+<<<<<<< HEAD
 	@Override
 	public TestBoardVO selectidChack(TestBoardVO vo) throws Exception {
 		return dao.selectidChack(vo);
@@ -71,4 +72,6 @@ public class TestBoardServicelmpl implements TestBoardService {
 		return dao.countPaging(cri);
 	}
 
+=======
+>>>>>>> parent of 7ccb025... 제이슨 아이디 중복 체크
 }

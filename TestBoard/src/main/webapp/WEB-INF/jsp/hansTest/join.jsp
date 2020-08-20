@@ -8,11 +8,6 @@
 <title>Insert title here</title>
 <link href="<c:url value='/css/join.css'/>" rel="stylesheet"
 	type="text/css">
-	<link href="<c:url value='/css/button.css'/>" rel="stylesheet"
-	type="text/css">
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
-	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-	crossorigin="anonymous"></script>
 <script defer
 	src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 <link rel="stylesheet"
@@ -70,6 +65,7 @@
           },
         }).open();
       }
+<<<<<<< HEAD
       
       
       $(document).ready(function() {
@@ -184,6 +180,8 @@
     	  });
       });
       
+=======
+>>>>>>> parent of 7ccb025... 제이슨 아이디 중복 체크
     </script>
 </head>
 <body>
@@ -194,7 +192,7 @@
 				<div class="title_div">
 					<h3 class="title">기본 정보 입력</h3>
 				</div>
-				
+
 				<div class="from">
 					<div class="con">
 						<div class="id">
@@ -204,7 +202,7 @@
 									<input type="text" class="int" placeholder="아이디를 입력해 주세요"
 										name="user_id" id="user_id" maxlength="20" />
 								</div>
-								<div class="text_D">5~20자 영문, 숫자로 입력해 주세요. <span id="idcheck"></span> </div>
+								<div class="text_D">5~20자 영문, 숫자로 입력해 주세요.</div>
 							</div>
 						</div>
 
@@ -213,7 +211,7 @@
 							<div class="from_text">
 								<div class="div_in">
 									<input type="text" class="int" placeholder="닉네임를 입력해 주세요"
-										name="nickname" maxlength="20" id="nickname"/>
+										name="nickname" maxlength="20" />
 								</div>
 								<div class="text_D">2~20자 닉네임을 입력해 주세요.(띄어쓰기는 할 수없습니다.)</div>
 							</div>
@@ -224,11 +222,11 @@
 							<div class="from_text">
 								<div class="div_in">
 									<input type="password" class="int" placeholder="비밀번호를 입력해 주세요"
-										name="pw" maxlength="20" id="pw" />
+										name="pw" maxlength="20" />
 								</div>
 								<div class="div_in">
 									<input type="password" class="pw_ch"
-										placeholder="비밀번호를 제확인해 주세요" maxlength="20" name="pw_re" id="pw_re" />
+										placeholder="비밀번호를 제확인해 주세요" maxlength="20" name="pw_re" />
 								</div>
 								<div class="text_D">5~20자 영문, 숫자로 입력해 주세요. <span class="pw_chack"></span> </div>
 							</div> 
@@ -239,7 +237,7 @@
 							<div class="from_text">
 								<div class="div_in">
 									<input type="text" class="int" placeholder="이름를 입력해 주세요"
-										name="name" id="name"/>
+										name="name" />
 								</div>
 								<div class="text_D">ID/PW 분실 시 가입 정보를 통해 찾을 수 있으므로 정확히 입력해
 									주시기 바랍니다.</div>
@@ -250,9 +248,11 @@
 							<div class="text_g">전화번호</div>
 							<div class="from_text">
 								<div class="div_in">
-									<input type="text" placeholder="Phone" name="phone1" class="int_add_num" maxlength="3" id="hp1"/>- 
-									<input type="text" placeholder="" name="phone2" class="int_add_num" maxlength="4" id="hp2"/>-
-									<input type="text" placeholder="" name="phone3" class="int_add_num" maxlength="4" id="hp3"/>
+									<input type="text" placeholder="Phone" name="phone1"
+										class="int_add_num" maxlength="3" />- <input type="text"
+										placeholder="" name="phone2" class="int_add_num" maxlength="4" />-
+									<input type="text" placeholder="" name="phone3"
+										class="int_add_num" maxlength="4" />
 								</div>
 								<div class="text_D">'-' 없이 입력해주세요</div>
 							</div>
@@ -262,10 +262,15 @@
 							<div class="text_g">주소</div>
 							<div class="from_text">
 								<div class="div_in">
-									<input type="text" id="sample6_postcode" placeholder="우편번호" onclick="sample6_execDaumPostcode()" class="int_add_num" readonly name="add1" /> 
-									<input type="text" id="sample6_address" placeholder="주소" class="add_int_s" readonly name="add2" /><br /> 
-									<input type="text" id="sample6_extraAddress" placeholder="참고항목" class="add_int" readonly name="add3" /> 
-									<input type="text" id="sample6_detailAddress" placeholder="상세주소" class="add_int" name="add4" />
+									<input type="text" id="sample6_postcode" placeholder="우편번호"
+										onclick="sample6_execDaumPostcode()" class="int_add_num"
+										readonly name="add1" /> <input type="text"
+										id="sample6_address" placeholder="주소" class="add_int_s"
+										readonly name="add2" /><br /> <input
+										type="text" id="sample6_extraAddress" placeholder="참고항목"
+										class="add_int" readonly name="add3" /> <input
+										type="text" id="sample6_detailAddress" placeholder="상세주소"
+										class="add_int" name="add4" />
 								</div>
 								<div class="text_D">우편번호를 클릭 하여 입력해주세요</div>
 							</div>
@@ -296,11 +301,9 @@
 				</div>
 			</div>
 			<div class="sub">
-				<div class="wrap">
-	    			<p>완료</p>
-	    			<div id="sub">
-	    			</div>
-   				</div>
+				<div class="button">
+					<input type="submit" class="ok" value="완료"></input>
+				</div>
 			</div>
 		</div>
 	</form>
