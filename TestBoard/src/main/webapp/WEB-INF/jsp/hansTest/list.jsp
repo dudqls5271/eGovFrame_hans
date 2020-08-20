@@ -61,6 +61,7 @@
 				<div data-id="${result.seqno}" class="board">${result.writer}</div>
 				<div data-id="${result.seqno}" class="board">${result.regdate}</div>
            </c:forEach>
+           <c:import url="/test/listPage.do" charEncoding="UTF-8"></c:import>
         </div>
       </div>
       <div class="item4">     

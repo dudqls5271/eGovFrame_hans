@@ -141,3 +141,14 @@ a {
   width: 100px;
   height: 30px;
 }
+
+
+
+.pagination {
+	list-style: none;
+	display: inline-flex;
+}
+
+.text-center {
+	width: 100%;
+}

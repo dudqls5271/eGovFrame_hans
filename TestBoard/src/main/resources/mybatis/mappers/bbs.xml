@@ -21,7 +21,7 @@
 		where seqno > 0
 	</select>
 	
-	<select id="selectPage" resultType="TestBoardVO">
+	<select id="listPage" resultType="TestBoardVO">
 		select 
 		seqno 
 		,title
@@ -30,6 +30,7 @@
 		,date_format(regdate,'%Y-%m-%d') as regdate
 		,user_id
 		from yb_board
+		where seqno > 0
 		ORDER BY seqno DESC
 		limit #{pageStart}, #{perPageNum}
 	</select>

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -30,6 +31,28 @@ public class TestBoardController {
 		}
 		return "hansTest/list";
 	}
+	
+	@RequestMapping(value="/listPage.do", method = RequestMethod.GET)
+	public String listPage(@ModelAttribute("cri")Criteria cri,
+			Model model) throws Exception {
+		
+		model.addAttribute("list", service.listCriteria(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(131);
+		
+		model.addAttribute("pageMaker", pageMaker);
+		return "hansTest/listPage";
+		
+	}
+	
+	@RequestMapping(value = "/readPage.do", method = RequestMethod.GET)
+	public void read(@RequestParam("seqno") int seqno,
+			@ModelAttribute("cri") Criteria cri,
+			Model model) throws Exception {
+		model.addAttribute(service.selectBoard(vo));
+	}
+			
 
 	@RequestMapping("view.do")
 	public String view(Model model, TestBoardVO vo) {

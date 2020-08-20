@@ -56,5 +56,27 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 	public TestBoardVO selectidChack(TestBoardVO vo) throws Exception {
 		return selectOne("selectidChack", vo);
 	}
+
+	@Override
+	public List<TestBoardVO> listPage(int page) throws Exception {
+		
+		if(page <= 0) {
+			page = 1;
+		}
+		
+		page = (page - 1) *10;
+
+		return selectList("listpage", page);
+	}
+
+	@Override
+	public List<TestBoardVO> listCriteria(Criteria cri) throws Exception {
+		return selectList("listCriteria", cri);
+	}
+
+	@Override
+	public int countPaging(Criteria cri) throws Exception {
+		return selectOne("countPaging", cri);
+	}
 	
 }
