@@ -30,21 +30,6 @@ public class TestBoardController {
 		}
 		return "hansTest/list";
 	}
-	
-	@RequestMapping(value = "/listPage.do", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri")Criteria cri,
-			Model model) throws Exception {
-		
-		logger.info(cri.toString());
-		
-		model.addAttribute("list", service.listCriteria(cri));
-		pageMaker pageMaker = new pageMaker();
-		pageMaker.setCri(cri);
-		
-		pageMaker.setTotalCount(service.listCountCriteria(cri));
-		
-		model.addAttribute("PageMaker", pageMaker);
-	}
 
 	@RequestMapping("view.do")
 	public String view(Model model, TestBoardVO vo) {

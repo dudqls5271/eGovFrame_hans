@@ -65,7 +65,6 @@
           },
         }).open();
       }
-<<<<<<< HEAD
       
       
       $(document).ready(function() {
@@ -180,8 +179,7 @@
     	  });
       });
       
-=======
->>>>>>> parent of 7ccb025... 제이슨 아이디 중복 체크
+
     </script>
 </head>
 <body>

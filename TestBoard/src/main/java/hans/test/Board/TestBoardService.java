@@ -4,7 +4,6 @@ import java.util.List;
 
 public interface TestBoardService {
 	List<TestBoardVO> selectAll() throws Exception;
-	List<TestBoardVO> listCriteria(Criteria cri) throws Exception;
 	TestBoardVO selectBoard(TestBoardVO vo) throws Exception;
 	int updateBoard(TestBoardVO vo) throws Exception;
 	int insertBoard(TestBoardVO vo) throws Exception;
@@ -12,11 +11,7 @@ public interface TestBoardService {
 	int insertJoin(TestBoardVO vo) throws Exception;
 	int updateJoin(TestBoardVO vo) throws Exception;
 	TestBoardVO selectLogin(TestBoardVO vo) throws Exception;
-<<<<<<< HEAD
-	TestBoardVO selectidChack(TestBoardVO vo) throws Exception;
-	int listCountCriteria(Criteria cri) throws Exception;
-		
-=======
 
->>>>>>> parent of 7ccb025... 제이슨 아이디 중복 체크
+	TestBoardVO selectidChack(TestBoardVO vo) throws Exception;
+
 }
