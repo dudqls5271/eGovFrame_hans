@@ -66,7 +66,7 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 		
 		page = (page - 1) *10;
 
-		return selectList("listpage", page);
+		return selectList("listPage", page);
 	}
 
 	@Override
@@ -77,6 +77,12 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 	@Override
 	public int countPaging(Criteria cri) throws Exception {
 		return selectOne("countPaging", cri);
+	}
+
+	@Override
+	public List<TestBoardVO> listAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

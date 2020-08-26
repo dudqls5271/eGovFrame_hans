@@ -2,6 +2,8 @@ package hans.test.Board;
 
 import java.util.List;
 
+import egovframework.let.cop.bbs.service.BoardVO;
+
 public interface TestBoardService {
 	List<TestBoardVO> selectAll() throws Exception;
 	TestBoardVO selectBoard(TestBoardVO vo) throws Exception;
@@ -13,6 +15,11 @@ public interface TestBoardService {
 	TestBoardVO selectLogin(TestBoardVO vo) throws Exception;
 	
 	List<TestBoardVO> listCriteria(Criteria cri) throws Exception;
+	public BoardVO read(Integer bno)throws Exception;
+	public void regist(BoardVO boader)throws Exception;
+	public void modify(BoardVO boader)throws Exception;
+	public void remove(Integer bno)throws Exception;
+	public List<BoardVO> listAll() throws Exception;
 	
 	int listCountCriteria(Criteria cri)throws Exception;
 

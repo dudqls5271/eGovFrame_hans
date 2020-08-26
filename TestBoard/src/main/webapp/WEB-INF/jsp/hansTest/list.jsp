@@ -15,6 +15,11 @@
 <script>
 	$(document).ready(function() {
 		$(".board").click(function() {
+			var frmFrom = $("#frm");
+			console.log(frmFrom);
+			$("[name=page]").val(targetPageNum);
+			frmFrom.attr("action", "/test/view.do").attr("method","get");
+			frmFrom.submit();
 			$("#seqno").val($(this).data("id"));
 			$("#frm").submit();
 		});
@@ -38,6 +43,18 @@
 		$(".log").click(function(){
 			$('.user_nav_hid').animate({ opacity: "toggle"}, "slow");
 		});
+		$(".pagination li a").on("click", function(event) {
+			
+			event.preventDefault();
+			var targetPageNum = $(this).attr("href");
+			
+			var frmFrom = $("#frm");
+			console.log(frmFrom);
+			$("[name=page]").val(targetPageNum);
+			frmFrom.attr("action", "/test/list.do").attr("method","get");
+			frmFrom.submit();
+			
+		});
 	});
 </script>
 
@@ -45,6 +62,7 @@
 <body>
 <form id="frm" action='/test/view.do'>
 <input type="hidden" name="seqno" id="seqno">
+<input type="hidden" name = "page">
 	<div class="grid-container">
       <div class="item1">Header</div>
       <c:import url="/test/nav.do" charEncoding="UTF-8"></c:import>
@@ -61,8 +79,10 @@
 				<div data-id="${result.seqno}" class="board">${result.writer}</div>
 				<div data-id="${result.seqno}" class="board">${result.regdate}</div>
            </c:forEach>
-           <c:import url="/test/listPage.do" charEncoding="UTF-8"></c:import>
         </div>
+      </div>
+      <div class="item3_5">
+      	<c:import url="/test/listPage.do" charEncoding="UTF-8"></c:import>
       </div>
       <div class="item4">     
       	<c:import url="/test/user.do" charEncoding="UTF-8"></c:import>

@@ -1,5 +1,6 @@
 package hans.test.Board;
 
+import java.io.Reader;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import egovframework.let.cop.bbs.service.BoardVO;
+
 @Controller
 @RequestMapping("/test/")
 public class TestBoardController {
@@ -22,9 +25,16 @@ public class TestBoardController {
 	TestBoardService service;
 
 	@RequestMapping("list.do")
-	public String list(Model model) {
+	public String list(@ModelAttribute("cri")Criteria cri,Model model) {
 		try {
-			model.addAttribute("resultList", service.selectAll());
+			System.out.println(cri.toString());
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			
+			pageMaker.setTotalCount(service.listCountCriteria(cri));
+
+			model.addAttribute("pageMaker", pageMaker);
+			model.addAttribute("resultList", service.listCriteria(pageMaker.getCri()));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,23 +44,53 @@ public class TestBoardController {
 	
 	@RequestMapping(value="/listPage.do", method = RequestMethod.GET)
 	public String listPage(@ModelAttribute("cri")Criteria cri,
-			Model model) throws Exception {
-		
-		model.addAttribute("list", service.listCriteria(cri));
+			Model model) throws Exception {		
+		System.out.println(cri.toString());
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(131);
+		
+		pageMaker.setTotalCount(service.listCountCriteria(cri));
 		
 		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("list", service.listCriteria(pageMaker.getCri()));
 		return "hansTest/listPage";
 		
 	}
 	
 	@RequestMapping(value = "/readPage.do", method = RequestMethod.GET)
-	public void read(@RequestParam("seqno") int seqno,
+	public void read(@RequestParam("seqno") int bno,
 			@ModelAttribute("cri") Criteria cri,
 			Model model) throws Exception {
-		model.addAttribute(service.selectBoard(vo));
+		
+		model.addAttribute(service.read(bno));
+	}
+	
+	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
+	public String remove(@RequestParam("bno") int bno ,
+			Criteria cri,
+				RedirectAttributes rttr) throws Exception {
+		service.remove(bno);
+		
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		
+		return "redirect:/test/listPage";
+		
+	}
+	
+	@RequestMapping(value="/modifyPage", method = RequestMethod.POST)
+	public String modifyPagingPOST(BoardVO board ,
+			Criteria cri,
+				RedirectAttributes rttr) throws Exception {
+		service.modify(board);
+		
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		
+		return "redirect:/test/listPage";
+		
 	}
 			
 
@@ -140,7 +180,7 @@ public class TestBoardController {
 		return "hansTest/logout_list";
 	}
 	
-	@RequestMapping("header.do")
+	@RequestMapping("header.do") 
 	public String header(Model model) {
 		try {
 		} catch (Exception e) {

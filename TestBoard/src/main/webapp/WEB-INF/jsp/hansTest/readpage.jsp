@@ -12,7 +12,7 @@
 <script>
 	$(".btn-primary").on("click", function() {
 		formObj.attr("method", "get");
-		formObj.attr("action", "/board/listPage");
+		formObj.attr("action", "/test/listPage");
 		fromObj.submit();
 	});
 </script>

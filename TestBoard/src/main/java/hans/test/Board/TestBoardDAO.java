@@ -13,6 +13,7 @@ public interface TestBoardDAO {
 	TestBoardVO selectLogin(TestBoardVO vo) throws Exception;
 	
 	List<TestBoardVO> listPage(int page) throws Exception;
+	List<TestBoardVO> listAll()throws Exception;
 	
 	List<TestBoardVO> listCriteria(Criteria cri) throws Exception;
 	
