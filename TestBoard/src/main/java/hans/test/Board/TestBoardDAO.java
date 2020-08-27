@@ -2,6 +2,8 @@ package hans.test.Board;
 
 import java.util.List;
 
+import egovframework.let.cop.bbs.service.BoardVO;
+
 public interface TestBoardDAO {
 	List<TestBoardVO> selectAll() throws Exception;
 	TestBoardVO selectBoard(TestBoardVO vo) throws Exception;
@@ -16,6 +18,9 @@ public interface TestBoardDAO {
 	List<TestBoardVO> listAll()throws Exception;
 	
 	List<TestBoardVO> listCriteria(Criteria cri) throws Exception;
+	
+	List<BoardVO> listSearch(SearchCriteria cri)throws Exception;
+	int listSearchCount(SearchCriteria cri)throws Exception;
 	
 	int countPaging(Criteria cri) throws Exception;
 

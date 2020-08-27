@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.registry.infomodel.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,6 @@ public class TestBoardController {
 			System.out.println(cri.toString());
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(cri);
-			
 			pageMaker.setTotalCount(service.listCountCriteria(cri));
 
 			model.addAttribute("pageMaker", pageMaker);
@@ -43,7 +43,7 @@ public class TestBoardController {
 	}
 	
 	@RequestMapping(value="/listPage.do", method = RequestMethod.GET)
-	public String listPage(@ModelAttribute("cri")Criteria cri,
+	public String listPage(@ModelAttribute("cri")SearchCriteria cri,
 			Model model) throws Exception {		
 		System.out.println(cri.toString());
 		PageMaker pageMaker = new PageMaker();
@@ -53,7 +53,8 @@ public class TestBoardController {
 		
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("list", service.listCriteria(pageMaker.getCri()));
-		return "hansTest/listPage";
+		System.out.println("============================>?");
+		return "hansTest/list";
 		
 	}
 	
@@ -91,8 +92,7 @@ public class TestBoardController {
 		
 		return "redirect:/test/listPage";
 		
-	}
-			
+	}		
 
 	@RequestMapping("view.do")
 	public String view(Model model, TestBoardVO vo) {

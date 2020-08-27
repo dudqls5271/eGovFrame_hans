@@ -70,7 +70,7 @@ public void setTotalCount(int totalCount) {
       next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
    }
    
-   public String makeQuery(int page) {
+   public String makerQuery(int page) {
       
       UriComponents uriComponents = 
             UriComponentsBuilder.newInstance()
@@ -79,5 +79,18 @@ public void setTotalCount(int totalCount) {
             .build();
    
       return uriComponents.toUriString();
+   }
+   
+   public String makeSearch(int page) {
+	   
+	   UriComponents uriComponents	=
+			   UriComponentsBuilder.newInstance()
+			   .queryParam("page", page)
+			   .queryParam("perPageNum", cri.getPerPageNum())
+			   .queryParam("searchType", 
+		((Criteria)cri).getSearchType())
+			   .queryParam("keyword", ((Criteria)cri).getKeyword())
+			   .build();
+	return uriComponents.toUriString();
    }
 }

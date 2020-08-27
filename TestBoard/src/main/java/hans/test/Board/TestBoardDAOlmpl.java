@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.hsqldb.Session;
 import org.springframework.stereotype.Repository;
 
+import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
 
 @Repository
@@ -71,18 +72,30 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 
 	@Override
 	public List<TestBoardVO> listCriteria(Criteria cri) throws Exception {
-		return selectList("listCriteria", cri);
+		return selectList("listSearch", cri);
 	}
 
 	@Override
 	public int countPaging(Criteria cri) throws Exception {
-		return selectOne("countPaging", cri);
+		return selectOne("countSearchPaging", cri);
 	}
 
 	@Override
 	public List<TestBoardVO> listAll() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return selectList("listSearch", cri);
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return selectOne("listSearchCount", cri);
 	}
 	
 }

@@ -39,6 +39,87 @@
 		limit #{pageStart}, #{perPageNum}
 	</select>
 	
+	<select id="listSearch" parameterType="hans.test.Board.Criteria" resultType="TestBoardVO">
+		select seqno 
+		,title
+		,contents
+		,writer
+		,date_format(regdate,'%Y-%m-%d') as regdate
+		,user_id
+		from yb_board
+		where seqno > 0
+		
+		<if test="searchType != null">
+		
+			<if test="searchType == 't'.toString()">
+				and title like CONCAT('%',#{keyword}, '%')
+			</if>
+			
+		<if test="searchType == 'c'.toString()">
+			and content like CONCAT('%',#{keyword}, '%')
+		</if>
+		
+		<if test="searchType == 'w'.toString()">
+			and writer like CONCAT('%',#{keyword}, '%')
+		</if>
+		
+		<if test="searchType == 'tc'.toString()">
+			and (title like CONCAT('%',#{keyword}, '%') or content like CONCAT('%',#{keyword}, %))
+		</if>
+		
+		<if test="searchType == 'cw'.toString()">
+			and (content like CONCAT('%',#{keyword}, '%') or writer like CONCAT('%',#{keyword}, %))
+		</if>
+		
+		<if test="searchType == 'tcw'.toString()">
+			and(	title like CONCAT('%',#{keyword}, '%')
+				or 
+					content like CONCAT('%',#{keyword}, '%') 
+				or
+					writer like CONCAT('%',#{keyword}, '%'))
+		</if>
+	</if>
+	
+	order by seqno desc
+	limit #{pageStart}, #{perPageNum}
+</select>
+	<select id="countSearchPaging" resultType="int">
+		select
+		count(seqno)
+		from yb_board
+		where seqno > 0
+		<if test="searchType != null">
+		
+			<if test="searchType == 't'.toString()">
+				and title like CONCAT('%',#{keyword}, '%')
+			</if>
+			
+		<if test="searchType == 'c'.toString()">
+			and content like CONCAT('%',#{keyword}, '%')
+		</if>
+		
+		<if test="searchType == 'w'.toString()">
+			and writer like CONCAT('%',#{keyword}, '%')
+		</if>
+		
+		<if test="searchType == 'tc'.toString()">
+			and (title like CONCAT('%',#{keyword}, '%') or content like CONCAT('%',#{keyword}, %))
+		</if>
+		
+		<if test="searchType == 'cw'.toString()">
+			and (content like CONCAT('%',#{keyword}, '%') or writer like CONCAT('%',#{keyword}, %))
+		</if>
+		
+		<if test="searchType == 'tcw'.toString()">
+			and(	title like CONCAT('%',#{keyword}, '%')
+				or 
+					content like CONCAT('%',#{keyword}, '%') 
+				or
+					writer like CONCAT('%',#{keyword}, '%'))
+		</if>
+	</if>
+	</select>
+	
 	<select id="selectBoard" parameterType="TestBoardVO"
 		resultType="TestBoardVO">
 		SELECT seqno, title, contents, regdate, writer

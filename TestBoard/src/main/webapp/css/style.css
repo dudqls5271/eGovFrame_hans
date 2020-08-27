@@ -22,6 +22,10 @@ body {
   grid-area: list;
 }
 
+.item3_7 {
+	grid-area: search
+}
+
 .nav {
   background-color: #4a56a8;
   padding-left: 10.4%;
@@ -47,13 +51,14 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: 10% repeat(3, auto) 25%;
-  grid-template-rows: 2fr 2fr 2fr 12fr 2fr 2fr;
+  grid-template-rows: 2fr 1fr 1fr 5fr 1fr 1fr 1fr;
   grid-template-areas:
     " header header header header header"
     " nav nav nav nav nav"
     " . btn . . ."
     " . main main main right"
-    ". .list . . "
+    ". . list . . "
+    ". . search . ."
     " footer footer footer footer footer";
   grid-gap: 10px;
 }
