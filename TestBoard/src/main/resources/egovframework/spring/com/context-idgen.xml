@@ -12,6 +12,9 @@
         <property name="table"      value="IDS"/>
         <property name="tableName"  value="FILE_ID"/>
     </bean>
+    
+
+    
     <!-- 첨부파일 ID Generation  Strategy Config -->
     <bean name="fileStrategy"
         class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
@@ -19,6 +22,8 @@
         <property name="cipers" value="15" />
         <property name="fillChar" value="0" />
     </bean>
+    
+    
     
     <!-- 게시판마스터 ID Generation  Config-->
     <bean name="egovBBSMstrIdGnrService"

@@ -23,6 +23,9 @@
 		</property>
 	</bean>
 
+	
+
+
     <!-- Exception 발생에 대한 기본Excpton처리를 위해 표준프레임워크 실행환경의 DefaultExceptionTransfer를 활용하도록  설정-->
 	<bean id="defaultExceptionHandleManager" class="egovframework.rte.fdl.cmmn.exception.manager.DefaultExceptionHandleManager">
 		<property name="reqExpMatcher">

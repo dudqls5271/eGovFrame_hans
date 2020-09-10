@@ -8,4 +8,6 @@
 	  <property name="dataSource" ref="dataSource-${Globals.DbType}" />
 	  <property name="configLocation" value="classpath:mybatis/configuration.xml" /> 
  	</bean>
+ 	
+ 	
 </beans>
