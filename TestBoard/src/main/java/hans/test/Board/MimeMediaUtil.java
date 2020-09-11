@@ -1,4 +1,4 @@
-/*package hans.test.Board;
+package hans.test.Board;
 
 import java.util.*;
 import org.springframework.http.MediaType;
@@ -20,4 +20,3 @@ public class MimeMediaUtil {
 	}
 
 }
-*/

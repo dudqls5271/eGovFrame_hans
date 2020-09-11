@@ -32,16 +32,31 @@
 		var formData = new FormData();
 		formData.append("file", file);
 		
+		function checkImageType(fileName) {
+			var pattern = /jpg|gif|png|ipge/i;
+			return fileName.match(pattern);
+		}
+		
 		$.ajax({
-			url: '/test/uploadAjax.do',
+			url: 'uploadAjax.do',
 			data: formData,
 			dataType:'text',
 			processData: false,
 			contentType: false,
 			type: 'POST',
 			success: function(data) {
+				
+				var str = "";
+				
+				if (checkImageType(data)) {
+					str = "<div>" + "<img src='/test/displayFile?fileName=" + data +  "'/>" + data+"</div>";
+				} else {
+					str = "<div>" + data+  +"</div>";
+				}
+				$(".uploadList").append(str);
 				console.log(data);
 				alert(data);
+				alert(str);
 			}
 			
 		});

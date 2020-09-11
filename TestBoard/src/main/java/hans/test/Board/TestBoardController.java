@@ -1,9 +1,17 @@
 package hans.test.Board;
 
 import java.awt.Image;
+import org.springframework.http.MediaType;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -11,11 +19,15 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.swing.JPopupMenu.Separator;
+import javax.ws.rs.core.Cookie;
+import javax.ws.rs.core.MultivaluedMap;
 
+import org.apache.commons.compress.utils.IOUtils;
 import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -43,118 +55,173 @@ public class TestBoardController {
 	@Autowired
 	TestBoardService service;
 	
+	//파일 경로를 context로부터 가지고 온다 
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 	
-//	데이터 파일 처리
-//	private static String uploadFile(String originalName, 
-//									String uploadPath, 
-//									byte[] fileData) throws Exception {
-//
-//			UUID uid = UUID.randomUUID();
-//			String savedName = uid.toString() + "_" + originalName;
-//			String savedPath = calcPath(uploadPath);
-//			
-//			File target = new File(uploadPath + uploadPath, savedName);
-//			FileCopyUtils.copy(fileData, target);
-//			
-//			String formatName = 
-//					originalName.substring(originalName.lastIndexOf(".")+1);
-//			
-//			String uploadedFileName = null;
-//			
-//			if (MediaUtils.getMediaType(formatName) != null) {
-//				uploadedFileName = makeThumbnail(uploadPath, savedPath, savedName);
-//			} else {
-//				uploadedFileName = makeIcon(uploadPath, savedPath, savedName);
-//			}
-//			
-//			return uploadedFileName;
-//	}
-//	
-//	private static String makeIcon(String uploadPath, String path, String fileName) throws Exception {
-//		String iconName = uploadPath + path + File.separator+ fileName;
-//		return iconName.substring(uploadPath.length()).replace(File.separatorChar, "/");
-//	}
-//
-//	private static String calcPath(String uploadPath) {
-//		Calendar cal = Calendar.getInstance();
-//		
-//		String yearPath = File.separator+cal.get(Calendar.YEAR);
-//		
-//		String monthPath = yearPath + 
-//				File.separator + 
-//				new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
-//		String datePath = monthPath +
-//				File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));
-//		
-//		makeDir(uploadPath, yearPath, monthPath, datePath);
-//		logger.info(datePath);
-//		
-//		return uploadPath;
-//	}
-//	
-//	private static void makeDir(String uploadPath, String...paths) {
-//		if (new File (paths[paths.length-1]).exists()) {
-//			return;
-//		}
-//		
-//		for (String path : paths) {
-//			File dirPath = new File(uploadPath + path);
-//			
-//			if (! dirPath.exists() ) {
-//				dirPath.mkdir();
-//			}
-//		}
-//	}
-//	
-//	private static String makeThumbnail(
-//				String uploadPath,
-//				String path,
-//				String fileName ) throws Exception {
-//		
-//		BufferedImage sourceImg = 
-//				ImageIO.read(new File(uploadPath + path, fileName));
-//		
-//		BufferedImage destImg = 
-//				Scalr.resize(sourceImg,
-//						Scalr.Method.AUTOMATIC, 
-//						Scalr.Mode.FIT_TO_HEIGHT,100);
-//		
-//		String thumbnailName = 
-//				uploadPath + path + File.separator + "s_" + fileName;
-//		
-//		File newFile = new File(thumbnailName);
-//		
-//		String formatName = 
-//				fileName.substring(fileName.lastIndexOf(".")+1);
-//		
-//		ImageIO.write(destImg, formatName.toUpperCase(), newFile);
-//		return thumbnailName.substring(
-//				uploadPath.length()).replace(File.separatorChar, '/');
-//	}
-
-
 	//	Ajax 업로드
+	// 페이지 이동
 	@RequestMapping(value = "/uploadAjax.do", method = RequestMethod.GET)
 	public String uploadAjax()  {
 		return "hansTest/uploadAjax";
 	}
 	
+	// Ajax 파일 전송
+	@ResponseBody
+	@RequestMapping("/dispalyFile.do")
+	public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
+		InputStream in = null;
+		ResponseEntity<byte[]> entity = null;
+		
+		logger.info("file name: " + fileName);
+		
+		try {
+			//확장자명 추출
+			String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
+			MediaType mType = MimeMediaUtil.geMediaType(formatName);
+			HttpHeaders headers = new HttpHeaders();
+			
+			//uploadPath의 fileName을 가진 FileInputStream 변수 초기화
+			in = new FileInputStream(uploadPath + fileName);
+			
+			//만약 이지미 타입 이라면?
+			if(mType != null) {
+				headers.setContentType(mType);
+			//그 외 다른 타입 
+			} else {
+				//확장자 확인
+				fileName = fileName.substring(fileName.indexOf("_") + 1);
+				// MIME을 '다운로드 타입'으로 지정
+				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+				// 파일명을 한글로 인코딩
+				headers.add("Content-Disposition", "attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");
+			}
+		
+			//IOUtils.toByteArray(in) : FileInputStream 타입 in 변수에서 실제 데이터? 을 읽어온다
+			// 읽어온 데이터, headers, Http 상태코드를 담은 entity 변수 반환
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		} finally {
+			// InputStream을 끝낸다.
+			in.close();
+		}
+		return entity;
+	}
+	
+	
+	// Ajax 그래그엔 드랍 할때 파일 정보 logger 
 	@ResponseBody
 	@RequestMapping(value = "/uploadAjax.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
+		//일단 파일이 있는지 없는지 부터 확인하고
 		if (!file.isEmpty()) {
+			//파일정보를 logger로 찍어준다.
 			logger.info(file.getContentType());
 			logger.info(file.getOriginalFilename());
 			logger.info(file.getSize() + "");
 		}	
 		
-	      return new ResponseEntity<>(file.getOriginalFilename(), HttpStatus.CREATED);
+		return new ResponseEntity<>(TestBoardController.uploadFiles(uploadPath, file.getOriginalFilename(), file.getBytes()), HttpStatus.CREATED);
+
+	}
+		
+	// Ajax 업로드 파일 저장?
+	//파일 데이터 처리용 클래서 작성
+	public static String uploadFiles(String uploadPath, String orginalName, byte[] fileData) throws Exception {
+		//난수 설정 해서
+		UUID uid = UUID.randomUUID();
+		//난수_오리지널 이름 으로 사진? 파일을 생성한
+		String savedName = uid.toString() + "_" + orginalName;
+		//경로가 존제하는지 판단후 생성
+		String savedPath = calcPath(uploadPath);
+		//upload + savePath 경로에 "uuid" + "_" + "orginalName" 이름을 가진 File타입 target 변수 생성
+		File target = new File(uploadPath + savedPath, savedName);
+		FileCopyUtils.copy(fileData, target);
+		//확정자 추출 substr로 .부터 불러온다.
+		String formatName = orginalName.substring(orginalName.lastIndexOf(".")+1);
+		//최종적으로 보내줄 uploadFileName을  null로 설정
+		String uploadedFileName = null;
+		//이미지 일때
+		if (MimeMediaUtil.geMediaType(formatName) != null) {
+			//
+			uploadedFileName = makeThumbnail(uploadPath, savedPath, savedName);
+		//그외 파일 일때
+		} else {
+			uploadedFileName = makeIcon(uploadPath, savedPath, savedName);
+		}
+		logger.info("uploadedFileName: " + uploadedFileName);
+		return uploadedFileName;
 	}
 	
-//	그냥 파일 업로드
-	 
+	//makeIcon
+	private static String makeIcon(String uploadPath, String path, String fileName) throws Exception {
+		
+		//uploadPath\년\월\일\UUID_파일명 형식으로 저장 한다.
+		String iconName = uploadPath + path + File.separator+ fileName;
+		return iconName.substring(uploadPath.length()).replace(File.separator, "/");
+	}
+	
+	//makeDir
+	private static void makeDir(String uploadPath, String...paths) {
+		// uploadPath + yearPath + monthPath + dataPath. 해당 경로가 존재한다면 리턴으로 종료
+		if (new File (paths[paths.length-1]).exists()) {
+			return;
+		}
+		// 년 -> 월 -> 일 순으로 파일을 만든다
+		for (String path : paths) {
+			File dirPath = new File(uploadPath + path);
+			//일 까지 만들면  끝내라
+			if (! dirPath.exists() ) {
+				dirPath.mkdir();
+			}
+			logger.info("dirPath: " + dirPath);
+		}
+	}
+	
+	//calPath 파일 생성
+	private static String calcPath(String uploadPath) {
+		//싱글톤 객체를 생성한다.
+		Calendar cal = Calendar.getInstance();
+		
+		//년/월/일 경로 생성 
+		String yearPath = File.separator+cal.get(Calendar.YEAR);
+		String monthPath = yearPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+		String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		// 경로가 실제로 존제하는지 판단후 생성한다.
+		makeDir(uploadPath, yearPath, monthPath, datePath);
+		logger.info("monthPath : " + monthPath);
+		logger.info("dataPath : " + datePath);
+		
+		return datePath;
+	}
+	
+	//makeThumbnail 썸내일 
+	private static String makeThumbnail(String uploadPath, String path, String fileName ) throws Exception {
+		
+		//upload + path 경로에서 fileName을 읽어 온다.
+		BufferedImage sourceImg = ImageIO.read(new File(uploadPath + path, fileName));
+		//Scalr 이라는 bil을 이용해서 읽어온 이미지 썸내일 용의 사이즈의 크기를 다시 지정한다.
+		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);
+		//이것도 똑같이 년 월 일 s_UUID_파일명으로 만듬
+		String thumbnailName = uploadPath + path + File.separator + "s_" + fileName;
+		logger.info("thumbnailName c?: " + thumbnailName);
+		//uploadPath/년/월/일/s_UUID_파일명의 이름을 가진 newFile을 만든다.
+		File newFile = new File(thumbnailName);
+		logger.info("newFile : " + newFile);
+		//확장자를 추출한다. substr으로(파일이름의 .부터 +1 을가지고 온다) ex)png
+		String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
+		//불특정한 확장자 이름을 무조건 대문자로 결정
+		ImageIO.write(destImg, formatName.toUpperCase(), newFile);
+		
+		logger.info("작은 놈 :" + thumbnailName.substring(uploadPath.length()).replace(File.separatorChar, '/'));
+		return thumbnailName.substring(uploadPath.length()).replace(File.separatorChar, '/'); 
+	}
+	
+	
+//	그냥 파일 업로드 Form
 	@RequestMapping(value = "/uploadForm.do", method = RequestMethod.GET)
 	public String uploadFormGET() throws Exception {
 		return "hansTest/uploadForm";	 
@@ -162,33 +229,43 @@ public class TestBoardController {
 	
 	@RequestMapping(value = "/uploadForm.do", method = RequestMethod.POST)
 	public String uploadFormPOST(MultipartFile file, Model model) throws Exception {
-		
+		//파일이 있는지 없는지 부터 확인 
 		if(!file.isEmpty()) {
+			//로그 찍고
 			logger.info(file.getOriginalFilename());
 			logger.info(file.getSize() + "");
 			logger.info(file.getContentType());
 			
-			String savedName = uploadFile(file.getOriginalFilename(), file.getBytes());
+			//저장 하는데 오리지이름, 크기를 이름으로 저장
+			String savedName = uploadFile_Form(file.getOriginalFilename(), file.getBytes());
 			model.addAttribute("savedName", savedName);
 		}
 		
 		return "redirect:/test/list.do";	 
 	}
 
-	
-	private String uploadFile(String originalName, 
+	//form 파일 업로드
+	private String uploadFile_Form(String originalName, 
 								byte[] fileData) throws Exception {
-		
+		//UUID = 난수 만듬 
 		UUID uid = UUID.randomUUID();
+		//난수_원래이름.png 로 저장 
 		String savedName = uid.toString() + "_" + originalName;
 		System.out.println("2");
-		File target = new File(uploadPath + savedName);
+		//target = uploadPath(지정해준 경로 "C:\\zzz\\upload" ) separator(\)이다. 
+		// 경로는 C:\\zzz\\upload가 되는것
+		File target = new File(uploadPath + File.separator +  savedName);
+		//파일 생성
+		//fileData로 byte 배열을 만들고 target에 저장 한다.
 		FileCopyUtils.copy(fileData, target);
 		System.out.println("3");
 		return "redirect:/test/list.do";
 	}
 
-
+	
+//	-----------------------------------------------------------------list - page - list ------------------------------------------------
+	
+	
 	@RequestMapping("list.do")
 	public String list(@ModelAttribute("cri")Criteria cri,Model model) {
 		try {
@@ -469,4 +546,5 @@ public class TestBoardController {
 		}
 		return "hansTest/modifyMember";
 	}
+	
 }
