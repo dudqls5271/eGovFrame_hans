@@ -4,7 +4,7 @@ import java.util.*;
 import org.springframework.http.MediaType;
 
 
-public class MimeMediaUtil {
+public class MediaUtil {
 	private static Map<String, MediaType> mediaMap;
 	
 	static {
