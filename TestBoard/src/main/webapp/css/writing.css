@@ -38,14 +38,37 @@ p {
     resize: none;
 }
 
+/* -------------------------------------[uploadFile]---------------------------*/
 
-
-
-
-
-
-
-
+	.uploadedList {
+		list-style: none;
+		display: flex;
+	}
+	
+	.list_img {
+	    margin-right: 10px;
+		width: 200px;
+    	border: 1px solid;
+    	border-radius: 20px 20px 5px 5px;
+        height: 186px;
+    }
+    
+    .img_t {
+    	text-align: center;
+    }
+    
+    .OriName {
+    	border-top: 1px solid;
+    	text-align: center;
+    	margin-top: 10px;
+    }
+    
+    .delete {
+    	padding: 5px;
+    	
+    	margin-top: 0px;
+    display: inline-block;
+    }
 
 /* -----------------------------------------------------------*/
 .container { 

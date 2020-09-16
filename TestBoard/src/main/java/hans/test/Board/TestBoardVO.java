@@ -30,6 +30,34 @@ public class TestBoardVO {
 	private String name;
 	private String pw_boader;
 	
+	private String fullname;
+	private int seqno_img;
+	private String regfata;
+	
+	public String getFullname() {
+		return fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+
+	public int getSeqno_img() {
+		return seqno_img;
+	}
+
+	public void setSeqno_img(int seqno_img) {
+		this.seqno_img = seqno_img;
+	}
+
+	public String getRegfata() {
+		return regfata;
+	}
+
+	public void setRegfata(String regfata) {
+		this.regfata = regfata;
+	}
+
 	public String getPw_boader() {
 		return pw_boader;
 	}
@@ -38,6 +66,7 @@ public class TestBoardVO {
 		return add1;
 	}
 
+	
 	public void setAdd1(String add1) {
 		this.add1 = add1;
 	}

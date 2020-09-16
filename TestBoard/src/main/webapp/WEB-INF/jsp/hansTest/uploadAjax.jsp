@@ -13,7 +13,6 @@
 </head>
 <body>
 	<h3>Ajax File Upload</h3>
-	
 	<div class="fileDrop" style="width: 500px; height: 500px; border:black 1px solid;" ></div>
 	
 	<div class="uploadedList"></div>
@@ -38,7 +37,9 @@
 		
 		function getOriginalName(fileName) {
 			if(checkImageType(fileName)) {
-				return;
+				var idx = fileName.lastIndexOf("_") + 1;
+				return fileName.substr(idx);
+// 				return;
 			}
 			
 			var idx = fileName.indexOf("_") + 1;
@@ -56,17 +57,19 @@
 			return front + end;
 		}
 		
-		$("uploadedList").on("click", "small", function(event) {
+		$(".uploadedList").on("click", "small", function(event) {
 			var that = $(this);
 			
 			$.ajax({
-				url: "deleteFile.do",
+				url: "/test/deleteFile.do",
 				type: "POST",
 				data: {fileName:$(this).attr("data-src")},
 				dataType: "text",
 				success: function(result) {
-					======
-					
+					if(result == 'deleted') {
+						that.parent("div").remove();
+						alert("deleted");
+					}
 				}
 			});
 		});
@@ -83,11 +86,17 @@
 				var str = "";
 				
 				if (checkImageType(data)) {
-					str = "<div>"
-						+ "<img src='displayFile.do?fileName="+data+"'/><small data-src="+data+">X</small></div>";
+// 					str = "<div><a href='displayFile.do?fileName="+getImgLike(data)+"'>"
+// 						+ "<img src='displayFile.do?fileName="+data+"'/>"
+// 						+ "</a><small data-src="+data+">X</small></div>";
+
+					str = "<div><a href='displayFile.do?fileName="+getImgLike(data)+"'>"
+					+ "<span>"+ getOriginalName(data)+ "</span>"
+					+ "</a><small data-src="+data+">X</small></div>";
 				} else {
-					str = "<div> <a href='displayFile.do?fileName="+data+"'>"
-							+getOriginalName(data)+"</a><small data-src="+data+">X</small></div>";
+					str = "<div><a href='displayFile.do?fileName="+data+"'>"
+						+ getOriginalName(data)+ "</a>"
+						+ "<small data-src="+data+">X</small></div></div>"
 				}
 				$(".uploadedList").append(str);
 				alert(data);

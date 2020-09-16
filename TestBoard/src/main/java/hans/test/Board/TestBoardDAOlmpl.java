@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.hsqldb.Session;
 import org.springframework.stereotype.Repository;
 
+import com.sun.mail.imap.protocol.Namespaces.Namespace;
+
 import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
 
@@ -57,6 +59,11 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 	public TestBoardVO selectidChack(TestBoardVO vo) throws Exception {
 		return selectOne("selectidChack", vo);
 	}
+	
+	@Override
+	public TestBoardVO insertImg(TestBoardVO vo) throws Exception {
+		return selectOne("add_img", vo);
+	}
 
 	@Override
 	public List<TestBoardVO> listPage(int page) throws Exception {
@@ -97,5 +104,6 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 		// TODO Auto-generated method stub
 		return selectOne("listSearchCount", cri);
 	}
+
 	
 }

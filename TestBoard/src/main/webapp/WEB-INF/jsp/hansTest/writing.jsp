@@ -50,21 +50,87 @@ $(document).ready(function() {
     
 	$('#fontSize').change(function() {
 		$('.text').css('font-size',this.value);
+	});
+	
+// 	------------------------------[uploadFile]--------------------
+	function checkImageType(fileName) {
+		var pattern = /jpg$|gif$|png$|jpeg$/i;
+		return fileName.match(pattern);
+	}
+	
+	function getOriginalName(fileName) {
+		if(checkImageType(fileName)) {
+			var idx = fileName.lastIndexOf("_") + 1;
+			return fileName.substr(idx);
+		}
+		
+		var idx = fileName.indexOf("_") + 1;
+		return fileName.substr(idx);
+	}
+	
+	function getImgLike(fileName) {
 
-//  		var dragData = window.getSelection();
-//  		var dragDataText = window.getSelection().toString();
-//  		var dragParent = dragData.focusNode.parentNode;
-//  		var inputArea = dragParent.parentNode;
-//  		var dargParentText = dragParent.innerText;
-//  		dargParentText = dargParentText.substr(0,dargParentText.indexOf(dragData));
-//  		console.log(dargParentText);
- 		
-//  		inputArea.innerHTML = "";
-//  		var newSpan = document.createElement("span");
-//  		newSpan.innerText = dragDataText;
-//  		newSpan.style.fontSize=$(this).val();
-//  		inputArea.innerText = dargParentText;
-//  		inputArea.appendChild(newSpan);
+		if(!checkImageType(fileName)) {
+			return;
+		} else {
+			var front = fileName.substr(0,12);
+			var end = fileName.substr(14);
+		}
+		return front + end;
+	}
+// 	-----------------------------------------------------------------------
+	$(".text").on("dragenter dragover", function(event) {
+		event.preventDefault();
+	});
+	$(".uploadedList").on("click", "small", function(event) {
+		var that = $(this);
+		
+		$.ajax({
+			url: "/test/deleteFile.do",
+			type: "POST",
+			data: {fileName:$(this).attr("data-src")},
+			dataType: "text",
+			success: function(result) {
+				if(result == 'deleted') {
+					that.closest("li").remove();
+					alert("deleted");
+				}
+			}
+		});
+	});
+	$(".text").on("drop", function(event) {
+		event.preventDefault();
+		
+		var files = event.originalEvent.dataTransfer.files;
+		var file = files[0];
+// 		console.log(file);
+		var formData = new FormData();
+		formData.append("file",file);
+		
+		$.ajax({
+			url: 'test/uploadAjax.do',
+			data: formData,
+			dataType: 'text',
+			processData: false,
+			contentType: false,
+			type: 'POST',
+			success: function(data) {
+				
+				var str = "";
+				
+				if (checkImageType(data)) {
+					str = "<li class='list_img'><p class= 'img_t'><a href='displayFile.do?fileName="+getImgLike(data)+"'>"
+						+ "<img src='displayFile.do?fileName="+data+"'/>"
+						+ "</a><div data-src="+data+" class='OriName'><p class='delete'>"+getOriginalName(data)+"</span><small data-src="+data+">X</small></div></p></li>";
+				} else {
+					str = "<div><a href='displayFile.do?fileName="+data+"'>"
+						+ getOriginalName(data)+ "</a>"
+						+ "<small data-src="+data+">X</small></div></div>"
+				}
+				$(".uploadedList").append(str);
+				alert(data);
+			}
+		})
 	});
 });
 </script>
@@ -103,7 +169,7 @@ $(document).ready(function() {
 			<div>
 				<textarea name="contents" class="text"></textarea>
 			</div>	
-	    	
+	    		<ul class="uploadedList"></ul>
 	    	<div class="wrap">
 	    		<p>완료</p>
 	    		<div id="sub">

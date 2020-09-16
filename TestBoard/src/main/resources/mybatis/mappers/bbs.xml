@@ -11,6 +11,12 @@
 		where seqno > 0
 	</select>
 	
+	<insert id="add_img">
+		INSERT INTO test_schema.yb_img
+		(fullname, regfata, seqno)
+		VALUES(#{fullname}, now(), LAST_INSERT_ID());
+	</insert>
+	
 	<select id="selectAll" parameterType="Criteria" resultType="TestBoardVO">
 		select 
 		seqno 

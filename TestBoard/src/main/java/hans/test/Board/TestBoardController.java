@@ -23,6 +23,7 @@ import javax.swing.JPopupMenu.Separator;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MultivaluedMap;
 
+import org.apache.catalina.util.Strftime;
 import org.apache.commons.compress.utils.IOUtils;
 import org.imgscalr.Scalr;
 import org.slf4j.Logger;
@@ -107,7 +108,7 @@ public class TestBoardController {
 		String monthPath = yearPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.MARCH)+1);
 		String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));
 		makeDir(uploadPath, yearPath, monthPath, datePath);
-		logger.info(datePath);
+		logger.info("datePath : " + datePath);
 		
 		return datePath;
 	}
@@ -150,7 +151,7 @@ public class TestBoardController {
 		logger.info(file.getSize() + "");
 		}
 		String result = uploadFile(uploadPath,file.getOriginalFilename(),file.getBytes());
-		logger.info(result);
+		logger.info("result : "+ result);
 		return new ResponseEntity<String> (result, HttpStatus.CREATED);
 	}
 	
@@ -193,6 +194,7 @@ public class TestBoardController {
 	@ResponseBody
 	@RequestMapping(value="/deleteFile.do", method=RequestMethod.POST)
 	public ResponseEntity<String> deleteFile(String fileName) {
+		
 		logger.info("delete file: " + fileName);
 		
 		String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
@@ -200,12 +202,14 @@ public class TestBoardController {
 		MediaType mType = MediaUtil.geMediaType(formatName);
 		
 		if (mType != null) {
+			
 			String front = fileName.substring(0,12);
 			String end = fileName.substring(14);
-			new File(uploadPath + fileName.replace('/',File.separatorChar)).delete();
+			new File(uploadPath + (front+end).replace('/', File.separatorChar)).delete();
 		}
 		
 		new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
+		
 		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 	}
 	

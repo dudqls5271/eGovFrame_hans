@@ -25,4 +25,6 @@ public interface TestBoardDAO {
 	int countPaging(Criteria cri) throws Exception;
 
 	TestBoardVO selectidChack(TestBoardVO vo) throws Exception;
+	
+	TestBoardVO insertImg(TestBoardVO vo) throws Exception;
 }

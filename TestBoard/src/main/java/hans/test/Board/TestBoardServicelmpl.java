@@ -102,5 +102,10 @@ public class TestBoardServicelmpl implements TestBoardService {
 		return null;
 	}
 
+	@Override
+	public TestBoardVO insertImg(TestBoardVO vo) throws Exception {
+		return dao.insertImg(vo);
+	}
+
 
 }
