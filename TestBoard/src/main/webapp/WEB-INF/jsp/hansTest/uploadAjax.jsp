@@ -15,7 +15,7 @@
 	<h3>Ajax File Upload</h3>
 	<div class="fileDrop" style="width: 500px; height: 500px; border:black 1px solid;" ></div>
 	
-	<div class="uploadedList"></div>
+	<table class="uploadedList" border="1px solid"></table>
 	<script type="text/javascript">
 	$(".fileDrop").on("dragenter dragover", function(event) {
 		event.preventDefault();
@@ -67,7 +67,7 @@
 				dataType: "text",
 				success: function(result) {
 					if(result == 'deleted') {
-						that.parent("div").remove();
+						that.closest("tr").remove();
 						alert("deleted");
 					}
 				}
@@ -90,13 +90,13 @@
 // 						+ "<img src='displayFile.do?fileName="+data+"'/>"
 // 						+ "</a><small data-src="+data+">X</small></div>";
 
-					str = "<div><a href='displayFile.do?fileName="+getImgLike(data)+"'>"
+					str = "<tr><td><a href='displayFile.do?fileName="+getImgLike(data)+"'>"
 					+ "<span>"+ getOriginalName(data)+ "</span>"
-					+ "</a><small data-src="+data+">X</small></div>";
+					+ "</a><small data-src="+data+">X</small></td></tr>";
 				} else {
-					str = "<div><a href='displayFile.do?fileName="+data+"'>"
+					str = "<tr><td><a href='displayFile.do?fileName="+data+"'>"
 						+ getOriginalName(data)+ "</a>"
-						+ "<small data-src="+data+">X</small></div></div>"
+						+ "<small data-src="+data+">X</small></td></tr>"
 				}
 				$(".uploadedList").append(str);
 				alert(data);

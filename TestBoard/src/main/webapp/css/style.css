@@ -1,6 +1,9 @@
 body {
   margin: 0px;
 }
+.header {
+  text-align: center;
+}
 .item1 {
   margin: auto;
   grid-area: header;
@@ -51,7 +54,7 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: 10% repeat(3, auto) 25%;
-  grid-template-rows: 2fr 1fr 1fr 5fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 5fr 1fr 1fr 1fr;
   grid-template-areas:
     " header header header header header"
     " nav nav nav nav nav"
@@ -175,5 +178,7 @@ a {
 .pagination {
 	padding: 0px;
 }
+
+
 
 

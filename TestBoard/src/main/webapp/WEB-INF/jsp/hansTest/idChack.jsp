@@ -11,7 +11,7 @@
 	<hr size="1" width="400">
 	<form class="register-form" action="/test/id_re.do">
 	<input type="text" placeholder="ID" name="user_id"> 
-	<p>${sessionNick}d</p>
+	<p>${sessionNick}</p>
 	<input type="submit" value="중복 확인">
 	</form>
 </body>

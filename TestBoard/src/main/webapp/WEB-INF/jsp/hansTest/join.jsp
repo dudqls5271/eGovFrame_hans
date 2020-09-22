@@ -8,10 +8,15 @@
 <title>Insert title here</title>
 <link href="<c:url value='/css/join.css'/>" rel="stylesheet"
 	type="text/css">
+	<link href="<c:url value='/css/style.css'/>" rel="stylesheet" type="text/css">
 <script defer
 	src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous"></script>
+	
    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
       function sample6_execDaumPostcode() {
@@ -112,44 +117,52 @@
     			
     		});
     		
-			$("#user_id").blur(function(){
-				var jsonv = {user_id : $("#user_id").val()};
-				$.ajax({
-					type:"POST", 
-					url:'<c:url value="idChack.do" />',
-					data:jsonv, 
-					success:function(data){
-						if(data == "Y"){
-							$("#idcheck").text("회원가입이 가능합니다.");
-							$("#idcheck").css("color","#29d616");
-						}else if(data == "N"){
-							$("#idcheck").text("이미 가입한 ID입니다.");
-							$("#idcheck").css("color","red");
-							$("#user_id").val("");
-							$("#user_id").focus();
-						}
-					}//END OF 콜백함수 즉 DB상 중복체크를 해온결과가 data
-				});//END OF AJAX
-			});
+    	    $("#user_id").blur(function() {
+    	         if ($(user_id).val().length > 0) {
+    	            var jsonv = {
+    	            	user_id : $(user_id).val()
+    	            };
+    	            $.ajax({
+    	               type : "POST",
+    	               url : "/test/idCheckAjax.do",
+    	               data : jsonv,
+    	               success : function(data) {
+    	                  console.log(data);
+    	                  if (data == "Y") {
+    	                     $("#idcheck").text("이미 가입한 ID입니다.");
+    	                     $("#idcheck").css("color", "red");
+    	                     $("#user_id").val("");
+    	                     $("#user_id").focus();
+    	                  } else if (data == "N") {
+    	                     $("#idcheck").text("회원가입이 가능합니다.");
+    	                     $("#idcheck").css("color", "#29d616");
+
+    	                  }
+    	               }//END OF 콜백함수 즉 DB상 중복체크를 해온결과가 data
+    	            });//END OF AJAX
+    	         } else {
+    	            alert("아이디를 입력하세요.");
+    	         }
+    	      });
     			
     	  
-			$("#pw_re").blur(function(){
+			$('#pw_re').blur(function(){
 				if($("#pw").val() == $("#pw_re").val()) {
 					$(".pw_chack").text("비밀번호 일치");
-					$(".pw_chack").css("color","#29d616");
+					$(".pw_chack").css('color','#29d616');
 				} else {
 					$(".pw_chack").text("비밀번호 재입력");
-					$(".pw_chack").css("color","red");
+					$(".pw_chack").css('color','red');
 				}
 				
 			});
 			
 			
-    	  $('.wrap').click(function() {
+    	  $('.button').click(function() {
     		  if ($('#user_id').val() == "") {
     			  alert("아이디를 입력해 주세요.");
     			   $("#user_id").focus();
-    		  } else if ($('#alert').val() == "") {
+    		  } else if ($('#nickname').val() == "") {
     			  alert("닉네임를 입력해 주세요.");
     			   $("#nickname").focus();
     		  } else if ($('#pw').val() == "") {
@@ -185,10 +198,12 @@
 <body>
 <body>
 	<form class="register-form" action="/test/join_re.do" method=post>
+	<h3 class="header"><b>header</b></h3>
+	 <c:import url="/test/nav.do" charEncoding="UTF-8"></c:import>
 		<div class="content">
 			<div class="join">
 				<div class="title_div">
-					<h3 class="title">기본 정보 입력</h3>
+					<h3 class="title_join">기본 정보 입력</h3>
 				</div>
 
 				<div class="from">
@@ -200,7 +215,7 @@
 									<input type="text" class="int" placeholder="아이디를 입력해 주세요"
 										name="user_id" id="user_id" maxlength="20" />
 								</div>
-								<div class="text_D">5~20자 영문, 숫자로 입력해 주세요.</div>
+								<div class="text_D">5~20자 영문, 숫자로 입력해 주세요.<span id="idcheck"></span> </div>
 							</div>
 						</div>
 
@@ -209,7 +224,7 @@
 							<div class="from_text">
 								<div class="div_in">
 									<input type="text" class="int" placeholder="닉네임를 입력해 주세요"
-										name="nickname" maxlength="20" />
+										name="nickname" maxlength="20" id="nickname"/>
 								</div>
 								<div class="text_D">2~20자 닉네임을 입력해 주세요.(띄어쓰기는 할 수없습니다.)</div>
 							</div>
@@ -220,11 +235,11 @@
 							<div class="from_text">
 								<div class="div_in">
 									<input type="password" class="int" placeholder="비밀번호를 입력해 주세요"
-										name="pw" maxlength="20" />
+										name="pw" maxlength="20" id="pw"/>
 								</div>
 								<div class="div_in">
 									<input type="password" class="pw_ch"
-										placeholder="비밀번호를 제확인해 주세요" maxlength="20" name="pw_re" />
+										placeholder="비밀번호를 제확인해 주세요" maxlength="20" name="pw_re" id="pw_re" />
 								</div>
 								<div class="text_D">5~20자 영문, 숫자로 입력해 주세요. <span class="pw_chack"></span> </div>
 							</div> 
@@ -246,11 +261,9 @@
 							<div class="text_g">전화번호</div>
 							<div class="from_text">
 								<div class="div_in">
-									<input type="text" placeholder="Phone" name="phone1"
-										class="int_add_num" maxlength="3" />- <input type="text"
-										placeholder="" name="phone2" class="int_add_num" maxlength="4" />-
-									<input type="text" placeholder="" name="phone3"
-										class="int_add_num" maxlength="4" />
+									<input type="text" placeholder="Phone" name="phone1"class="int_add_num" maxlength="3" id="hp1"/>- 
+									<input type="text" placeholder="" name="phone2" class="int_add_num" maxlength="4" id="hp2"/>-
+									<input type="text" placeholder="" name="phone3" class="int_add_num" maxlength="4" id="hp3" />
 								</div>
 								<div class="text_D">'-' 없이 입력해주세요</div>
 							</div>
@@ -300,10 +313,11 @@
 			</div>
 			<div class="sub">
 				<div class="button">
-					<input type="submit" class="ok" value="완료"></input>
+					<input type="button" class="ok" value="완료" style="border: 0px;"></input>
 				</div>
 			</div>
 		</div>
 	</form>
+	<c:import url="/test/copi.do" charEncoding="UTF-8"></c:import>
 </body>
 </html>

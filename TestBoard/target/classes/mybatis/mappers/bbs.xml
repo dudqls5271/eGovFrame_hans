@@ -11,10 +11,17 @@
 		where seqno > 0
 	</select>
 	
-	<insert id="add_img">
-		INSERT INTO test_schema.yb_img
-		(fullname, regfata, seqno)
-		VALUES(#{fullname}, now(), LAST_INSERT_ID());
+	<insert id="add_img">	
+		<if  test="fullname == null">
+			INSERT INTO test_schema.yb_img
+			(fullname, regfata, seqno, oriname)
+			VALUES('no', now(), LAST_INSERT_ID(), 'no');
+		</if>
+		<if test="fullname != null">
+			INSERT INTO test_schema.yb_img
+			(fullname, regfata, seqno, oriname)
+			VALUES(#{fullname}, now(), LAST_INSERT_ID(), #{oriname});
+		</if>
 	</insert>
 	
 	<select id="selectAll" parameterType="Criteria" resultType="TestBoardVO">
@@ -126,14 +133,30 @@
 	</if>
 	</select>
 	
+	
+	
 	<select id="selectBoard" parameterType="TestBoardVO"
 		resultType="TestBoardVO">
-		SELECT seqno, title, contents, regdate, writer
+		
+<!-- 		SELECT bo.seqno, bo.title, bo.contents, bo.regdate, bo.writer, img.fullname -->
+<!-- 		FROM -->
+<!-- 		yb_img img, yb_board bo -->
+<!-- 		WHERE -->
+<!-- 		img.seqno = bo.seqno and bo.seqno =#{seqno} -->
+		
+		SELECT *
 		FROM
 		yb_board
 		WHERE
-		seqno =#{seqno}
+		seqno = #{seqno}
 	</select>
+	
+	<select id="selectName" parameterType="TestBoardVO"
+		resultType="TestBoardVO">
+		SELECT fullname, oriname
+		FROM test_schema.yb_img
+		where seqno = #{seqno}
+		</select>
 
 	<update id="updateBoard" parameterType="TestBoardVO">
 		UPDATE yb_board
@@ -179,7 +202,7 @@
 		WHERE id=#{user_id}
 	</update>
 	
-	<select id="id_re" parameterType="TestBoardVO">
+	<select id="selectidChack" parameterType="TestBoardVO" resultType="TestBoardVO">
 		SELECT user_id
 		FROM
 		yb_join

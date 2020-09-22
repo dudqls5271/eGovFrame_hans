@@ -1,5 +1,7 @@
 package hans.test.Board;
 
+import java.util.ArrayList;
+
 import org.stringtemplate.v4.compiler.CodeGenerator.primary_return;
 
 public class TestBoardVO {
@@ -30,16 +32,36 @@ public class TestBoardVO {
 	private String name;
 	private String pw_boader;
 	
+	private String oriname;
 	private String fullname;
+	private ArrayList<String> fullnames;
+	private ArrayList<String> orinames;
+	public ArrayList<String> getOrinames() {
+		return orinames;
+	}
+
+	public void setOrinames(ArrayList<String> orinames) {
+		this.orinames = orinames;
+	}
+
 	private int seqno_img;
 	private String regfata;
 	
+
 	public String getFullname() {
 		return fullname;
 	}
 
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
+	}
+
+	public ArrayList<String> getFullnames() {
+		return fullnames;
+	}
+
+	public void setFullnames(ArrayList<String> fullnames) {
+		this.fullnames = fullnames;
 	}
 
 	public int getSeqno_img() {
@@ -223,14 +245,26 @@ public class TestBoardVO {
 		return "TestBoardVO [seqno=" + seqno + ", title=" + title + ", contents=" + contents + ", regdate=" + regdate
 				+ ", writer=" + writer + ", add1=" + add1 + ", add2=" + add2 + ", add3=" + add3 + ", add4=" + add4
 				+ ", user_id=" + user_id + ", pw=" + pw + ", email1=" + email1 + ", email2=" + email2 + ", nickname="
-				+ nickname + ", name=" + name + ", pw_boader=" + pw_boader + ", phone1=" + phone1 + ", phone2=" + phone2
-				+ ", phone3=" + phone3 + ", getPw_boader()=" + getPw_boader() + ", getWriter()=" + getWriter()
-				+ ", getPhone1()=" + getPhone1() + ", getPhone2()=" + getPhone2() + ", getPhone3()=" + getPhone3()
-				+ ", getUser_id()=" + getUser_id() + ", getPw()=" + getPw() + ", getSeqno()=" + getSeqno()
-				+ ", getTitle()=" + getTitle() + ", getContents()=" + getContents() + ", getRegdate()=" + getRegdate()
-				+ ", getNickname()=" + getNickname() + ", getName()=" + getName() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ nickname + ", name=" + name + ", pw_boader=" + pw_boader + ", oriname=" + oriname + ", fullname="
+				+ fullname + ", fullnames=" + fullnames + ", orinames=" + orinames + ", seqno_img=" + seqno_img
+				+ ", regfata=" + regfata + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3
+				+ ", getOrinames()=" + getOrinames() + ", getFullname()=" + getFullname() + ", getFullnames()="
+				+ getFullnames() + ", getSeqno_img()=" + getSeqno_img() + ", getRegfata()=" + getRegfata()
+				+ ", getPw_boader()=" + getPw_boader() + ", getAdd1()=" + getAdd1() + ", getAdd2()=" + getAdd2()
+				+ ", getAdd3()=" + getAdd3() + ", getAdd4()=" + getAdd4() + ", getEmail1()=" + getEmail1()
+				+ ", getEmail2()=" + getEmail2() + ", getWriter()=" + getWriter() + ", getPhone1()=" + getPhone1()
+				+ ", getPhone2()=" + getPhone2() + ", getPhone3()=" + getPhone3() + ", getUser_id()=" + getUser_id()
+				+ ", getPw()=" + getPw() + ", getSeqno()=" + getSeqno() + ", getTitle()=" + getTitle()
+				+ ", getContents()=" + getContents() + ", getRegdate()=" + getRegdate() + ", getNickname()="
+				+ getNickname() + ", getName()=" + getName() + ", getOriname()=" + getOriname() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
+	public String getOriname() {
+		return oriname;
+	}
 
+	public void setOriname(String oriname) {
+		this.oriname = oriname;
+	}
 }

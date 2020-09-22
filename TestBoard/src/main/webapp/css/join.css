@@ -1,8 +1,19 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 
 .content {
   margin: 37px auto 0;
   width: 866px;
+}
+
+.header {
+  text-align: center;
+  display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
 }
 
 .join {
@@ -14,7 +25,7 @@
   width: 866px;
 }
 
-.title {
+.title_join {
   color: #3c4790;
   font-size: 14px;
   vertical-align: -3px;
@@ -149,6 +160,7 @@
 }
 
 .sub {
+	 float: right;
   margin-top: 25px;
 }
 
@@ -161,6 +173,47 @@
   height: 38px;
 }
 
-.button {
-  float: right;
+.dcfoot {
+  clear: both;
+  position: relative;
+  padding-bottom: 50px;
+  background: #fff;
+  /* z-index: 15;*/
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  background: transparent;
+  font-style: normal;
 }
+.info_policy {
+  text-decoration: none;
+  color: #333;
+  width: 1050px;
+  margin: 0px auto 0;
+  padding-top: 28px;
+  text-align: center;
+}
+
+.info_policy > a {
+  font-size: 12px;
+  text-decoration: none;
+  color: #333;
+}
+
+.copyright {
+  width: 1050px;
+  margin: 10px auto 0;
+  text-align: center;
+  letter-spacing: 0;
+  font-size: 12px;
+  font-family: tahoma, sans-serif;
+  color: #333;
+}
+
+.file_p {
+  margin: 0px;
+  margin-bottom: 3px;
+}
+

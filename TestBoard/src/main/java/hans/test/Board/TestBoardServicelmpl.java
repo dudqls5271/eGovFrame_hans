@@ -107,5 +107,24 @@ public class TestBoardServicelmpl implements TestBoardService {
 		return dao.insertImg(vo);
 	}
 
+	@Override
+	public List<TestBoardVO> selectName(TestBoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectName(vo);
+	}
+
+	  public boolean idCheck(TestBoardVO vo) throws Exception {
+	      // TODO Auto-generated method stub
+	      boolean result = false;
+	      TestBoardVO userInfo = dao.selectidChack(vo);
+	      if (userInfo != null) {
+	         if (userInfo.getUser_id() != null) {
+	            result = true;
+
+	            System.out.println(userInfo.getUser_id());
+	         }
+	      }
+	      return result;
+	   }
 
 }

@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -48,6 +49,7 @@ import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.util.Calendar;
 
 import egovframework.let.cop.bbs.service.BoardVO;
+import egovframework.let.utl.sim.service.EgovFileScrty;
 
 @Controller
 @RequestMapping("/test/")
@@ -257,8 +259,22 @@ public class TestBoardController {
 		System.out.println("3");
 		return "redirect:/test/list.do";
 	}
-
 	
+//	---------------------------------------------------------------Ajax아이디 체크--------------------------------
+	   @ResponseBody
+	   @RequestMapping(value = "idCheckAjax.do", method = RequestMethod.POST)
+	   public String idCheck(TestBoardVO vo) throws Exception {
+	      System.out.println("idCheck start!!");
+	      logger.info("idCheck start!!");
+	      String result = "N";
+	      boolean checkResult = service.idCheck(vo);
+	      if (checkResult) {
+	         result = "Y";
+	      }
+	      logger.info("result :" + result);
+	      return result;
+	   }	
+	   
 //	-----------------------------------------------------------------list - page - list ------------------------------------------------
 	
 	
@@ -335,6 +351,7 @@ public class TestBoardController {
 	public String view(Model model, TestBoardVO vo) {
 		try {
 			model.addAttribute("result", service.selectBoard(vo));
+			model.addAttribute("fullNameList", service.selectName(vo));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -354,9 +371,20 @@ public class TestBoardController {
 	}
 
 	@RequestMapping("writing_re.do")
-	public String writing_re(TestBoardVO vo) {
+	public String writing_re(TestBoardVO vo) {	
 		try {
 			service.insertBoard(vo);
+			if(vo.getFullnames() != null) {
+				for (int i = 0; i <vo.getFullnames().size(); i++) {
+					vo.setFullname(vo.getFullnames().get(i));
+					vo.setOriname(vo.getOrinames().get(i));
+					service.insertImg(vo);
+				}
+			} else {
+					vo.setFullname("no");
+					vo.setOriname("no");
+					service.insertImg(vo);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -368,6 +396,7 @@ public class TestBoardController {
 	public String modfiy(Model model, TestBoardVO vo) {
 		try {
 			model.addAttribute("result", service.selectBoard(vo));
+			model.addAttribute("fullNameList", service.selectName(vo));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -447,6 +476,17 @@ public class TestBoardController {
 		return "hansTest/layout/nav";
 	}
 	
+	@RequestMapping("copi.do")
+	public String copi(TestBoardVO vo) {
+		try {
+			service.insertJoin(vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "hansTest/layout/copi";
+	}
+	
 	@RequestMapping("button.do")
 	public String button(Model model) {
 		try {
@@ -498,6 +538,7 @@ public class TestBoardController {
 		return "hansTest/join";
 	}
 
+
 	@RequestMapping("join_re.do")
 	public String join_re(TestBoardVO vo) {
 		try {
@@ -542,5 +583,7 @@ public class TestBoardController {
 		}
 		return "hansTest/modifyMember";
 	}
+	
+	
 	
 }

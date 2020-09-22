@@ -70,7 +70,7 @@
 <input type="hidden" name="seqno" id="seqno">
 <input type="hidden" name = "page">
 	<div class="grid-container">
-      <div class="item1">Header</div>
+      <div class="item1"><H1>header</H1></div>
       
 <!-- ==============================================================================> nva 시작 -->
        <div class="item2">
@@ -160,12 +160,10 @@
    	
    	<input type="text" id="keywordInput"> <input type="button" value="검색" id="searchBtn">
   </div>
-  
       <!-- ==============================================================================> 유저 인터페이스 시작 -->
       <div class="item4">     
       	<c:import url="/test/user.do" charEncoding="UTF-8"></c:import>
       </div>
-      
       <!-- ==============================================================================> footer 시작 -->
       <div class="item5">paging</div>
     </div>

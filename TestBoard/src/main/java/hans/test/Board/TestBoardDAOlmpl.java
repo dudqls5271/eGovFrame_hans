@@ -105,5 +105,10 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 		return selectOne("listSearchCount", cri);
 	}
 
+	@Override
+	public List<TestBoardVO> selectName(TestBoardVO vo) throws Exception {
+		return selectList("selectName", vo);
+	}
+
 	
 }
