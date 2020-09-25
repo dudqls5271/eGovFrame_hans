@@ -127,4 +127,19 @@ public class TestBoardServicelmpl implements TestBoardService {
 	      return result;
 	   }
 
+	@Override
+	public TestBoardVO pw_ch(TestBoardVO vo) throws Exception {
+		return dao.pw_ch(vo);
+	}
+
+	@Override
+	public TestBoardVO selectBoardModify(TestBoardVO vo) throws Exception {
+		return dao.selectBoardModify(vo);
+	}
+
+	@Override
+	public int updateImg(TestBoardVO vo) throws Exception {
+		return dao.updateImg(vo);
+	}
+
 }

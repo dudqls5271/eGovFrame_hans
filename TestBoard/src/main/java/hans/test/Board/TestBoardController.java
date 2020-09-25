@@ -4,13 +4,19 @@ import java.awt.Image;
 import org.springframework.http.MediaType;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -19,6 +25,7 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JPopupMenu.Separator;
 import javax.ws.rs.core.Cookie;
@@ -43,10 +50,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.util.Calendar;
+import com.ibm.icu.util.BytesTrie.Result;
 
 import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.let.utl.sim.service.EgovFileScrty;
@@ -68,6 +77,110 @@ public class TestBoardController {
 	public String uploadAjax()  {
 		return "hansTest/uploadAjax";
 	}
+	
+	@RequestMapping(value = "/imageSrc.do", method = RequestMethod.GET)
+	public void download2(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("=========> Back End Start!!");
+		Map<String,String[]> map = request.getParameterMap();
+		Iterator<String> it = map.keySet().iterator();
+		while(it.hasNext()) {
+			String key = it.next();
+			logger.info(Arrays.toString(map.get(key)));
+		}
+		String uploadDir = "D:" + File.separator + "ktr_upload" + File.separator;
+		/*Date today = new Date();
+		SimpleDateFormat date = new SimpleDateFormat(
+				File.separator + "yyyy" + File.separator + "MM" + File.separator + "dd");
+		String dataFolder = date.format(today);*/
+//		String subPath = "smartEditor" + dataFolder + File.separator;
+		String subPath = "smartEditor" + File.separator;
+		String physical = request.getParameter("physical");
+		String mimeType = "image/jpeg";
+		logger.info("넘어온 데이터 : " + physical);
+		logger.info("완성 경로 : " + uploadDir + subPath + physical);
+
+		viewFile(response, uploadDir, subPath, physical, mimeType);
+	}
+
+	public void viewFile(HttpServletResponse response, String where, String serverSubPath, String physicalName,
+			String mimeTypeParam) throws Exception {
+		String mimeType = mimeTypeParam;
+		// String downFileName = where + SEPERATOR + serverSubPath + SEPERATOR +
+		// physicalName;
+		String downFileName = where + serverSubPath + physicalName;
+
+		File file = new File(filePathBlackList(downFileName));
+
+		if (!file.exists()) {
+			throw new FileNotFoundException(downFileName);
+		}
+
+		if (!file.isFile()) {
+			throw new FileNotFoundException(downFileName);
+		}
+
+		byte[] b = new byte[8192];
+
+		if (mimeType == null) {
+			mimeType = "application/octet-stream;";
+		}
+
+		response.setContentType(mimeType.replaceAll("\r", "").replaceAll("\n", ""));
+		response.setHeader("Content-Disposition", "filename=image;");
+
+		BufferedInputStream fin = null;
+		BufferedOutputStream outs = null;
+
+		try {
+			fin = new BufferedInputStream(new FileInputStream(file));
+			outs = new BufferedOutputStream(response.getOutputStream());
+
+			int read = 0;
+
+			while ((read = fin.read(b)) != -1) {
+				outs.write(b, 0, read);
+			}
+		} finally {
+			close(outs, fin);
+		}
+	}
+
+	public void close(Closeable... resources) {
+		for (Closeable resource : resources) {
+			if (resource != null) {
+				try {
+					resource.close();
+				} catch (Exception ignore) {
+					logger.debug("Occurred Exception to close resource is ingored!!");
+				}
+			}
+		}
+	}
+
+	// 파일경로의 유효성 체크
+	public String filePathBlackList(String value) {
+		String returnValue = value;
+		if (returnValue == null || returnValue.trim().equals("")) {
+			return "";
+		}
+
+		returnValue = returnValue.replaceAll("\\.\\./", ""); // ../
+		returnValue = returnValue.replaceAll("\\.\\.\\\\", ""); // ..\
+
+		return returnValue;
+	}
+	/* 파일 관련 유틸 끝 */
+
+	
+	@RequestMapping(value = "/individualInfo.do") //개인정보처리방침
+	public ModelAndView individualInfo() {
+		 ModelAndView mav = new ModelAndView("/template/sub_template");
+		 mav.addObject("contentPage", "login/individualInfo.jsp");
+		 
+		 return mav;
+	}
+
+//	---------------------------------------------[Ajax 파일 업로드]----------------------------------
 	
 	public String uploadFile(String uploadPath, String originalName, byte[] fileData) throws Exception {
 		
@@ -392,28 +505,59 @@ public class TestBoardController {
 		return "redirect:/test/list.do";
 	}
 
-	@RequestMapping("modify.do")
+	@RequestMapping(value = "modify.do")
 	public String modfiy(Model model, TestBoardVO vo) {
+		String returnUrl = "";
 		try {
-			model.addAttribute("result", service.selectBoard(vo));
-			model.addAttribute("fullNameList", service.selectName(vo));
+			TestBoardVO tbvo = service.selectBoardModify(vo);
+			if(tbvo == null) {
+				returnUrl = "redirect:/test/list.do";
+			}else {
+				model.addAttribute("result", tbvo);
+				model.addAttribute("fullNameList", service.selectName(vo));
+				returnUrl = "hansTest/modify";
+			}
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "hansTest/modify";
+		return returnUrl;
+	}
+	
+	@RequestMapping(value = "pw_ch.do")
+	public String pw_ch(Model model, TestBoardVO vo) {
+		logger.info("============================> pw_ch");
+		try {
+			model.addAttribute("result", service.selectBoard(vo));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "hansTest/pw_ch";
 	}
 
 	@RequestMapping("modify_re.do")
 	public String modfiy_re(Model model, TestBoardVO vo) {
-		try {
-			model.addAttribute("result", service.updateBoard(vo));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				service.updateBoard(vo);
+				if(vo.getFullnames() != null) {
+					for (int i = 0; i <vo.getFullnames().size(); i++) {
+						vo.setFullname(vo.getFullnames().get(i));
+						vo.setOriname(vo.getOrinames().get(i));
+						service.updateImg(vo);
+					}
+				} else {
+						vo.setFullname("no");
+						vo.setOriname("no");
+						service.updateImg(vo);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "redirect:/test/list.do";
 		}
-		return "redirect:/test/list.do";
-	}
 
 	@RequestMapping("delete.do")
 	public String delete(Model model, TestBoardVO vo) {
@@ -453,7 +597,7 @@ public class TestBoardController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "hansTest/header";
+		return "hansTest/layout/header";
 	}
 	
 	@RequestMapping("page.do")
@@ -479,7 +623,6 @@ public class TestBoardController {
 	@RequestMapping("copi.do")
 	public String copi(TestBoardVO vo) {
 		try {
-			service.insertJoin(vo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -582,6 +725,26 @@ public class TestBoardController {
 			e.printStackTrace();
 		}
 		return "hansTest/modifyMember";
+	}
+	
+	@RequestMapping("smartEdit.do")
+	public String smartEidt(TestBoardVO vo) {
+		try {
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "hansTest/smartEdit";
+	}
+	
+	@RequestMapping("serch.do")
+	public String serch(TestBoardVO vo) {
+		try {
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "hansTest/layout/serch";
 	}
 	
 	

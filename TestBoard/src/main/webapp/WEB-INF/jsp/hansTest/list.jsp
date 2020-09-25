@@ -70,16 +70,13 @@
 <input type="hidden" name="seqno" id="seqno">
 <input type="hidden" name = "page">
 	<div class="grid-container">
-      <div class="item1"><H1>header</H1></div>
+      <div class="item1">
+      	<c:import url="/test/header.do" charEncoding="UTF-8"></c:import>
+      </div>
       
 <!-- ==============================================================================> nva 시작 -->
        <div class="item2">
-        <ul class="nav">
-          <li><b class="pk">개시판 +</b></li>
-          <li><b>메인</b></li>
-          <li><b>게시판2</b></li>
-          <li><b>개시판3</b></li>
-        </ul>
+			<c:import url="/test/nav.do" charEncoding="UTF-8"></c:import>
       </div>
       
 
@@ -125,47 +122,12 @@
                </ul>
             </div>
       </div>
-      
-      <!-- ==============================================================================> 검색 시작 -->
-      <div class="item3_7">
-      <select>
-   		<option value="n" <c:out value="${cri.searchType == null?'selectde ':''}"/>>
-				--------
-   		</option>
-   		
-   		<option value="t" <c:out value="${cri.searchType == 't'?'selectde ':''}"/>>
-				title
-   		</option>
-   		
-   		<option value="c" <c:out value="${cri.searchType == 'c'?'selectde ':''}"/>>
-				Content
-   		</option>
-   		
-   		<option value="w" <c:out value="${cri.searchType == 'w'?'selectde ':''}"/>>
-				Writer
-   		</option>
-   		
-   		<option value="tc" <c:out value="${cri.searchType == 'tc'?'selectde ':''}"/>>
-				title OR Content
-   		</option>
-   		
-   		<option value="cw" <c:out value="${cri.searchType == 'cw'?'selectde ':''}"/>>
-				Countent RO Writer
-   		</option>
-   		
-   		<option value="tcw" <c:out value="${cri.searchType == 'tcw'?'selectde ':''}"/>>
-				Title OR Countent RO Writer
-   		</option>
-   	</select>
-   	
-   	<input type="text" id="keywordInput"> <input type="button" value="검색" id="searchBtn">
-  </div>
       <!-- ==============================================================================> 유저 인터페이스 시작 -->
       <div class="item4">     
       	<c:import url="/test/user.do" charEncoding="UTF-8"></c:import>
       </div>
       <!-- ==============================================================================> footer 시작 -->
-      <div class="item5">paging</div>
+      <div class="item5"><c:import url="/test/copi.do" charEncoding="UTF-8"></c:import></div>
     </div>
     </form>
 </body>

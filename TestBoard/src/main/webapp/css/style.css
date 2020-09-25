@@ -1,11 +1,13 @@
+@font-face {
+	src: url(../css/BMJUA_ttf.ttf);
+	font-family: "ex1";
+}
+
 body {
   margin: 0px;
 }
-.header {
-  text-align: center;
-}
 .item1 {
-  margin: auto;
+  margin: 0px;
   grid-area: header;
 }
 .item2 {
@@ -50,6 +52,10 @@ body {
   padding: 16px;
   float: left;
   margin-left: 20px;
+}
+
+.nav > li > a {
+	color: azure;
 }
 .grid-container {
   display: grid;
@@ -179,6 +185,61 @@ a {
 	padding: 0px;
 }
 
+.header_re {
+    text-align: left;
+    margin-top: 30px;
+    margin-left: 220px;
+    margin-bottom: 30px;
+}
+
+.sar {
+	margin-left: 25%;
+}
+
+.url {
+	
+	width: 25%;
+	display: inline-block;
+	
+	font-size: 20px;
+	color: white;
+	
+	font-style: italic ; 
+	font-weight: bold; 
+	font-size: 2em;
+	line-height: 1.0em; 
+	color: black;
+	font-family: ex1;
+	
+	margin-top: 45px;
+}
+
+.input {
+	display: inline-table;
+	width: 454px;
+    height: 44px;
+    border: 1px solid #3c4790;
+    background: #4a57a8;
+}
+
+.input > div > #keywordInput{
+	float: left;
+    width: 404px;
+    background: #fff;
+    margin: 5px 0 0 5px;
+}
+
+#keywordInput {
+	background: transparent;
+    width: 386px;
+    height: 34px;
+    padding: 0 9px;
+    border: none;
+    outline: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+}
 
 
 

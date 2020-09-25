@@ -110,5 +110,20 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 		return selectList("selectName", vo);
 	}
 
+	@Override
+	public TestBoardVO pw_ch(TestBoardVO vo) throws Exception {
+		return selectOne("pw_ch", vo);
+	}
+
+	@Override
+	public TestBoardVO selectBoardModify(TestBoardVO vo) throws Exception {
+		return selectOne("selectBoardModify", vo);
+	}
+
+	@Override
+	public int updateImg(TestBoardVO vo) throws Exception {
+		return update("updateImg", vo);
+	}
+
 	
 }

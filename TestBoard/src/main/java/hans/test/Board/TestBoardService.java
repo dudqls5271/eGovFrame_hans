@@ -25,6 +25,11 @@ public interface TestBoardService {
 
 	TestBoardVO selectidChack(TestBoardVO vo) throws Exception;
 	
+	TestBoardVO pw_ch(TestBoardVO vo) throws Exception;
+	
+	TestBoardVO selectBoardModify(TestBoardVO vo) throws Exception;
+	int updateImg(TestBoardVO vo) throws Exception;
+	
 	TestBoardVO insertImg(TestBoardVO vo) throws Exception;
 	
 	List<TestBoardVO> selectName(TestBoardVO vo) throws Exception;

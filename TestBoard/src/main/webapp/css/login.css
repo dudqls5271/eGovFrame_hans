@@ -1,4 +1,9 @@
 @charset "UTF-8";
+@font-face {
+	src: url(../css/BMJUA_ttf.ttf);
+	font-family: "ex1";
+}
+
 .se {
   margin: 205px auto 233px;
 }
@@ -67,4 +72,50 @@ input::placeholder {
   color: #d7d7d7;
   padding: 0 11px 0 6px;
   font-size: 10px;
+}
+
+.header_re {
+	height: 85px;
+	width: 868px;
+	position: relative;
+    width: 1050px;
+    height: 105px;
+    margin: 0 auto;
+}
+
+.header {
+	background: #3c4790;
+}
+
+.header_re > .but > h4 {
+	
+	display: inline-block;
+	
+	font-size: 20px;
+	color: white;
+	
+	font-style: italic ; 
+	font-weight: bold; 
+	font-size: 2em;
+	line-height: 1.0em; 
+	color: white;
+	font-family: ex1;
+	
+	margin-top: 45px;
+}
+
+
+.login_t {
+	
+	display: inline;
+	font-size: 20px;
+	color: white;
+	font-size: 1.5em;
+	line-height: 1.0em; 
+	color: white;
+}
+
+.but {
+	cursor:pointer;
+	display: inline;
 }

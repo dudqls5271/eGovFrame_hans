@@ -23,11 +23,23 @@ $(document).ready(function() {
 	$('.id_re').click(function() {
 		window.open("/test/idChack.do", "win_popup", "width=468, height=500");
 	});
+	
+	$(".but").click(function() {
+		location.href='/test/list.do';
+	})
 });
 </script>
 
 </head>
   <body>
+  <div class="header">
+  	<div class="header_re">
+  		<div class="but">
+	  		<h4>DClone.do </h4> 
+	  		<p class="login_t">&nbsp;로그인</p>
+  		</div>
+  	</div>
+  </div>
   <form id="frm" action="/test/login_re.do" method=post> 
     <div class="se">
       <div class="from">

@@ -31,10 +31,14 @@ body {
 .frm {
   margin-bottom: 100px;
   margin: 0 auto;
-  width: 1000px;
-  height: 680px;
-  padding: 33px 68px 40px;
+  width: 1160px;
+  height: 50%;
+
   border: 2px solid #d5d5d5;
+}
+
+.con {
+	padding: 33px 68px 70px;
 }
 
 .input_t {
@@ -48,11 +52,22 @@ body {
   min-inline-size: min-content;
 }
 
-.name {
+.header_c {
+  padding-bottom: 6px;
+  border-bottom: 2px solid #4a56a8;
+  color: rgb(60, 71, 144);
+  width: 1160px;
+  height: 37px;
+  margin-bottom: 3px;
+  padding-top: 4px;
   margin: 0 auto;
-  width: 1140px;
   font-size: 30px;
-  color: #3c4790;
+  margin-top: 20px;
+  margin-bottom: 52px;
+}
+
+.name > h4 {
+	padding: 0px;
 }
 
 .writer,
@@ -148,7 +163,7 @@ body {
 
 .but {
   position: relative;
-  margin-top: 6px;
+  margin-top: 13px;
   float: right;
 }
 

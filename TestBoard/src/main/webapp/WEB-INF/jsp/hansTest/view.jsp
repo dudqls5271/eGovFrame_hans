@@ -15,7 +15,7 @@
 		$(".modfiy").click(function() {
 			var frmFrom = $("#frm");
 			console.log(frmFrom);
-			frmFrom.attr("action", "/test/modify.do").attr("method","get");
+			frmFrom.attr("action", "/test/pw_ch.do").attr("method","get");
 			frmFrom.submit();
 		});
 		
@@ -68,7 +68,7 @@
 	        	</c:if>
 	        </c:forEach>
 	  
-        <textarea name="contents" class="text" readonly="readonly">${result.contents}</textarea>
+        ${result.contents}
       </div>
       <div class="file">
         <span class="file_text"><b>원본 첨부파일</b></span>
