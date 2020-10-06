@@ -60,14 +60,13 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: 10% repeat(3, auto) 25%;
-  grid-template-rows: 1fr 1fr 1fr 5fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 4fr 1fr 1fr 1fr;
   grid-template-areas:
     " header header header header header"
     " nav nav nav nav nav"
     " . btn . . ."
     " . main main main right"
-    ". . list . . "
-    ". . search . ."
+    "list list list list list "
     " footer footer footer footer footer";
   grid-gap: 10px;
 }
@@ -81,7 +80,7 @@ body {
   grid-template-areas:
     " header header header header "
     " main main main right "
-    " footer footer footer footer ";
+    " footer footer footer fo	oter ";
 }
 
 .grid-container > div {
@@ -198,7 +197,7 @@ a {
 
 .url {
 	
-	width: 25%;
+	width: 28.4%;
 	display: inline-block;
 	
 	font-size: 20px;
@@ -210,8 +209,6 @@ a {
 	line-height: 1.0em; 
 	color: black;
 	font-family: ex1;
-	
-	margin-top: 45px;
 }
 
 .input {
@@ -222,16 +219,8 @@ a {
     background: #4a57a8;
 }
 
-.input > div > #keywordInput{
-	float: left;
-    width: 404px;
-    background: #fff;
-    margin: 5px 0 0 5px;
-}
-
 #keywordInput {
 	background: transparent;
-    width: 386px;
     height: 34px;
     padding: 0 9px;
     border: none;
@@ -239,6 +228,43 @@ a {
     color: #333;
     font-size: 14px;
     font-weight: bold;
+	float: left;
+width: 300px;
+    background: #fff;
+    margin: 5px 0 0 5px;
+}
+
+.input > div {
+    width: 494px;
+}
+
+#search {
+	font-size: 30px;
+    margin: 8px 8px 0px 8px;
+    color: white;
+}
+
+.search {
+	display: inline;
+}
+
+#select {
+	background: transparent;
+    width: 120px;
+    height: 34px;
+    padding: 0 9px;
+    border: none;
+    outline: none;
+    color: #3c4790;
+    font-size: 14px;
+    font-weight: bold;
+	float: left;
+    background: #fff;
+    margin: 5px 0 0 5px;
+}
+
+# keywordInput{
+	width: 300px;
 }
 
 

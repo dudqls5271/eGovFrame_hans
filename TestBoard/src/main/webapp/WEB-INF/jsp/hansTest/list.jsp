@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 <link href="<c:url value='/css/style.css'/>" rel="stylesheet" type="text/css">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"> 
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
 	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
 	crossorigin="anonymous"></script>
@@ -47,7 +49,7 @@
 			event.preventDefault();
 			var targetPageNum = $(this).attr("href");
 			
-			var frmFrom = $("#frm");
+			var frmFrom = $("#frm_list");
 			console.log(frmFrom);
 			$("[name=page]").val(targetPageNum);
 			frmFrom.attr("action", "/test/list.do").attr("method","get");
@@ -55,7 +57,7 @@
 			
 		});
 		
-		$("#searchBtn").on("click", function(event) {
+		$("#search").on("click", function(event) {
 			
 			self.location = "list.do"+'${pageMaker.makerQuery(1)}'
 			+"&searchType="+$("select option:selected").val()
@@ -66,12 +68,15 @@
 
 </head>
 <body>
+<form id="frm_list">
+	<input type="hidden" name = "page">
+</form>
 <form id="frm" action='/test/view.do'>
 <input type="hidden" name="seqno" id="seqno">
-<input type="hidden" name = "page">
+
 	<div class="grid-container">
       <div class="item1">
-      	<c:import url="/test/header.do" charEncoding="UTF-8"></c:import>
+      		<c:import url="/test/header.do" charEncoding="UTF-8"></c:import>
       </div>
       
 <!-- ==============================================================================> nva 시작 -->
@@ -122,6 +127,7 @@
                </ul>
             </div>
       </div>
+      
       <!-- ==============================================================================> 유저 인터페이스 시작 -->
       <div class="item4">     
       	<c:import url="/test/user.do" charEncoding="UTF-8"></c:import>

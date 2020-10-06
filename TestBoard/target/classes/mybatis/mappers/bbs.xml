@@ -69,7 +69,7 @@
 			</if>
 			
 		<if test="searchType == 'c'.toString()">
-			and content like CONCAT('%',#{keyword}, '%')
+			and contents like CONCAT('%',#{keyword}, '%')
 		</if>
 		
 		<if test="searchType == 'w'.toString()">
@@ -77,7 +77,7 @@
 		</if>
 		
 		<if test="searchType == 'tc'.toString()">
-			and (title like CONCAT('%',#{keyword}, '%') or content like CONCAT('%',#{keyword}, %))
+			and (title like CONCAT('%',#{keyword}, '%') or contents like CONCAT('%',#{keyword}, %))
 		</if>
 		
 		<if test="searchType == 'cw'.toString()">
@@ -108,7 +108,7 @@
 			</if>
 			
 		<if test="searchType == 'c'.toString()">
-			and content like CONCAT('%',#{keyword}, '%')
+			and contents like CONCAT('%',#{keyword}, '%')
 		</if>
 		
 		<if test="searchType == 'w'.toString()">
@@ -116,7 +116,7 @@
 		</if>
 		
 		<if test="searchType == 'tc'.toString()">
-			and (title like CONCAT('%',#{keyword}, '%') or content like CONCAT('%',#{keyword}, %))
+			and (title like CONCAT('%',#{keyword}, '%') or contents like CONCAT('%',#{keyword}, %))
 		</if>
 		
 		<if test="searchType == 'cw'.toString()">
@@ -126,7 +126,7 @@
 		<if test="searchType == 'tcw'.toString()">
 			and(	title like CONCAT('%',#{keyword}, '%')
 				or 
-					content like CONCAT('%',#{keyword}, '%') 
+					contents like CONCAT('%',#{keyword}, '%') 
 				or
 					writer like CONCAT('%',#{keyword}, '%'))
 		</if>
@@ -230,4 +230,28 @@
 		user_id =#{user_id}
 	</select>
 	
+	<select id="list" resultType="TestBoardVO" parameterType="TestBoardVO">
+		SELECT 
+		*
+		FROM 
+		yb_reply
+		WHERE bno = #{bno};
+	</select>
+	
+	<insert id="create" parameterType="TestBoardVO">
+		INSERT INTO yb_reply
+		(bno, replytext, replyer, regdate)
+		VALUES(#{bno}, #{replytext}, #{replyer}, now());
+	</insert>
+	
+	<update id="update" parameterType="TestBoardVO">
+		UPDATE yb_reply
+		replytext= #{replytext}, regdate=now();
+		WHERE seqno=#{replySeqno};
+	</update>
+	
+	<delete id="delete" parameterType="TestBoardVO">
+		DELETE FROM yb_reply
+		WHERE seqno=#{replySeqno};
+	</delete>
 </mapper>

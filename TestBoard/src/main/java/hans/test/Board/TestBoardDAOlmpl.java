@@ -2,12 +2,16 @@ package hans.test.Board;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.session.SqlSession;
 import org.hsqldb.Session;
 import org.springframework.stereotype.Repository;
 
 import com.sun.mail.imap.protocol.Namespaces.Namespace;
 
+import antlr.NameSpace;
 import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
 
@@ -124,6 +128,31 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 	public int updateImg(TestBoardVO vo) throws Exception {
 		return update("updateImg", vo);
 	}
+	
+
+	@Override
+	public List<TestBoardVO> list(Integer bno) throws Exception {
+		return selectList("list", bno);
+	}
+
+	@Override
+	public int create(TestBoardVO vo) throws Exception {
+		return insert("create", vo);
+	}
+
+	@Override
+	public int update(TestBoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return update("update", vo);
+	}
+
+	@Override
+	public int delete(Integer seqno) throws Exception {
+		// TODO Auto-generated method stub
+		return delete("delete", seqno);
+	}
+	
+	
 
 	
 }

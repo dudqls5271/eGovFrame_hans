@@ -35,4 +35,13 @@ public interface TestBoardDAO {
 	TestBoardVO insertImg(TestBoardVO vo) throws Exception;
 	List<TestBoardVO> selectName(TestBoardVO vo) throws Exception;
 	
+	
+	List<TestBoardVO> list(Integer bno) throws Exception;
+	
+	int create(TestBoardVO vo) throws Exception;
+	
+	int update(TestBoardVO vo) throws Exception;
+	
+	int delete (Integer seqno) throws Exception;
+	
 }

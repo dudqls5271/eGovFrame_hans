@@ -24,6 +24,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -388,6 +389,7 @@ public class TestBoardController {
 	      return result;
 	   }	
 	   
+	   
 //	-----------------------------------------------------------------list - page - list ------------------------------------------------
 	
 	
@@ -737,14 +739,14 @@ public class TestBoardController {
 		return "hansTest/smartEdit";
 	}
 	
-	@RequestMapping("serch.do")
+	@RequestMapping("search.do")
 	public String serch(TestBoardVO vo) {
 		try {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "hansTest/layout/serch";
+		return "hansTest/layout/search";
 	}
 	
 	

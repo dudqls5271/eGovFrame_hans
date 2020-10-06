@@ -142,4 +142,28 @@ public class TestBoardServicelmpl implements TestBoardService {
 		return dao.updateImg(vo);
 	}
 
+	@Override
+	public List<TestBoardVO> list(Integer bno) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.list(bno);
+	}
+
+	@Override
+	public int create(TestBoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.create(vo);
+	}
+
+	@Override
+	public int update(TestBoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return update(vo);
+	}
+
+	@Override
+	public int delete(Integer seqno) throws Exception {
+		// TODO Auto-generated method stub
+		return delete(seqno);
+	}
+
 }
