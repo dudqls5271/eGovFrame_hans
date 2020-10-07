@@ -39,12 +39,20 @@ public class TestBoardVO {
 	
 	private String pw_ch;
 	
-	public String getReplySeqno() {
-		return replySeqno;
+	
+	private int rno;
+	private String bno;
+	private String replytext;
+	private String replyer;
+	
+	
+
+	public int getRno() {
+		return rno;
 	}
 
-	public void setReplySeqno(String replySeqno) {
-		this.replySeqno = replySeqno;
+	public void setRno(int rno) {
+		this.rno = rno;
 	}
 
 	public String getBno() {
@@ -71,10 +79,7 @@ public class TestBoardVO {
 		this.replyer = replyer;
 	}
 
-	private String replySeqno;
-	private String bno;
-	private String replytext;
-	private String replyer;
+
 	
 	
 	public String getPw_ch() {
@@ -295,15 +300,14 @@ public class TestBoardVO {
 				+ ", writer=" + writer + ", add1=" + add1 + ", add2=" + add2 + ", add3=" + add3 + ", add4=" + add4
 				+ ", user_id=" + user_id + ", pw=" + pw + ", email1=" + email1 + ", email2=" + email2 + ", nickname="
 				+ nickname + ", name=" + name + ", pw_boader=" + pw_boader + ", oriname=" + oriname + ", fullname="
-				+ fullname + ", fullnames=" + fullnames + ", orinames=" + orinames + ", pw_ch=" + pw_ch
-				+ ", replySeqno=" + replySeqno + ", bno=" + bno + ", replytext=" + replytext + ", replyer=" + replyer
-				+ ", seqno_img=" + seqno_img + ", regfata=" + regfata + ", phone1=" + phone1 + ", phone2=" + phone2
-				+ ", phone3=" + phone3 + ", getReplySeqno()=" + getReplySeqno() + ", getBno()=" + getBno()
-				+ ", getReplytext()=" + getReplytext() + ", getReplyer()=" + getReplyer() + ", getPw_ch()=" + getPw_ch()
-				+ ", getOrinames()=" + getOrinames() + ", getFullname()=" + getFullname() + ", getFullnames()="
-				+ getFullnames() + ", getSeqno_img()=" + getSeqno_img() + ", getRegfata()=" + getRegfata()
-				+ ", getPw_boader()=" + getPw_boader() + ", getAdd1()=" + getAdd1() + ", getAdd2()=" + getAdd2()
-				+ ", getAdd3()=" + getAdd3() + ", getAdd4()=" + getAdd4() + ", getEmail1()=" + getEmail1()
+				+ fullname + ", fullnames=" + fullnames + ", orinames=" + orinames + ", pw_ch=" + pw_ch + ", bno=" + bno
+				+ ", replytext=" + replytext + ", replyer=" + replyer + ", seqno_img=" + seqno_img + ", regfata="
+				+ regfata + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3 + ", getBno()="
+				+ getBno() + ", getReplytext()=" + getReplytext() + ", getReplyer()=" + getReplyer() + ", getPw_ch()="
+				+ getPw_ch() + ", getOrinames()=" + getOrinames() + ", getFullname()=" + getFullname()
+				+ ", getFullnames()=" + getFullnames() + ", getSeqno_img()=" + getSeqno_img() + ", getRegfata()="
+				+ getRegfata() + ", getPw_boader()=" + getPw_boader() + ", getAdd1()=" + getAdd1() + ", getAdd2()="
+				+ getAdd2() + ", getAdd3()=" + getAdd3() + ", getAdd4()=" + getAdd4() + ", getEmail1()=" + getEmail1()
 				+ ", getEmail2()=" + getEmail2() + ", getWriter()=" + getWriter() + ", getPhone1()=" + getPhone1()
 				+ ", getPhone2()=" + getPhone2() + ", getPhone3()=" + getPhone3() + ", getUser_id()=" + getUser_id()
 				+ ", getPw()=" + getPw() + ", getSeqno()=" + getSeqno() + ", getTitle()=" + getTitle()
@@ -319,4 +323,5 @@ public class TestBoardVO {
 	public void setOriname(String oriname) {
 		this.oriname = oriname;
 	}
+	
 }

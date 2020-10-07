@@ -157,13 +157,13 @@ public class TestBoardServicelmpl implements TestBoardService {
 	@Override
 	public int update(TestBoardVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return update(vo);
+		return dao.update(vo);
 	}
 
 	@Override
 	public int delete(Integer seqno) throws Exception {
 		// TODO Auto-generated method stub
-		return delete(seqno);
+		return dao.delete(seqno);
 	}
 
 }

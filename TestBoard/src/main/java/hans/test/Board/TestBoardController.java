@@ -749,6 +749,11 @@ public class TestBoardController {
 		return "hansTest/layout/search";
 	}
 	
+	   @RequestMapping(value="/test.do", method= RequestMethod.GET)
+	   public String ajaxTest() {
+		   return "hansTest/test";
+	   }
+	
 	
 	
 }

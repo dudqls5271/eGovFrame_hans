@@ -42,6 +42,6 @@ public interface TestBoardService {
 	
 	int update(TestBoardVO vo) throws Exception;
 	
-	int delete (Integer seqno) throws Exception;
+	int delete (Integer rno) throws Exception;
 
 }
