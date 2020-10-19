@@ -239,9 +239,9 @@
 	</select>
 	
 	<insert id="create" parameterType="TestBoardVO">
-		INSERT INTO yb_reply
-		(bno, replytext, replyer, regdate)
-		VALUES(#{bno}, #{replytext}, #{replyer}, now())
+			INSERT INTO yb_reply
+			(bno, replytext, replyer, regdate, level, rnolevel)
+			VALUES(#{bno}, #{replytext}, #{replyer}, now(), #{level}, #{rnolevel})
 	</insert>
 	
 	<update id="update" parameterType="TestBoardVO">

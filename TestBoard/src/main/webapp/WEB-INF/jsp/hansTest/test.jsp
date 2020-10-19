@@ -17,18 +17,25 @@
 			
 			$(data).each(
 				function() {
-						str += "<li data-rno='"+this.rno+"' class='replyLi'>"
-							+ this.rno + ":" + this.replytext +"<button>MOD</button>"
-							+ "</li>"
+					str += this.rno + ":<li data-rno='"+this.rno+"' class='replyLi'>"
+					+ "<span class='replyClass'>"+this.replytext + "</span><input type='button' value='MOD' class='but'>"
+					+ "<div id='replylevel' style='display: none;'></br>"
+					+ 	"REPLYER<input type='text' name='replyer' id='newReplyWriter_Re'></br>"
+					+	"replytext<input type='text' name='replytext' id='newReplyText_Re'></br>"
+					+ 	"rno<input type='text' name='replyrno' id='newReplyText_Re' value='"+this.rno+"'>"
+					+ "<button id='replyAnd'>ok</button>"
+					+ "</div>"
+					+ "</li>"
 				});
 			
 			$("#reply").html(str);
 		});
 		
-		$("#replyAddBtn").on("click", function() {
+		$("#replyAddBtn").on("click", function(data) {
 			
 			var replyer = $("#newReplyWriter").val();
 			var replytext = $("#newReplyText").val();
+			var replyrno = $("#replyrno").val();
 			
 			$.ajax({
 				type : 'post',
@@ -41,7 +48,9 @@
 				data : JSON.stringify ({
 					bno : bno,
 					replyer : replyer,
-					replytext : replytext
+					replytext : replytext,
+					level : 0,
+					rnolevel : replyrno
 				}),
 				success : function(result) {
 					if (result == 'SUCCESS') {
@@ -53,9 +62,15 @@
 							
 							$(data).each(
 								function() {
-										str += this.rno + ":" + "<li data-rno='"+this.rno+"' class='replyLi'>"
-											+ this.replytext +"<button>MOD</button>"
-											+ "</li>"
+									str += this.rno + ":<li data-rno='"+this.rno+"' class='replyLi'>"
+									+ "<span class='replyClass'>"+this.replytext + "</span><input type='button' value='MOD' class='but'>"
+									+ "<div id='replylevel' style='display: none;'></br>"
+									+ 	"REPLYER<input type='text' name='replyer' id='newReplyWriter_Re'></br>"
+									+	"replytext<input type='text' name='replytext' id='newReplyText_Re'></br>"
+									+ 	"rno<input type='text' name='replyrno' id='newReplyText_Re' value='"+this.rno+"'>"
+									+ "<button id='replyAnd'>ok</button>"
+									+ "</div>"
+									+ "</li>"
 								});
 							
 							$("#reply").html(str);
@@ -65,10 +80,17 @@
 			});
 		});
 		
-		$("#reply").on("click", ".replyLi button", function() {
-			var reply = $(this).parent();
+		$("#reply").on("click", ".replyLi .replyClass", function() {
+			alert("부탁한다");
+			$(this).next().next().css ({	
+				display: "inline"
+			});
+		});
+		
+		$("#reply").on("click", ".replyLi .but", function() {
+			var reply = $(this).prev();
 			
-			var rno = reply.attr("data-rno");
+			var rno = reply.parent().attr("data-rno");
 			var replytext = reply.text();
 			
 			$("#modal-title").html(rno);
@@ -100,14 +122,19 @@
 							
 							$(data).each(
 								function() {
-										str += this.rno + ":" + "<li data-rno='"+this.rno+"' class='replyLi'>"
-											+ this.replytext +"<button>MOD</button>"
-											+ "</li>"
+									str += this.rno + ":<li data-rno='"+this.rno+"' class='replyLi'>"
+									+ "<span class='replyClass'>"+this.replytext + "</span><input type='button' value='MOD' class='but'>"
+									+ "<div id='replylevel' style='display: none;'></br>"
+									+ 	"REPLYER<input type='text' name='replyer' id='newReplyWriter_Re'></br>"
+									+	"replytext<input type='text' name='replytext' id='newReplyText_Re'></br>"
+									+ 	"rno<input type='text' name='replyrno' id='newReplyText_Re' value='"+this.rno+"'>"
+									+ "<button id='replyAnd'>ok</button>"
+									+ "</div>"
+									+ "</li>"
 								});
 							
 							$("#reply").html(str);
 						});
-
 					}
 				}
 			});
@@ -130,13 +157,85 @@
 					if (result == 'SUCCESS') {
 						alert("수정");
 						
+						$.getJSON("/reply/all/" + bno + ".do", function(data) {
+							var str = "";
+							console.log($(data).length);
+							
+							$(data).each(
+								function() {
+									str += this.rno + ":<li data-rno='"+this.rno+"' class='replyLi'>"
+									+ "<span class='replyClass'>"+this.replytext + "</span><input type='button' value='MOD' class='but'>"
+									+ "<div id='replylevel' style='display: none;'></br>"
+									+ 	"REPLYER<input type='text' name='replyer' id='newReplyWriter_Re'></br>"
+									+	"replytext<input type='text' name='replytext' id='newReplyText_Re'></br>"
+									+ 	"rno<input type='text' name='replyrno' id='newReplyText_Re' value='"+this.rno+"'>"
+									+ "<button id='replyAnd'>ok</button>"
+									+ "</div>"
+									+ "</li>"
+								});
+							
+							$("#reply").html(str);
+						});
+
 					}
 				}
+					
 			});
+			
 		});
 		
 		
+	$(document).on("click","#replyAnd", function(data) {
+				
+				var replyer = $("#newReplyWriter_Re").val();
+				var replytext = $("#newReplyText_Re").val();
+				var replyrno = $("#replyrno_Re").val();
+				
+				$.ajax({
+					type : 'post',
+					url : '/reply/reply.do',
+					headers : {
+						"Content-Type" : "application/json",
+						"X-HTTP-Method-Override" : "POST"
+					},
+					dataType : 'text',
+					data : JSON.stringify ({
+						bno : bno,
+						replyer : replyer,
+						replytext : replytext,
+						level : 1,
+						rnolevel : replyrno
+					}),
+					success : function(result) {
+						if (result == 'SUCCESS') {
+							alert("등록 등록")
+							
+							$.getJSON("/reply/all/" + bno + ".do", function(data) {
+								var str = "";
+								console.log($(data).length);
+								
+								$(data).each(
+									function() {
+										str += this.rno + ":<li data-rno='"+this.rno+"' class='replyLi'>"
+										+ "<span class='replyClass'>"+this.replytext + "</span><input type='button' value='MOD' class='but'>"
+										+ "<div id='replylevel' style='display: none;'></br>"
+										+ 	"REPLYER<input type='text' name='replyer' id='newReplyWriter_Re'></br>"
+										+	"replytext<input type='text' name='replytext' id='newReplyText_Re'></br>"
+										+ 	"rno<input type='text' name='replyrno' id='newReplyText_Re' value='"+this.rno+"'>"
+										+ "<button id='replyAnd'>ok</button>"
+										+ "</div>"
+										+ "</li>"
+									});
+								
+								$("#reply").html(str);
+							});
+						}
+					}
+				});
+			});
 	});
+	
+	
 	
 </script>
 </head>
@@ -149,9 +248,11 @@
 		
 		<div>
 			REPLYER<input type="text" name="replytext" id="newReplyText">
+			rno<input type="text" name="replyrno" id="replyrno" value="${result.rno+1}">
 		</div>
 		<button id="replyAddBtn">ok</button>
 	</div>
+	
 	<ul id = "reply">
 	</ul>
 	

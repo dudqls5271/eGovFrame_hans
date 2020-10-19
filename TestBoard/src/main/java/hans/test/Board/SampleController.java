@@ -57,6 +57,8 @@ public class SampleController {
 		   System.out.println("============> " + vo.getBno());
 		   System.out.println("============> " + vo.getReplytext());
 		   System.out.println("============> " + vo.getReplyer());
+		   System.out.println("============> " + vo.getLevel());
+		   System.out.println("============> " + vo.getRnolevel());
 		   ResponseEntity<String> entity = null;
 		   try {
 			   service.create(vo);
