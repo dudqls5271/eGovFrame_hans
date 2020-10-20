@@ -166,4 +166,10 @@ public class TestBoardServicelmpl implements TestBoardService {
 		return dao.delete(seqno);
 	}
 
+	@Override
+	public int list_rno(TestBoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.list_rno(vo).getCount1();
+	}
+
 }

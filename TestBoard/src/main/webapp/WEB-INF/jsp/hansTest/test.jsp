@@ -15,18 +15,21 @@
 			var str = "";
 			console.log($(data).length);
 			
-			$(data).each(
-				function() {
-					str += this.rno + ":<li data-rno='"+this.rno+"' class='replyLi'>"
-					+ "<span class='replyClass'>"+this.replytext + "</span><input type='button' value='MOD' class='but'>"
-					+ "<div id='replylevel' style='display: none;'></br>"
-					+ 	"REPLYER<input type='text' name='replyer' id='newReplyWriter_Re'></br>"
-					+	"replytext<input type='text' name='replytext' id='newReplyText_Re'></br>"
-					+ 	"rno<input type='text' name='replyrno' id='newReplyText_Re' value='"+this.rno+"'>"
-					+ "<button id='replyAnd'>ok</button>"
-					+ "</div>"
-					+ "</li>"
-				});
+			if(this.rno == this.rnolevel) {
+				$(data).each(
+						function() {
+							str += this.rno + ":<ul id='"+this.rno+"'><li data-rno='"+this.rno+"' class='replyLi'>"
+							+ "<span class='replyClass'>"+this.replytext + "</span><input type='button' value='MOD' class='but'>"
+							+ "<div id='replylevel' style='display: none;'></br>"
+							+ 	"REPLYER<input type='text'></br>"
+							+	"replytext<input type='text'></br>"
+							+ 	"rno<input type='text'value='"+this.rno+"'>"
+							+ "<button id='replyAnd'>ok</button>"
+							+ "</div>"
+							+ "</li>"
+							+ "</ul>"
+				});	
+			}
 			
 			$("#reply").html(str);
 		});
@@ -62,15 +65,16 @@
 							
 							$(data).each(
 								function() {
-									str += this.rno + ":<li data-rno='"+this.rno+"' class='replyLi'>"
+									str += this.rno + ":<ul id='"+this.rno+"'><li data-rno='"+this.rno+"' class='replyLi'>"
 									+ "<span class='replyClass'>"+this.replytext + "</span><input type='button' value='MOD' class='but'>"
 									+ "<div id='replylevel' style='display: none;'></br>"
-									+ 	"REPLYER<input type='text' name='replyer' id='newReplyWriter_Re'></br>"
-									+	"replytext<input type='text' name='replytext' id='newReplyText_Re'></br>"
-									+ 	"rno<input type='text' name='replyrno' id='newReplyText_Re' value='"+this.rno+"'>"
+									+ 	"REPLYER<input type='text'></br>"
+									+	"replytext<input type='text'></br>"
+									+ 	"rno<input type='text'value='"+this.rno+"'>"
 									+ "<button id='replyAnd'>ok</button>"
 									+ "</div>"
 									+ "</li>"
+									+ "</ul>"
 								});
 							
 							$("#reply").html(str);
@@ -122,15 +126,16 @@
 							
 							$(data).each(
 								function() {
-									str += this.rno + ":<li data-rno='"+this.rno+"' class='replyLi'>"
+									str += this.rno + ":<ul id='"+this.rno+"'><li data-rno='"+this.rno+"' class='replyLi'>"
 									+ "<span class='replyClass'>"+this.replytext + "</span><input type='button' value='MOD' class='but'>"
 									+ "<div id='replylevel' style='display: none;'></br>"
-									+ 	"REPLYER<input type='text' name='replyer' id='newReplyWriter_Re'></br>"
-									+	"replytext<input type='text' name='replytext' id='newReplyText_Re'></br>"
-									+ 	"rno<input type='text' name='replyrno' id='newReplyText_Re' value='"+this.rno+"'>"
+									+ 	"REPLYER<input type='text'></br>"
+									+	"replytext<input type='text'></br>"
+									+ 	"rno<input type='text'value='"+this.rno+"'>"
 									+ "<button id='replyAnd'>ok</button>"
 									+ "</div>"
 									+ "</li>"
+									+ "</ul>"
 								});
 							
 							$("#reply").html(str);
@@ -163,15 +168,16 @@
 							
 							$(data).each(
 								function() {
-									str += this.rno + ":<li data-rno='"+this.rno+"' class='replyLi'>"
+									str += this.rno + ":<ul id='"+this.rno+"'><li data-rno='"+this.rno+"' class='replyLi'>"
 									+ "<span class='replyClass'>"+this.replytext + "</span><input type='button' value='MOD' class='but'>"
 									+ "<div id='replylevel' style='display: none;'></br>"
-									+ 	"REPLYER<input type='text' name='replyer' id='newReplyWriter_Re'></br>"
-									+	"replytext<input type='text' name='replytext' id='newReplyText_Re'></br>"
-									+ 	"rno<input type='text' name='replyrno' id='newReplyText_Re' value='"+this.rno+"'>"
+									+ 	"REPLYER<input type='text'></br>"
+									+	"replytext<input type='text'></br>"
+									+ 	"rno<input type='text'value='"+this.rno+"'>"
 									+ "<button id='replyAnd'>ok</button>"
 									+ "</div>"
 									+ "</li>"
+									+ "</ul>"
 								});
 							
 							$("#reply").html(str);
@@ -186,10 +192,11 @@
 		
 		
 	$(document).on("click","#replyAnd", function(data) {
-				
-				var replyer = $("#newReplyWriter_Re").val();
-				var replytext = $("#newReplyText_Re").val();
-				var replyrno = $("#replyrno_Re").val();
+				var ulObj = $(this).parent().parent().parent();
+				var replyer = $(this).prev().prev().prev().prev().prev().val();
+				var replytext = $(this).prev().prev().prev().val();
+				var replyrno = $(this).prev().val();
+				console.log(bno,replyer,replytext,replyrno);
 				
 				$.ajax({
 					type : 'post',
@@ -219,15 +226,15 @@
 										str += this.rno + ":<li data-rno='"+this.rno+"' class='replyLi'>"
 										+ "<span class='replyClass'>"+this.replytext + "</span><input type='button' value='MOD' class='but'>"
 										+ "<div id='replylevel' style='display: none;'></br>"
-										+ 	"REPLYER<input type='text' name='replyer' id='newReplyWriter_Re'></br>"
-										+	"replytext<input type='text' name='replytext' id='newReplyText_Re'></br>"
-										+ 	"rno<input type='text' name='replyrno' id='newReplyText_Re' value='"+this.rno+"'>"
+										+ 	"REPLYER<input type='text'></br>"
+										+	"replytext<input type='text'></br>"
+										+ 	"rno<input type='text'value='"+this.rno+"'>"
 										+ "<button id='replyAnd'>ok</button>"
 										+ "</div>"
 										+ "</li>"
 									});
 								
-								$("#reply").html(str);
+								ulObj.html(str);
 							});
 						}
 					}
@@ -248,13 +255,13 @@
 		
 		<div>
 			REPLYER<input type="text" name="replytext" id="newReplyText">
-			rno<input type="text" name="replyrno" id="replyrno" value="${result.rno+1}">
+			rno<input type="text" name="replyrno" id="replyrno" value="${result + 1}">
 		</div>
 		<button id="replyAddBtn">ok</button>
 	</div>
 	
-	<ul id = "reply">
-	</ul>
+	<div id = "reply">
+	</div>
 	
 	<div id="modal-title"></div>
 	<div>

@@ -750,12 +750,9 @@ public class TestBoardController {
 	}
 	
 	   @RequestMapping(value="/test.do", method= RequestMethod.GET)
-	   public String ajaxTest(Integer bno, Model model) {
+	   public String ajaxTest(TestBoardVO vo, Model model) {
 			try {
-				List<TestBoardVO> list = service.list(bno);
-				TestBoardVO tVO = list.get(list.size()-1);
-				System.out.println("=============> " + tVO.getRno());
-				model.addAttribute("result", list.get(list.size()-1));
+				model.addAttribute("result", service.list_rno(vo));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -763,7 +760,5 @@ public class TestBoardController {
 		  
 		   return "hansTest/test";
 	   }
-	
-	
 	
 }

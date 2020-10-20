@@ -238,6 +238,13 @@
 		WHERE bno = #{bno}
 	</select>
 	
+	<select id="list_rno" resultType="TestBoardVO">
+		SELECT
+		max(rno) as count1
+		FROM
+		yb_reply
+	</select>
+	
 	<insert id="create" parameterType="TestBoardVO">
 			INSERT INTO yb_reply
 			(bno, replytext, replyer, regdate, level, rnolevel)

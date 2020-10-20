@@ -151,8 +151,11 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 		// TODO Auto-generated method stub
 		return delete("delete", seqno);
 	}
-	
-	
 
+	@Override
+	public TestBoardVO list_rno(TestBoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return selectOne("list_rno", vo);
+	}
 	
 }

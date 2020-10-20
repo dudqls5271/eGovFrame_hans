@@ -46,6 +46,7 @@ public class TestBoardVO {
 	private String replyer;
 	private int level;
 	private int rnolevel;
+	private Integer count1;
 	
 	
 	
@@ -313,6 +314,24 @@ public class TestBoardVO {
 		this.name = name;
 	}
 
+	
+	public Integer getCount1() {
+		return count1;
+	}
+
+	public void setCount1(Integer count1) {
+		this.count1 = count1;
+	}
+
+	
+	public String getOriname() {
+		return oriname;
+	}
+
+	public void setOriname(String oriname) {
+		this.oriname = oriname;
+	}
+
 	@Override
 	public String toString() {
 		return "TestBoardVO [seqno=" + seqno + ", title=" + title + ", contents=" + contents + ", regdate=" + regdate
@@ -321,28 +340,9 @@ public class TestBoardVO {
 				+ nickname + ", name=" + name + ", pw_boader=" + pw_boader + ", oriname=" + oriname + ", fullname="
 				+ fullname + ", fullnames=" + fullnames + ", orinames=" + orinames + ", pw_ch=" + pw_ch + ", rno=" + rno
 				+ ", bno=" + bno + ", replytext=" + replytext + ", replyer=" + replyer + ", level=" + level
-				+ ", rnolevel=" + rnolevel + ", seqno_img=" + seqno_img + ", regfata=" + regfata + ", phone1=" + phone1
-				+ ", phone2=" + phone2 + ", phone3=" + phone3 + ", getLevel()=" + getLevel() + ", getRnolevel()="
-				+ getRnolevel() + ", getRno()=" + getRno() + ", getBno()=" + getBno() + ", getReplytext()="
-				+ getReplytext() + ", getReplyer()=" + getReplyer() + ", getPw_ch()=" + getPw_ch() + ", getOrinames()="
-				+ getOrinames() + ", getFullname()=" + getFullname() + ", getFullnames()=" + getFullnames()
-				+ ", getSeqno_img()=" + getSeqno_img() + ", getRegfata()=" + getRegfata() + ", getPw_boader()="
-				+ getPw_boader() + ", getAdd1()=" + getAdd1() + ", getAdd2()=" + getAdd2() + ", getAdd3()=" + getAdd3()
-				+ ", getAdd4()=" + getAdd4() + ", getEmail1()=" + getEmail1() + ", getEmail2()=" + getEmail2()
-				+ ", getWriter()=" + getWriter() + ", getPhone1()=" + getPhone1() + ", getPhone2()=" + getPhone2()
-				+ ", getPhone3()=" + getPhone3() + ", getUser_id()=" + getUser_id() + ", getPw()=" + getPw()
-				+ ", getSeqno()=" + getSeqno() + ", getTitle()=" + getTitle() + ", getContents()=" + getContents()
-				+ ", getRegdate()=" + getRegdate() + ", getNickname()=" + getNickname() + ", getName()=" + getName()
-				+ ", getOriname()=" + getOriname() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ ", rnolevel=" + rnolevel + ", count1=" + count1 + ", seqno_img=" + seqno_img + ", regfata=" + regfata
+				+ ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3 + "]";
 	}
-
-	public String getOriname() {
-		return oriname;
-	}
-
-	public void setOriname(String oriname) {
-		this.oriname = oriname;
-	}
+	
 	
 }

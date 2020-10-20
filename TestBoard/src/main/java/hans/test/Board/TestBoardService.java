@@ -7,6 +7,8 @@ import egovframework.let.cop.bbs.service.BoardVO;
 public interface TestBoardService {
 	List<TestBoardVO> selectAll() throws Exception;
 	TestBoardVO selectBoard(TestBoardVO vo) throws Exception;
+	
+	int list_rno(TestBoardVO vo) throws Exception;
 	int updateBoard(TestBoardVO vo) throws Exception;
 	int insertBoard(TestBoardVO vo) throws Exception;
 	int deleteBoard(TestBoardVO vo) throws Exception;
