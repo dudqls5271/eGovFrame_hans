@@ -84,7 +84,6 @@ nhn.husky.EZCreator = new (function(){
 			}
 			
 			var oApp = fCreator(elPlaceHolder, htParams);	// oEditor
-			
 
 			oApp.elPlaceHolder = elPlaceHolder;
 

@@ -11,27 +11,54 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var bno = 1234;
+		
 		$.getJSON("/reply/all/" + bno + ".do", function(data) {
 			var str = "";
+			var str_reply = "";
 			console.log($(data).length);
 			
-			if(this.rno == this.rnolevel) {
-				$(data).each(
-						function() {
-							str += this.rno + ":<ul id='"+this.rno+"'><li data-rno='"+this.rno+"' class='replyLi'>"
-							+ "<span class='replyClass'>"+this.replytext + "</span><input type='button' value='MOD' class='but'>"
-							+ "<div id='replylevel' style='display: none;'></br>"
-							+ 	"REPLYER<input type='text'></br>"
-							+	"replytext<input type='text'></br>"
-							+ 	"rno<input type='text'value='"+this.rno+"'>"
-							+ "<button id='replyAnd'>ok</button>"
-							+ "</div>"
-							+ "</li>"
-							+ "</ul>"
+				$(data).each(function() {
+					
+					var ulObj = this.rno
+					console.log (ulObj);
+					
+					if (this.level == 0){
+						str = this.rno + ":<ul id='"+this.rno+"'>"
+						+ "<li data-rno='"+this.rno+"' class='replyLi'>"
+						+ "<span class='replyClass'>"+this.replytext + "</span><input type='button' value='MOD' class='but'>"
+						+ "<div id='replylevel' style='display: none;'></br>"
+						+ 	"REPLYER<input type='text'></br>"
+						+	"replytext<input type='text'></br>"
+						+ 	"rno<input type='text'value='"+this.rno+"'>"
+						+ "<button id='replyAnd'>ok</button>"
+						+ "</div>"
+						+ "</li>"
+						+ "</ul>";
+						
+						$("#reply").html($("#reply").html() + str);
+					}else if (this.level == 1) {
+						var replyRnoLevel = this.rnolevel;
+						var replyRno = this.rno;
+						var replyText = this.replytext;
+						$("#reply").find("ul").each(function(){
+							if(replyRnoLevel == this.id){
+								str = replyRno + ":<li data-rno='"+replyRno+"' class='replyLi'>"
+								+ "<span class='replyClass'>"+replyText + "</span><input type='button' value='MOD' class='but'>"
+								+ "<div id='replylevel' style='display: none;'></br>"
+								+ 	"REPLYER<input type='text'></br>"
+								+	"replytext<input type='text'></br>"
+								+ 	"rno<input type='text'value='"+replyRnoLevel+"'>"
+								+ "<button id='replyAnd'>ok</button>"
+								+ "</div>"
+								+ "</li>";
+								this.innerHTML = this.innerHTML + str;
+							}
+						});
+						
+						
+// 						$(ulid).html($(ulid).html() + str);
+					}								
 				});	
-			}
-			
-			$("#reply").html(str);
 		});
 		
 		$("#replyAddBtn").on("click", function(data) {
@@ -57,28 +84,20 @@
 				}),
 				success : function(result) {
 					if (result == 'SUCCESS') {
-						alert("등록")
+						alert("등록");
 						
-						$.getJSON("/reply/all/" + bno + ".do", function(data) {
-							var str = "";
-							console.log($(data).length);
-							
-							$(data).each(
-								function() {
-									str += this.rno + ":<ul id='"+this.rno+"'><li data-rno='"+this.rno+"' class='replyLi'>"
-									+ "<span class='replyClass'>"+this.replytext + "</span><input type='button' value='MOD' class='but'>"
-									+ "<div id='replylevel' style='display: none;'></br>"
-									+ 	"REPLYER<input type='text'></br>"
-									+	"replytext<input type='text'></br>"
-									+ 	"rno<input type='text'value='"+this.rno+"'>"
-									+ "<button id='replyAnd'>ok</button>"
-									+ "</div>"
-									+ "</li>"
-									+ "</ul>"
-								});
-							
-							$("#reply").html(str);
-						});
+						str = replyrno + ":<ul id='"+replyrno+"'><li data-rno='"+replyrno+"' class='replyLi'>"
+						+ "<span class='replyClass'>"+replytext + "</span><input type='button' value='MOD' class='but'>"
+						+ "<div id='replylevel' style='display: none;'></br>"
+						+ 	"REPLYER<input type='text'></br>"
+						+	"replytext<input type='text'></br>"
+						+ 	"rno<input type='text'value='"+replyrno+"'>"
+						+ "<button id='replyAnd'>ok</button>"
+						+ "</div>"
+						+ "</li>"
+						+ "</ul>";
+						
+						$("#reply").html($("#reply").html() + str);
 					}
 				}
 			});
@@ -196,7 +215,6 @@
 				var replyer = $(this).prev().prev().prev().prev().prev().val();
 				var replytext = $(this).prev().prev().prev().val();
 				var replyrno = $(this).prev().val();
-				console.log(bno,replyer,replytext,replyrno);
 				
 				$.ajax({
 					type : 'post',
@@ -216,30 +234,21 @@
 					success : function(result) {
 						if (result == 'SUCCESS') {
 							alert("등록 등록")
+							str = replyrno + ":<li data-rno='"+replyrno+"' class='replyLi'>"
+							+ "<span class='replyClass'>"+replytext + "</span><input type='button' value='MOD' class='but'>"
+							+ "<div id='replylevel' style='display: none;'></br>"
+							+ 	"REPLYER<input type='text'></br>"
+							+	"replytext<input type='text'></br>"
+							+ 	"rno<input type='text'value='"+replyrno+"'>"
+							+ "<button id='replyAnd'>ok</button>"
+							+ "</div>"
+							+ "</li>";
 							
-							$.getJSON("/reply/all/" + bno + ".do", function(data) {
-								var str = "";
-								console.log($(data).length);
-								
-								$(data).each(
-									function() {
-										str += this.rno + ":<li data-rno='"+this.rno+"' class='replyLi'>"
-										+ "<span class='replyClass'>"+this.replytext + "</span><input type='button' value='MOD' class='but'>"
-										+ "<div id='replylevel' style='display: none;'></br>"
-										+ 	"REPLYER<input type='text'></br>"
-										+	"replytext<input type='text'></br>"
-										+ 	"rno<input type='text'value='"+this.rno+"'>"
-										+ "<button id='replyAnd'>ok</button>"
-										+ "</div>"
-										+ "</li>"
-									});
-								
-								ulObj.html(str);
-							});
+							ulObj.html(ulObj.html() + str);
 						}
 					}
-				});
 			});
+		});
 	});
 	
 	
@@ -247,7 +256,7 @@
 </script>
 </head>
 <body>
-	<h2>AjaxTest</h2>
+	<h2>AjaxTest</ h2>
 	<div>
 		<div>
 			REPLYER<input type="text" name="replyer" id="newReplyWriter">

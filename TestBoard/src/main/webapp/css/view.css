@@ -1,3 +1,8 @@
+@font-face {
+	src: url(../css/BMJUA_ttf.ttf);
+	font-family: "ex1";
+}
+
 body {
   padding: 0px;
   margin: 0px;
@@ -159,4 +164,226 @@ img {
 .button {
 	float: right;
 	margin-top: 10px;
+}
+
+.reply_spaes > p{
+	margin-bottom: 0px;
+	margin-top: 70px;
+    padding: 5px;
+    border-bottom: 2px solid;
+}
+
+.reply_text_area {
+	border-bottom: 2px solid #525eaa;
+	padding: 12px 12px 40px;
+    background: #fafafa;
+    border-top: 2px solid #525eaa;
+    margin-top: 80px;
+}
+
+.user_id_and_pw {
+	float: left;
+	padding-right: 12px;
+}
+
+.input_text {
+	width: 140px;
+    height: 30px;
+    margin-top: 5px;
+    border: 1px solid #cecdce;
+    background: #fff;
+}
+
+.input_text_user {
+	    width: 126px;
+    height: 28px;
+    line-height: 29px;
+    padding: 2px 7px 0;
+    border: none;
+    font-family: '굴림',Gulim;
+    font-size: 12px;
+    vertical-align: top;
+}
+
+.reply_add_but {
+	float: right;
+}
+
+
+.reply_add {
+    width: 954px;
+    height: 78px;
+    padding: 13px;
+    border: 1px solid #cecdce;
+    background: #fff;
+    font-family: '굴림',Gulim;
+    font-size: 13px;
+    color: #333;
+    line-height: 18px;
+    resize: none;
+}
+
+
+.reply_but {
+	background: #4a57a8;
+    border-color: #3c4790;
+    text-shadow: 0px -1px #343d8e;
+    color: #fff;
+    
+    height: 31px;
+    line-height: 30px;
+    margin-left: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: bold;
+    
+   	width: 82px;
+    height: 35px;
+}
+
+.reply_but_bs {
+	height: 31px;
+    line-height: 30px;
+    margin-left: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: bold;
+    
+    background: #6c7bb4;
+    border-color: #525eaa;
+    text-shadow: 0px -1px #4b559c;
+    color: #fff;
+    
+    width: 82px;
+    height: 35px;
+}
+
+.
+
+ul {
+	padding: 0px;
+	margin: 0px;
+}
+ul,li {
+	list-style: none;
+	margin: 0px;
+	font-size: 12px;
+    color: #777;
+}
+
+li {
+	border-top: 1px solid #eee;
+	padding: 9px 3px 7px 3px;
+}
+
+.reply_reply {
+	border-top: 1px solid #eee;
+	border-left: 1px solid #eee;
+	border-right: 1px solid #eee;
+	margin-left: 30px;
+	background:#FAFAFA;
+	
+}
+
+.reply_writer {
+    width: 132px;
+    margin-right: 33px;
+}
+
+.replyClass {
+	margin: 0px;
+	display:inline;
+	width: 820px;
+}
+
+.replydate {
+	float: right;
+	margin-right: 20px;
+}
+
+.replyer {
+	float: left;
+    width: 132px;
+    margin-right: 33px;
+    margin-top: 3px;
+}
+	
+.replydate_reply {
+	margin-right: 30px;
+	float: right;
+} 
+
+.url {
+	
+	width: 28.4%;
+	display: inline-block;
+	
+	font-size: 20px;
+	color: white;
+	
+	font-style: italic ; 
+	font-weight: bold; 
+	font-size: 2em;
+	line-height: 1.0em; 
+	color: black;
+	font-family: ex1;
+}
+
+.header_re {
+    text-align: left;
+    margin-top: 30px;
+    margin-left: 220px;
+    margin-bottom: 30px;
+}
+
+.input {
+	display: inline-table;
+	width: 454px;
+    height: 44px;
+    border: 1px solid #3c4790;
+    background: #4a57a8;
+}
+
+.input > div {
+    width: 494px;
+}
+
+#select {
+	background: transparent;
+    width: 120px;
+    height: 34px;
+    padding: 0 9px;
+    border: none;
+    outline: none;
+    color: #3c4790;
+    font-size: 14px;
+    font-weight: bold;
+	float: left;
+    background: #fff;
+    margin: 5px 0 0 5px;
+}
+
+#keywordInput {
+	background: transparent;
+    height: 34px;
+    padding: 0 9px;
+    border: none;
+    outline: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+	float: left;
+width: 300px;
+    background: #fff;
+    margin: 5px 0 0 5px;
+}
+
+#search {
+	font-size: 30px;
+    margin: 8px 8px 0px 8px;
+    color: white;
 }

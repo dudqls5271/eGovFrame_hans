@@ -467,6 +467,7 @@ public class TestBoardController {
 		try {
 			model.addAttribute("result", service.selectBoard(vo));
 			model.addAttribute("fullNameList", service.selectName(vo));
+			model.addAttribute("result_re", service.list_rno(vo));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -759,6 +760,26 @@ public class TestBoardController {
 			}
 		  
 		   return "hansTest/test";
+	   }
+	   
+	   @RequestMapping(value="/find_id.do", method= RequestMethod.GET)
+	   public String find_id(TestBoardVO vo, Model model) {
+			try {
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		   return "hansTest/find_id";
+	   }
+	   
+	   @RequestMapping(value="/find_id_re.do", method= RequestMethod.GET)
+	   public String find_id_re(TestBoardVO vo, Model model) {
+			try {
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		   return "hansTest/find_id_re";
 	   }
 	
 }

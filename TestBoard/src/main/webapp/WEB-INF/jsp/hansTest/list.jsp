@@ -123,7 +123,6 @@
                <c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
                   <li><a href="${pageMaker.endPage + 1 }">&raquo;</a></li>
                </c:if>
-               
                </ul>
             </div>
       </div>
