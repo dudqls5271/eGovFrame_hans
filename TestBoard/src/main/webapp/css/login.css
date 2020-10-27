@@ -17,6 +17,7 @@
 }
 
 .ping {
+  float: left;
   width: 290px;
   padding: 25px 56px 0;
 }
@@ -118,4 +119,12 @@ input::placeholder {
 .but {
 	cursor:pointer;
 	display: inline;
+}
+
+.coco {
+	border: 1px solid;
+	float: right;
+    width: 300px;
+    border: 1px solid;
+    height: 297px;
 }

@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JPopupMenu.Separator;
+import javax.ws.rs.GET;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MultivaluedMap;
 
@@ -775,6 +776,10 @@ public class TestBoardController {
 	   @RequestMapping(value="/find_id_re.do", method= RequestMethod.GET)
 	   public String find_id_re(TestBoardVO vo, Model model) {
 			try {
+				
+				model.addAttribute("result", service.find_id(vo));
+				model.addAttribute("resultDate", service.ragedate_id(vo));
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -782,4 +787,25 @@ public class TestBoardController {
 		   return "hansTest/find_id_re";
 	   }
 	
+	   
+	   @RequestMapping(value="/find_pw.do", method= RequestMethod.GET)
+	   public String find_pw(TestBoardVO vo, Model model) {
+			try {
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		   return "hansTest/find_pw";
+	   }
+	   
+	   @RequestMapping(value="/find_pw_re.do", method= RequestMethod.GET)
+	   public String find_pw_re(TestBoardVO vo, Model model) {
+			try {
+				model.addAttribute("result", service.find_id(vo));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		   return "hansTest/find_pw_re";
+	   }
 }

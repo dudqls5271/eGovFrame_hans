@@ -157,5 +157,20 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 		// TODO Auto-generated method stub
 		return selectOne("list_rno", vo);
 	}
+
+	@Override
+	public TestBoardVO find_id(TestBoardVO vo) throws Exception {
+		return selectOne("find_id", vo);
+	}
+
+	@Override
+	public TestBoardVO ragedate_id(TestBoardVO vo) throws Exception {
+		return selectOne("ragedate_id", vo);
+	}
+
+	@Override
+	public int pw_re(TestBoardVO vo) throws Exception {
+		return update("pw_re", vo);
+	}
 	
 }

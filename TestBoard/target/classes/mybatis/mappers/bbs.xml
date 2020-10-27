@@ -210,8 +210,8 @@
 	<insert id="insertJoin" parameterType="TestBoardVO">
 		INSERT INTO
 		yb_join
-		(user_id, pw, email, nickname, name, phone, addr)
-		VALUES(#{user_id}, #{pw}, concat(#{email1},'@',#{email2}), #{nickname}, #{name}, concat(#{phone1}, '-', #{phone2}, '-', #{phone3}), concat(#{add1},' ',#{add2},' ',#{add3}, ' ', #{add4}))
+		(user_id, pw, email, nickname, name, phone, addr, ragedate)
+		VALUES(#{user_id}, #{pw}, concat(#{email1},'@',#{email2}), #{nickname}, #{name}, concat(#{phone1}, '-', #{phone2}, '-', #{phone3}), concat(#{add1},' ',#{add2},' ',#{add3}, ' ', #{add4}), now())
 
 	</insert>
 
@@ -262,4 +262,25 @@
 		DELETE FROM yb_reply
 		WHERE rno=#{rno}
 	</delete>
+	
+	
+	<select id="find_id" parameterType="hans.test.Board.TestBoardVO" resultType="TestBoardVO">
+		SELECT user_id
+		FROM test_schema.yb_join
+		where name = #{name} and email = #{email}
+	</select>
+	
+	<select id="ragedate_id" parameterType="hans.test.Board.TestBoardVO" resultType="TestBoardVO">
+		SELECT ragedate
+		FROM test_schema.yb_join
+		where name = #{name} and email = #{email}
+	</select>
+	
+	<update id="pw_re" parameterType="TestBoardVO">
+		UPDATE yb_join
+		SET
+		pw=#{user_id}
+		WHERE id=#{user_id}
+	</update>
+	
 </mapper>

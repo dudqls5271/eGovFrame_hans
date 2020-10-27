@@ -7,7 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <link href="<c:url value='/css/find_id.css'/>" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+	crossorigin="anonymous"></script>
 <title>Insert title here</title>
+
+ <script>
+        $(document).ready(function() {     
+            $('.input_but').click(function() {
+                   
+                if ($('.input_name').val() == "") {
+                  alert("이름을 입력해 주세요.")
+                  $('.writer').focus();
+                  // $('.writer').css('border', '2px solid #5264AE');
+                } else if ($('.input_email').val() == "") {
+                  alert("이메일을 입력 해주세요.")
+                  $('.pw').focus();
+                  // $('.pw').css('border', '2px solid #5264AE');
+                } else {
+                    $("#frm").submit();
+                }
+            });
+        });
+</script>
 </head>
 <body>
   <div class="header">
@@ -34,12 +56,12 @@
 	                <p>이메일은 반드시 인증받은(or 이메일 변경을 통해 변경한) 이메일을 입력하셔야 합니다.</p>
 	                <p>회원 가입 시 실명이 아닌 다른 이름으로 가입했을 경우, 해당 가입 시 입력한 이름을 입력하셔야 합니다.</p>
 	            </div>
-				<form action="/test/find_id_re.do">
+				<form action="/test/find_id_re.do" id="frm">
 		            <div class="form_box">
 		                <div class="input_box">
-		                    <input type="text" class="input_name" placeholder="이름" name="user_name">
-		                    <input type="text" class="input_email" placeholder="이메일" name="user_email">
-		                    <input type="submit" value="확인" class="input_but">
+		                    <input type="text" class="input_name" placeholder="이름" name="name">
+		                    <input type="text" class="input_email" placeholder="이메일" name="email">
+		                    <input type="button" value="확인" class="input_but" >
 		                </div>
 		            </div>
 				</form>

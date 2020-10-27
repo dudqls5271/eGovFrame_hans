@@ -8,6 +8,10 @@
 <meta charset="UTF-8">
 <link href="<c:url value='/css/find_id.css'/>" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8" src="/smartEditor/js/HuskyEZCreator.js"></script> 
 </head>
 <body>
   <div class="header">
@@ -37,9 +41,9 @@
                     
                     <div class="form_box">
                     <div class="input_box">
-                        <p class="id_2">d********1</p>
-                        <p class="ragdatge">(2020-10-03 가입)</p>
-                        <input type="submit" value="로그인" class="input_but">
+                        <p class="id_2">${result.user_id}</p>
+                        <p>입니다.</p>
+                        <a href="/test/login.do"><input type="submit" value="로그인" class="input_but"></a>
                     </div>
                     </div>
 	            <div class="info_txt2">

@@ -172,4 +172,19 @@ public class TestBoardServicelmpl implements TestBoardService {
 		return dao.list_rno(vo).getCount1();
 	}
 
+	@Override
+	public TestBoardVO find_id(TestBoardVO vo) throws Exception {
+		return dao.find_id(vo);
+	}
+
+	@Override
+	public TestBoardVO ragedate_id(TestBoardVO vo) throws Exception {
+		return dao.ragedate_id(vo);
+	}
+
+	@Override
+	public int pw_re(TestBoardVO vo) throws Exception {
+		return dao.pw_re(vo);
+	}
+
 }

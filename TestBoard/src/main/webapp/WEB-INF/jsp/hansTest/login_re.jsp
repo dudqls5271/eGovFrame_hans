@@ -44,29 +44,21 @@ $(document).ready(function() {
     <div class="se">
       <div class="from">
         <div class="ping">
-          <input
-            type="text"
-            class="id"
-            placeholder="아이디"
-            name="user_id"
-            id="user_id"
-          />
-          <input
-            type="password"
-            class="pw"
-            placeholder="비밀번호"
-            name="pw"
-            id="pw"
-          />
+          <input type="text"class="id" placeholder="아이디" name="user_id" id="user_id"/>
+          
+          <input type="password" class="pw" placeholder="비밀번호" name="pw" id="pw"/>
 
           <input type="submit" value="로그인" class="login" />
 
           <div class="nav">
-            <a href="#">아이디 찾기</a>
+            <a href="/test/find_id.do">아이디 찾기</a>
             <a href="#" class="f">비밀번호 찾기</a>
             <a href="join.do" class="f">회원가입</a>
           </div>
         </div>
+<!--         <div class="coco"> -->
+<!--         	<img alt="" src="/img/copi.jpg"> -->
+<!--         </div> -->
       </div>
     </div>
     </form>

@@ -9,11 +9,14 @@ public interface TestBoardDAO {
 	TestBoardVO selectBoard(TestBoardVO vo) throws Exception;
 	
 	TestBoardVO list_rno(TestBoardVO vo) throws Exception;
+	TestBoardVO find_id(TestBoardVO vo) throws Exception;
+	TestBoardVO ragedate_id(TestBoardVO vo) throws Exception;
 	
 	int updateBoard(TestBoardVO vo) throws Exception;
 	int insertBoard(TestBoardVO vo) throws Exception;
 	int deleteBoard(TestBoardVO vo) throws Exception;
 	int updateJoin(TestBoardVO vo) throws Exception;
+	int pw_re(TestBoardVO vo) throws Exception;
 	int insertJoin(TestBoardVO vo) throws Exception;
 	TestBoardVO selectLogin(TestBoardVO vo) throws Exception;
 	
