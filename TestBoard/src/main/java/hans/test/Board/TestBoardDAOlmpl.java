@@ -172,5 +172,27 @@ public class TestBoardDAOlmpl extends EgovAbstractMapper implements TestBoardDAO
 	public int pw_re(TestBoardVO vo) throws Exception {
 		return update("pw_re", vo);
 	}
+
+	@Override
+	public TestBoardVO user_info(TestBoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return selectOne("user_info", vo);
+	}
+
+	@Override
+	public int neck_re(TestBoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return update("neck_re", vo);
+	}
+
+	@Override
+	public TestBoardVO pw_riar(TestBoardVO vo) throws Exception {
+		return selectOne("pw_riar", vo);
+	}
+
+	@Override
+	public int pw_delete(TestBoardVO vo) throws Exception {
+		return delete("pw_delete", vo);
+	}
 	
 }

@@ -654,7 +654,7 @@ public class TestBoardController {
 		return "hansTest/layout/user";
 	}
 	
-	@RequestMapping(value="login_re.do", method=RequestMethod.POST)
+	@RequestMapping(value="login_re.do", method=RequestMethod.POST )
 	public String login_re(Model model, RedirectAttributes rttr, HttpServletRequest request, TestBoardVO vo) {
 		System.out.println("===============> post");
 		System.out.println(vo.toString());
@@ -665,8 +665,24 @@ public class TestBoardController {
 					HttpSession session = request.getSession();
 					session.setAttribute("sessionId", userVO.getUser_id());
 					session.setAttribute("sessionNick", userVO.getNickname());
+					session.setAttribute("name", userVO.getName());
 					session.setAttribute("pw_boader", userVO.getPw_boader());
-				} 
+					
+					String email = userVO.getEmail();
+					  String tempEmail[] = email.split("@");
+					  String email1 = null;
+					  String email2 = null;
+					  if (tempEmail != null && tempEmail.length >= 2) {
+					   email1 = tempEmail[0];
+					   email2 = tempEmail[1];
+					  }
+					  session.setAttribute("email1", email1);
+					  session.setAttribute("email2", email2);
+				}
+				
+			} else {
+				rttr.addFlashAttribute("msg", "아이디 또는 비밀번호가 맞지 않습니다.");
+				return "redirect:/test/login.do";
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -709,10 +725,11 @@ public class TestBoardController {
 	
 
 	@RequestMapping("logout.do")
-	public String logout(TestBoardVO vo, HttpServletRequest request) {
+	public String logout(TestBoardVO vo, HttpServletRequest request,RedirectAttributes rttr) {
 		try {
 			HttpSession session = request.getSession();
 			session.invalidate();
+			rttr.addFlashAttribute("msg", "로그아웃.");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -721,9 +738,9 @@ public class TestBoardController {
 	}
 	
 	@RequestMapping("modifyMember.do")
-	public String modifyMember(Model model, TestBoardVO vo) {
+	public String modifyMember(Model model, RedirectAttributes rttr, HttpServletRequest request, TestBoardVO vo) {
 		try {
-			model.addAttribute("result", service.selectBoard(vo));
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -778,7 +795,6 @@ public class TestBoardController {
 			try {
 				
 				model.addAttribute("result", service.find_id(vo));
-				model.addAttribute("resultDate", service.ragedate_id(vo));
 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -799,13 +815,129 @@ public class TestBoardController {
 	   }
 	   
 	   @RequestMapping(value="/find_pw_re.do", method= RequestMethod.GET)
-	   public String find_pw_re(TestBoardVO vo, Model model) {
+	   public String find_pw_re(TestBoardVO vo, Model model, RedirectAttributes rttr) {
+		   
 			try {
-				model.addAttribute("result", service.find_id(vo));
+				TestBoardVO tvo = service.ragedate_id(vo);
+				model.addAttribute("result", tvo);
+//				 System.out.println("=====================> user_id : " + service.find_id(vo).getUser_id());
+				if (tvo == null || tvo.getUser_id() == null || tvo.getUser_id() == "") {
+					rttr.addFlashAttribute("msg", "아이디, 비밀번호 또는 이메일이 맞지 않습니다.");
+					return "redirect:/test/find_pw.do";
+				} else {
+					return "hansTest/find_pw_re";
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				rttr.addFlashAttribute("msg", e.getMessage());
+				return "redirect:/test/find_pw.do";
+			}
+			
+	   }
+	   
+		@RequestMapping("pw_re_login.do")
+		public String pw_re_login(TestBoardVO vo) {
+			try {
+				service.pw_re(vo);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		   return "hansTest/find_pw_re";
-	   }
+			return "redirect:/test/login.do";
+		}
+		
+		@RequestMapping("pw_re.do")
+		public String pw_re(TestBoardVO vo) {
+			try {
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "hansTest/pw_re";
+		}
+		
+		@RequestMapping("neck_re.do")
+		public String neck_re(TestBoardVO vo, RedirectAttributes rttr, HttpServletRequest request) {
+			try {
+				service.neck_re(vo);
+				HttpSession session = request.getSession();
+				rttr.addFlashAttribute("msg","변경이 되었습니다. 로그아웃 됩니다.");
+				session.invalidate();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			return "redirect:/test/list.do";
+		}
+		
+		@RequestMapping("pw_re_ck.do")
+		public String pw_re_ck(TestBoardVO vo, RedirectAttributes rttr, HttpServletRequest request) {
+			try {
+				service.pw_riar(vo);
+				
+				String pro_pw = request.getParameter("pro_pw");
+				String pw_re1 = request.getParameter("pw");
+				
+				vo.setPw(pro_pw);
+				TestBoardVO loginVO = service.selectLogin(vo);
+				
+				if(!loginVO.getUser_id().isEmpty()) {
+					vo.setPw(pw_re1);
+					service.pw_re(vo);
+					HttpSession session = request.getSession();
+					session.invalidate();
+					rttr.addFlashAttribute("msg","변경이 되었습니다. 로그아웃 됩니다.");
+					return "redirect:/test/list.do";
+				} else {
+					System.out.println("===========================> 화면 input 현재 비밀번호 : " + pro_pw);
+					System.out.println("===========================> 화면 input 변경할 비밀번호 : " + pw_re1);
+					rttr.addFlashAttribute("msg", "현재 비밀번호가 일치 하지 않습니다.");
+					return "redirect:/test/pw_re.do";
+				} /*else {
+					service.pw_re(vo);
+					HttpSession session = request.getSession();
+					rttr.addFlashAttribute("msg","변경이 되었습니다. 로그아웃 됩니다.");
+					session.invalidate();
+				}*/
+			} catch (Exception e) {
+				// TODO: handle exception
+				rttr.addFlashAttribute("msg", e.getMessage());
+				return "redirect:/test/pw_re.do";
+			}
+			
+		}
+		
+		@RequestMapping("Dclone_out.do")
+		public String Dclone_out(TestBoardVO vo, RedirectAttributes rttr) {
+			try {
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "hansTest/out";
+		}
+		
+		@RequestMapping("out.do")
+		public String out(TestBoardVO vo, RedirectAttributes rttr, HttpServletRequest request, Model model) {
+			try {
+				service.pw_riar(vo);
+				String pro_pw = request.getParameter("pw");
+				pro_pw = EgovFileScrty.encryptPassword(vo.getPw(), vo.getUser_id());
+				System.out.println("===========================> 화면 input 현재 비밀번호 : " + pro_pw);
+				System.out.println("===========================> DB : " + service.pw_riar(vo).getPw());
+				
+				if (service.pw_riar(vo).getPw().equals(pro_pw)) {
+					service.pw_delete(vo);
+					rttr.addFlashAttribute("msg", "회원 탈퇴 되었습니다.");
+					HttpSession session = request.getSession();
+					session.invalidate();
+					return "redirect:/test/list.do";
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "hansTest/out";
+
+		}
 }

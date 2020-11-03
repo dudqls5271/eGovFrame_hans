@@ -212,7 +212,8 @@ body {
 }
 
 a {
-  color: #666;
+    color: azure;
+    text-decoration:none;
 }
 
 .fileUpload {

@@ -1,0 +1,219 @@
+@font-face {
+	src: url(../css/BMJUA_ttf.ttf);
+	font-family: "ex1";
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+.contr {
+  width: 868px;
+  margin-top: 37px;
+  margin: 20px auto 0;
+  font-size: 12px;
+}
+
+.content_main {
+  display: flex;
+}
+
+.id {
+  width: 33.3%;
+  border-color: #3a4892;
+  background: #fff;
+  color: #3c4790;
+  font-weight: bold;
+  text-shadow: none;
+
+  display: block;
+  height: 56px;
+  line-height: 56px;
+  margin-left: 8px;
+  border-radius: 10px;
+  font-size: 16px;
+  text-align: center;
+  border: 2px #3a4892 solid;
+  text-decoration: none;
+}
+
+.pw {
+  width: 33.3%;
+  display: block;
+  height: 56px;
+  line-height: 56px;
+  margin-left: 8px;
+  border: 2px #aaabab solid;
+  border-radius: 10px;
+  background: #aaabab;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0px -1px #909292;
+  text-decoration: none;
+}
+
+.main_name {
+  margin-top: 30px;
+  vertical-align: top;
+  border-bottom: 2px solid #3c4790;
+
+  color: #3c4790;
+  font-size: 14px;
+  vertical-align: -3px;
+
+  height: 32px;
+}
+
+.header_re {
+  height: 85px;
+  width: 868px;
+  position: relative;
+  width: 1050px;
+  height: 105px;
+  margin: 0 auto;
+}
+
+.header {
+  background: #3c4790;
+}
+
+.header_re > .but > h4 {
+  display: inline-block;
+
+  font-size: 20px;
+  color: white;
+
+  font-style: italic;
+  font-weight: bold;
+  font-size: 2em;
+  line-height: 1em;
+  color: white;
+  font-family: ex1;
+
+  margin-top: 45px;
+}
+
+.contbox {
+  /* min-height: 398px;*/
+  border: 1px #cecdce solid;
+  border-radius: 5px;
+}
+
+.box {
+  padding: 78px 0 58px;
+  margin: 0 95px 0 95px;
+}
+
+.txt {
+  height: 35px;
+  line-height: 35px;
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+  width: 175px;
+}
+
+.inTag {
+  margin-bottom: 20px;
+  width: 80%;
+
+  height: 35px;
+  padding: 0px 9px 0 9px;
+  line-height: 33px;
+  border: 1px #cecdce solid;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #555;
+  background: #f3f3f3;
+}
+
+.input_txt {
+  display: flex;
+}
+
+.inTag_E {
+  margin-bottom: 20px;
+  height: 35px;
+  padding: 0px 9px 0 9px;
+  line-height: 33px;
+  border: 1px #cecdce solid;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #555;
+  background: #f3f3f3;
+
+  float: left;
+  width: 46%;
+}
+
+.gol {
+  float: left;
+  padding: 0 8px 0 8px;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+  line-height: 35px;
+}
+
+.input,#frm {
+  width: 100%;
+}
+
+.but_re {
+  float: right;
+  width: 100px;
+  height: 35px;
+  line-height: 35px;
+  border-radius: 0;
+  margin-left: 7px;
+
+  background: #fff;
+  border: 1px solid #3c4790;
+  color: #3c4790;
+}
+
+.inTag_t {
+  margin-bottom: 20px;
+  width: 100%;
+
+  height: 35px;
+  padding: 0px 9px 0 9px;
+  line-height: 33px;
+  border: 1px #cecdce solid;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #555;
+  background: #f3f3f3;
+}
+
+.inTag_ne {
+  margin-bottom: 20px;
+  width: 80%;
+
+  height: 35px;
+  padding: 0px 9px 0 9px;
+  line-height: 33px;
+  border: 1px #cecdce solid;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #555;
+}
+
+.but_ok {
+  margin-top: 25px;
+}
+
+.ok_but {
+  width: 100px;
+  background: #4a57a8;
+  border-color: #3c4790;
+  border: 0px;
+  text-shadow: 0px -1px #343d8e;
+  color: #fff;
+  height: 40px;
+}
+.fr {
+  float: right;
+}

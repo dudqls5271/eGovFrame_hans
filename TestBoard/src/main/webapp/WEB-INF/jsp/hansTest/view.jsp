@@ -59,7 +59,8 @@
 						+ "<div id='replylevel' style='display: none;'></br>"
 						+ 	"REPLYER<input type='text'></br>"
 						+	"replytext<input type='text'></br>"
-						+ 	"rno<input type='text'value='"+this.rno+"'>"
+						+	"pw<input type='password'></br>"
+						+ 	"<input type='hidden'value='"+this.rno+"'>"
 						+ "<button id='replyAnd'>ok</button>"
 						+ "</div>"
 						+ "</li>"
@@ -83,10 +84,11 @@
 								+ "</div>"
 								+ "<span class='replyClass'><span>└</span> "+replyText + "</span>"
 								+ "<span class='replydate_reply'>"+regdate + "</span>"
-								+ "<div id='replylevel' style='display: none;'></br>"
+								+ "<div id='replylevel' style='display: none;'></br>"								
 								+ 	"REPLYER<input type='text'></br>"
 								+	"replytext<input type='text'></br>"
-								+ 	"rno<input type='text'value='"+replyRnoLevel+"'>"
+								+	"pw<input type='password'></br>"
+								+ 	"<input type='hidden'value='"+replyRnoLevel+"'>"
 								+ "<button id='replyAnd'>ok</button>"
 								+ "</div>"
 								+ "</li>";
@@ -106,6 +108,7 @@
 			var replyer = $("#newReplyWriter").val();
 			var replytext = $("#newReplyText").val();
 			var replyrno = $("#replyrno").val();
+			var reply_pw = $("#reply_pw").val();
 			
 			$.ajax({
 				type : 'post',
@@ -120,7 +123,8 @@
 					replyer : replyer,
 					replytext : replytext,
 					level : 0,
-					rnolevel : replyrno
+					rnolevel : replyrno,
+					pw : reply_pw
 				}),
 				success : function(result) {
 					if (result == 'SUCCESS') {
@@ -132,7 +136,8 @@
 						+ "<div id='replylevel' style='display: none;'></br>"
 						+ 	"REPLYER<input type='text'></br>"
 						+	"replytext<input type='text'></br>"
-						+ 	"rno<input type='text'value='"+replyrno+"'>"
+						+	"pw<input type='password'></br>"
+						+ 	"<input type='hidden'value='"+replyrno+"'>"
 						+ "<button id='replyAnd'>ok</button>"
 						+ "</div>"
 						+ "</li>"
@@ -145,12 +150,6 @@
 			location.reload();
 		});
 		
-		$("#reply").on("click", ".replyLi .replyClass", function() {
-			alert("부탁한다");
-			$(this).next().next().css ({	
-				display: "inline"
-			});
-		});
 		
 		$("#reply").on("click", ".replyLi .but", function() {
 			var reply = $(this).prev();
@@ -192,7 +191,8 @@
 									+ "<div id='replylevel' style='display: none;'></br>"
 									+ 	"REPLYER<input type='text'></br>"
 									+	"replytext<input type='text'></br>"
-									+ 	"rno<input type='text'value='"+this.rno+"'>"
+									+	"pw<input type='password'></br>"
+									+ 	"<input type='hidden'value='"+this.rno+"'>"
 									+ "<button id='replyAnd'>ok</button>"
 									+ "</div>"
 									+ "</li>"
@@ -200,7 +200,7 @@
 								});
 							
 							$("#reply").html(str);
-					        locaction.reload();
+							location.reload();
 						});
 					}
 				}
@@ -235,13 +235,13 @@
 									+ "<div id='replylevel' style='display: none;'></br>"
 									+ 	"REPLYER<input type='text'></br>"
 									+	"replytext<input type='text'></br>"
-									+ 	"rno<input type='text'value='"+this.rno+"'>"
+									+	"pw<input type='password'></br>"
+									+ 	"<input type='hidden'value='"+this.rno+"'>"
 									+ "<button id='replyAnd'>ok</button>"
 									+ "</div>"
 									+ "</li>"
 									+ "</ul>"
 								});
-							
 							$("#reply").html(str);
 						});
 
@@ -253,11 +253,25 @@
 		});
 		
 		
+		$("#reply").on("click", ".replyLi .replyClass", function() {
+			alert("부탁한다");
+			$(this).next().next().css ({	
+				display: "inline"
+			});
+		});
+		
 	$(document).on("click","#replyAnd", function(data) {
 				var ulObj = $(this).parent().parent().parent();
-				var replyer = $(this).prev().prev().prev().prev().prev().val();
-				var replytext = $(this).prev().prev().prev().val();
+				var replytext = $(this).prev().prev().prev().prev().prev().val();
+				var pw = $(this).prev().prev().prev().val();
 				var replyrno = $(this).prev().val();
+				var replyer = $(this).prev().prev().prev().prev().prev().prev().prev().val();
+				
+// 				console.log(ulObj);
+// 				console.log(replyer);
+// 				console.log(replytext);
+// 				console.log(replyrno);
+// 				console.log(pw);
 				
 				$.ajax({
 					type : 'post',
@@ -272,7 +286,8 @@
 						replyer : replyer,
 						replytext : replytext,
 						level : 1,
-						rnolevel : replyrno
+						rnolevel : replyrno,
+						pw : pw
 					}),
 					success : function(result) {
 						if (result == 'SUCCESS') {
@@ -283,7 +298,8 @@
 							+ "<div id='replylevel' style='display: none;'></br>"
 							+ 	"REPLYER<input type='text'></br>"
 							+	"replytext<input type='text'></br>"
-							+ 	"rno<input type='text'value='"+replyrno+"'>"
+							+	"pw<input type='password'></br>"
+							+ 	"<input type='hidden'value='"+replyrno+"'>"
 							+ "<button id='replyAnd'>ok</button>"
 							+ "</div>"
 							+ "</li>";
@@ -292,6 +308,7 @@
 						}
 					}
 			});
+				location.reload();
 		});
 	});
 </script>
@@ -354,13 +371,22 @@
 			
 		<div class="reply_text_area">
 				<div class="user_id_and_pw">
+					<c:if test="${not empty sessionScope.sessionId}">
+						<div class="input_text">
+							<input type="text" class="input_text_user"  name="replyer" id="newReplyWriter" value="${sessionNick}" readonly="readonly" placeholder="닉네임">
+						</div>
+					</c:if>
+					
+					<c:if test="${empty sessionScope.sessionId}">
+						<div class="input_text">
+							<input type="text" class="input_text_user"  name="replyer" id="newReplyWriter" placeholder="닉네임">
+						</div>
+					</c:if>
 					<div class="input_text">
-						<input type="text" class="input_text_user"  name="replyer" id="newReplyWriter">
-					</div>
-					<div class="input_text">
-						<input type="text" class="input_text_user" name="replyrno" id="replyrno" value="${result_re + 1}">
+						<input type="password" class="input_text_user" name="pw" id="reply_pw" placeholder="비밀번호">
 					</div>
 				</div>		
+				<input type="hidden" name="replyrno" id="replyrno" value="${result_re + 1}">
 		<div class="text_area">
 			<div class="writer_reply">
 				<textarea class="reply_add" name="replytext" id="newReplyText"></textarea>
@@ -379,6 +405,6 @@
 			<input type="button" value="글쓰기" class="writer_re">
 		</div>
 	</div>
-
+</div>
   </body>
 </html>

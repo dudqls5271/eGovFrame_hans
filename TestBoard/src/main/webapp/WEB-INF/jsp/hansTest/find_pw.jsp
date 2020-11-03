@@ -11,7 +11,13 @@
 	crossorigin="anonymous"></script>
 <title>Insert title here</title>
  <script>
-        $(document).ready(function() {     
+        $(document).ready(function() {
+        	
+        	var msg = '${msg}';
+        	if (msg != "") {
+            	alert(msg);	
+        	}
+        	
             $('.input_but').click(function() {
                    
                 if ($('.input_id').val() == "") {
@@ -24,6 +30,10 @@
                     $("#frm").submit();
                 }
             });
+            
+            $('.id').click(function () {
+            	location.href='/test/find_id.do';
+			});
         });
 </script>
 </head>
@@ -37,12 +47,12 @@
 </div>
     <div class="contr">
       <div class="content_main">
-          <div href="#" class="id">아이디 찾기</div>
-          <div href="#" class="pw">비밀번호 찾기</div>
+          <div class="id">아이디 찾기</div>
+          <div class="pw">비밀번호 찾기</div>
       </div>
   
       <div>
-          <h3 class="main_name">아이디 찾기</h3>
+          <h3 class="main_name">비밀번호 찾기</h3>
       </div>
   
       <div class="contbox">

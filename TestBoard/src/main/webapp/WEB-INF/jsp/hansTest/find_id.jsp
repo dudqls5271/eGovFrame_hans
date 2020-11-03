@@ -19,15 +19,19 @@
                 if ($('.input_name').val() == "") {
                   alert("이름을 입력해 주세요.")
                   $('.writer').focus();
-                  // $('.writer').css('border', '2px solid #5264AE');
                 } else if ($('.input_email').val() == "") {
                   alert("이메일을 입력 해주세요.")
                   $('.pw').focus();
-                  // $('.pw').css('border', '2px solid #5264AE');
                 } else {
                     $("#frm").submit();
                 }
             });
+            
+            $('.pw').click(function () {
+            	location.href='/test/find_pw.do';
+			});
+            
+            
         });
 </script>
 </head>
@@ -41,8 +45,8 @@
   </div>
   	<div class="contr">
 	    <div class="content_main">
-	        <div href="#" class="id">아이디 찾기</div>
-	        <div href="#" class="pw">비밀번호 찾기</div>
+	        <div class="id">아이디 찾기</div>
+	        <div class="pw">비밀번호 찾기</div>
 	    </div>
 	
 	    <div>

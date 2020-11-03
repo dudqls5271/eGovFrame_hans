@@ -16,6 +16,12 @@
 
 <script>
 	$(document).ready(function() {
+		
+		var msg = '${msg}';
+    	if (msg != "") {
+        	alert(msg);	
+    	}
+		
 		$(".board").click(function() {
 			var frmFrom = $("#frm");
 			console.log(frmFrom);
@@ -37,7 +43,7 @@
 			location.href = '/test/logout.do';
 		});
 
-		$(".login_forme").click(function() {
+		$(".user_name_in_empty").click(function() {
 			location.href = '/test/login.do';
 		});
 		

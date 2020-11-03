@@ -101,7 +101,8 @@ a {
 }
 
 .user_inform,
-.user_name_in {
+.user_name_in,
+.user_name_in_empty {
   margin-top: 0;
 }
 

@@ -184,7 +184,30 @@ public class TestBoardServicelmpl implements TestBoardService {
 
 	@Override
 	public int pw_re(TestBoardVO vo) throws Exception {
+		vo.setPw(EgovFileScrty.encryptPassword(vo.getPw(), vo.getUser_id()));
 		return dao.pw_re(vo);
+	}
+
+	@Override
+	public TestBoardVO user_info(TestBoardVO vo) throws Exception {
+		return dao.user_info(vo);
+	}
+
+	@Override
+	public int neck_re(TestBoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.neck_re(vo);
+	}
+
+	@Override
+	public TestBoardVO pw_riar(TestBoardVO vo) throws Exception {
+		return dao.pw_riar(vo);
+	}
+
+	@Override
+	public int pw_delete(TestBoardVO vo) throws Exception {
+		vo.setPw(EgovFileScrty.encryptPassword(vo.getPw(), vo.getUser_id()));
+		return dao.pw_delete(vo);
 	}
 
 }

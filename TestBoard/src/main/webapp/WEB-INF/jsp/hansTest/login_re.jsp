@@ -16,6 +16,11 @@
 <script>
 $(document).ready(function() {
 	
+	var msg = '${msg}';
+	if (msg != "") {
+    	alert(msg);	
+	}
+	
 	$(".join").click(function(){
 		   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
 		});
@@ -27,6 +32,16 @@ $(document).ready(function() {
 	$(".but").click(function() {
 		location.href='/test/list.do';
 	})
+	
+	$(".login").click(function () {
+        if ($('#user_id').val() == "") {
+            alert("아이디를 입렵 해주세요.");
+          } else if ($('#pw').val() == "") {
+            alert("비밀번호를 입력 해주세요.");
+          } else {
+              $("#frm").submit();
+          }
+	});
 });
 </script>
 
@@ -48,11 +63,11 @@ $(document).ready(function() {
           
           <input type="password" class="pw" placeholder="비밀번호" name="pw" id="pw"/>
 
-          <input type="submit" value="로그인" class="login" />
+          <input type="button" value="로그인" class="login" />
 
           <div class="nav">
             <a href="/test/find_id.do">아이디 찾기</a>
-            <a href="#" class="f">비밀번호 찾기</a>
+            <a href="/test/find_pw.do" class="f">비밀번호 찾기</a>
             <a href="join.do" class="f">회원가입</a>
           </div>
         </div>

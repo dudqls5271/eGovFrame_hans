@@ -15,10 +15,15 @@ public interface TestBoardService {
 	int insertJoin(TestBoardVO vo) throws Exception;
 	int updateJoin(TestBoardVO vo) throws Exception;
 	int pw_re(TestBoardVO vo) throws Exception;
+	int neck_re(TestBoardVO vo) throws Exception;
+	int pw_delete(TestBoardVO vo) throws Exception;
 	
+	TestBoardVO pw_riar(TestBoardVO vo) throws Exception;
 	TestBoardVO find_id(TestBoardVO vo) throws Exception;
 	TestBoardVO selectLogin(TestBoardVO vo) throws Exception;
 	TestBoardVO ragedate_id(TestBoardVO vo) throws Exception;
+	
+	TestBoardVO user_info(TestBoardVO vo) throws Exception;
 	
 	List<TestBoardVO> listCriteria(Criteria cri) throws Exception;
 	public BoardVO read(Integer bno)throws Exception;

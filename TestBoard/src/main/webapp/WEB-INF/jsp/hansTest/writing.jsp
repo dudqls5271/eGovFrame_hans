@@ -161,7 +161,12 @@
       <div class="frm">
       	<div class="con">
 	        <div class="input_t">
-	          <input type="text" class="writer" placeholder="닉네임" name="writer"/>
+	        	<c:if test="${not empty sessionScope.sessionId}">
+	          		<input type="text" class="writer" placeholder="닉네임" name="writer" value="${sessionNick}" readonly="readonly"/>
+	          	</c:if>
+	          	<c:if test="${empty sessionScope.sessionId}">
+	          		<input type="text" class="writer" placeholder="닉네임" name="writer"/>
+	          	</c:if>
 	          <input type="hidden" value=${sessionId} name="user_id">
 	          <input type="password" class="pw" placeholder="비밀번호" name="pw_boader"/>
 	          <input type="text" class="title" placeholder="제목을 입력해 주세요." name="title"/>
