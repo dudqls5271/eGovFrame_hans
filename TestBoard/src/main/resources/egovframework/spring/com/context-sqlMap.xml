@@ -16,9 +16,6 @@
 		<property name="lobHandler" ref="lobHandler"/>
 	</bean>
 	
-	
-	
-	
 	<!-- SqlMap setup for iBATIS Database Layer -->
     <bean id="egov.sqlMapClient" class="egovframework.rte.psl.orm.ibatis.SqlMapClientFactoryBean">
         <property name="configLocations">

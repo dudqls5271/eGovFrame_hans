@@ -12,6 +12,6 @@
 	        >
 	      </div>
 	      <div class="copyright">
-	        Copyright ⓒ 1999 - 2020 dcinside. All rights reserved.
+	        Copyright ⓒ 2020 - 2020 yb_bin. All rights reserved.
 	      </div>
 		</footer>

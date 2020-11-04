@@ -31,7 +31,7 @@
                 }
             });
             
-            $('.id').click(function () {
+            $('.pw').click(function () {
             	location.href='/test/find_id.do';
 			});
         });
@@ -47,8 +47,8 @@
 </div>
     <div class="contr">
       <div class="content_main">
-          <div class="id">아이디 찾기</div>
-          <div class="pw">비밀번호 찾기</div>
+          <div class="pw">아이디 찾기</div>
+          <div class="id">비밀번호 찾기</div>
       </div>
   
       <div>

@@ -1,3 +1,9 @@
+@font-face {
+	src: url(../css/BMJUA_ttf.ttf);
+	font-family: "ex1";
+}
+
+
 body {
   padding: 0px;
   margin: 0px;
@@ -223,4 +229,88 @@ a {
 
 .fileUpload > li {
   display: inline;
+}
+
+
+.header_re {
+    text-align: left;
+    margin-top: 30px;
+    margin-left: 220px;
+    margin-bottom: 30px;
+}
+
+.sar {
+	margin-left: 25%;
+}
+
+.url {
+	
+	width: 28.4%;
+	display: inline-block;
+	
+	font-size: 20px;
+	color: white;
+	
+	font-style: italic ; 
+	font-weight: bold; 
+	font-size: 2em;
+	line-height: 1.0em; 
+	color: black;
+	font-family: ex1;
+}
+
+.input {
+	display: inline-table;
+	width: 454px;
+    height: 44px;
+    border: 1px solid #3c4790;
+    background: #4a57a8;
+}
+
+#keywordInput {
+	background: transparent;
+    height: 34px;
+    padding: 0 9px;
+    border: none;
+    outline: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+	float: left;
+width: 300px;
+    background: #fff;
+    margin: 5px 0 0 5px;
+}
+
+.input > div {
+    width: 494px;
+}
+
+#search {
+	font-size: 30px;
+    margin: 8px 8px 0px 8px;
+    color: white;
+}
+
+.search {
+	display: inline;
+}
+
+#select {
+	background: transparent;
+    width: 120px;
+    height: 34px;
+    padding: 0 9px;
+    border: none;
+    outline: none;
+    color: #3c4790;
+    font-size: 14px;
+    font-weight: bold;
+	float: left;
+    background: #fff;
+    margin: 5px 0 0 5px;
+}
+
+# keywordInput{
+	width: 300px;
 }

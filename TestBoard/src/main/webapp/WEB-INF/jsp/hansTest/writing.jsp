@@ -11,6 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
 	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"> 
     <script type="text/javascript" charset="utf-8" src="/smartEditor/js/HuskyEZCreator.js"></script>
     <script>
         $(document).ready(function() {
@@ -151,7 +152,7 @@
 </script>
   </head>
   <body>
-    <h1 class="header">header</h1>
+        <c:import url="/test/header.do" charEncoding="UTF-8"></c:import>
    	<c:import url="/test/nav.do" charEncoding="UTF-8"></c:import>
     <form id="frm" action='/test/writing_re.do' class="cc">
      <div class="header_c">
@@ -207,7 +208,7 @@
         >
       </div>
       <div class="copyright">
-        Copyright ⓒ 1999 - 2020 dcinside. All rights reserved.
+        Copyright ⓒ 2020 - 2020 yb_bin. All rights reserved.
       </div>
     </footer>
   </body>

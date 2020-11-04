@@ -42,6 +42,15 @@
             <mvc:exclude-mapping path="/uat/uia/egovLoginUsr.do"/>
 		    <bean class="egovframework.com.cmm.interceptor.AuthenticInterceptor" />
         </mvc:interceptor>
+        
+        <mvc:interceptor>
+            <mvc:mapping path="/test/modifyMember*.do"/>
+            <mvc:mapping path="/pw_re*.do"/>
+            <mvc:mapping path="/test/Dclone_out*.do"/>
+            <mvc:exclude-mapping path="/uat/uia/actionLogin.do"/>
+            <mvc:exclude-mapping path="/uat/uia/egovLoginUsr.do"/>
+		    <bean class="egovframework.com.cmm.interceptor.AuthenticInterceptor" />
+        </mvc:interceptor>
     </mvc:interceptors>
 
     <!-- Annotation 을 사용하지 않는 경우에 대한 MVC 처리 설정 -->
