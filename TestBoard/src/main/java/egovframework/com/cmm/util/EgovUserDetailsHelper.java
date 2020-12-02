@@ -3,9 +3,9 @@ package egovframework.com.cmm.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import egovframework.com.cmm.LoginVO;
 
 import egovframework.rte.fdl.string.EgovObjectUtil;
+import hans.test.Board.TestBoardVO;
 
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -36,8 +36,8 @@ public class EgovUserDetailsHelper {
 		 * @return Object - 사용자 ValueObject
 		 */
 		public static Object getAuthenticatedUser() {
-			return (LoginVO)RequestContextHolder.getRequestAttributes().getAttribute("LoginVO", RequestAttributes.SCOPE_SESSION)==null ? 
-					new LoginVO() : (LoginVO) RequestContextHolder.getRequestAttributes().getAttribute("LoginVO", RequestAttributes.SCOPE_SESSION);
+			return (TestBoardVO)RequestContextHolder.getRequestAttributes().getAttribute("TestBoardVO", RequestAttributes.SCOPE_SESSION)==null ? 
+					new TestBoardVO() : (TestBoardVO) RequestContextHolder.getRequestAttributes().getAttribute("TestBoardVO", RequestAttributes.SCOPE_SESSION);
 
 		}
 
@@ -49,7 +49,7 @@ public class EgovUserDetailsHelper {
 		public static List<String> getAuthorities() {
 			List<String> listAuth = new ArrayList<String>();
 			
-			if (EgovObjectUtil.isNull((LoginVO) RequestContextHolder.getRequestAttributes().getAttribute("LoginVO", RequestAttributes.SCOPE_SESSION))) {
+			if (EgovObjectUtil.isNull((TestBoardVO) RequestContextHolder.getRequestAttributes().getAttribute("TestBoardVO", RequestAttributes.SCOPE_SESSION))) {
 				// log.debug("## authentication object is null!!");
 				return null;
 			}
@@ -63,7 +63,7 @@ public class EgovUserDetailsHelper {
 		 */
 		public static Boolean isAuthenticated() {
 			
-			if (EgovObjectUtil.isNull((LoginVO) RequestContextHolder.getRequestAttributes().getAttribute("LoginVO", RequestAttributes.SCOPE_SESSION))) {
+			if (EgovObjectUtil.isNull((TestBoardVO) RequestContextHolder.getRequestAttributes().getAttribute("TestBoardVO", RequestAttributes.SCOPE_SESSION))) {
 				// log.debug("## authentication object is null!!");
 				return Boolean.FALSE;
 			}

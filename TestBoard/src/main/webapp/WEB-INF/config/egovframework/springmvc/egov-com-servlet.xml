@@ -33,25 +33,24 @@
 	    p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
 
     <!-- 로그인 체크가 필요한 URL과 로그인 여부를 체크해준다 -->
-    <mvc:interceptors>
+    <mvc:interceptors>        
         <mvc:interceptor>
-            <mvc:mapping path="/cop/com/*.do"/>
-            <mvc:mapping path="/cop/bbs/*Master*.do"/>
-            <mvc:mapping path="/uat/uia/*.do"/>
-            <mvc:exclude-mapping path="/uat/uia/actionLogin.do"/>
-            <mvc:exclude-mapping path="/uat/uia/egovLoginUsr.do"/>
-		    <bean class="egovframework.com.cmm.interceptor.AuthenticInterceptor" />
-        </mvc:interceptor>
-        
-        <mvc:interceptor>
-            <mvc:mapping path="/test/modifyMember*.do"/>
+            <mvc:mapping path="/test/modifyMember*.do"/> 
             <mvc:mapping path="/pw_re*.do"/>
             <mvc:mapping path="/test/Dclone_out*.do"/>
-            <mvc:exclude-mapping path="/uat/uia/actionLogin.do"/>
-            <mvc:exclude-mapping path="/uat/uia/egovLoginUsr.do"/>
-		    <bean class="egovframework.com.cmm.interceptor.AuthenticInterceptor" />
-        </mvc:interceptor>
+            <mvc:exclude-mapping path="/test/login.do"/>
+            <mvc:exclude-mapping path="/test/login.do"/>
+		    <bean class="hans.test.Board.SampleInterceptor" />
+        </mvc:interceptor>	
     </mvc:interceptors>
+
+<!--     <mvc:interceptors>         -->
+<!--         <mvc:interceptor> -->
+<!--             <mvc:mapping path="/test/doA*.do"/>  -->
+<!--             <mvc:mapping path="/test/doB*.do"/> -->
+<!-- 		    <bean class="hans.test.Board.SampleInterceptor" /> -->
+<!--         </mvc:interceptor>	 -->
+<!--     </mvc:interceptors> -->
 
     <!-- Annotation 을 사용하지 않는 경우에 대한 MVC 처리 설정 -->
     <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/>

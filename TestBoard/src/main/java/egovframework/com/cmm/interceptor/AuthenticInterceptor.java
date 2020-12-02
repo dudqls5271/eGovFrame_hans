@@ -2,6 +2,7 @@ package egovframework.com.cmm.interceptor;
 
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
+import hans.test.Board.TestBoardVO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -38,12 +39,13 @@ public class AuthenticInterceptor extends WebContentInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException {
 
-		LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		TestBoardVO loginVO = (TestBoardVO) EgovUserDetailsHelper.getAuthenticatedUser();
 
-		if (loginVO.getId() != null) {
+		if (loginVO.getUser_id() != null) {
+			System.out.println("================================> user_id : " +loginVO.getUser_id());
 			return true;
 		} else {
-			ModelAndView modelAndView = new ModelAndView("redirect:/uat/uia/egovLoginUsr.do");
+			ModelAndView modelAndView = new ModelAndView("redirect:/test/login.do");
 			throw new ModelAndViewDefiningException(modelAndView);
 		}
 	}

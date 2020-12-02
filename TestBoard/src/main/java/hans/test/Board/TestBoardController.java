@@ -25,6 +25,7 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -738,8 +739,13 @@ public class TestBoardController {
 	}
 	
 	@RequestMapping("modifyMember.do")
-	public String modifyMember(Model model, RedirectAttributes rttr, HttpServletRequest request, TestBoardVO vo) {
+	public String modifyMember(Model model, RedirectAttributes rttr, HttpServletRequest request, TestBoardVO vo, Locale locale) {
 		try {
+//			HttpSession session = request.getSession();
+//			TestBoardVO userVO = service.selectLogin(vo);
+//			System.out.println("=================================> doA");
+//			model.addAttribute("result", userVO.getUser_id());
+//			session.setAttribute("sessionId", userVO.getUser_id());
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -893,12 +899,7 @@ public class TestBoardController {
 					System.out.println("===========================> 화면 input 변경할 비밀번호 : " + pw_re1);
 					rttr.addFlashAttribute("msg", "현재 비밀번호가 일치 하지 않습니다.");
 					return "redirect:/test/pw_re.do";
-				} /*else {
-					service.pw_re(vo);
-					HttpSession session = request.getSession();
-					rttr.addFlashAttribute("msg","변경이 되었습니다. 로그아웃 됩니다.");
-					session.invalidate();
-				}*/
+				}
 			} catch (Exception e) {
 				// TODO: handle exception
 				rttr.addFlashAttribute("msg", e.getMessage());
@@ -940,4 +941,23 @@ public class TestBoardController {
 			return "hansTest/out";
 
 		}
+		
+		
+		@RequestMapping(value = "/doA.do", method = RequestMethod.GET)
+		public String doA(Locale locale, Model model, HttpServletRequest request, TestBoardVO vo) {
+		
+			System.out.println("=================================> doA");
+
+			return "hansTest/home";
+		}
+		
+		@RequestMapping(value = "/doB.do", method = RequestMethod.GET)
+		public String doB(Locale locale, Model model, HttpServletRequest request, TestBoardVO vo) throws Exception {
+			
+			System.out.println("=================================> doB");
+			HttpSession session = request.getSession();
+			model.addAttribute("result", session);
+			return "hansTest/home";
+		}
+		
 }
