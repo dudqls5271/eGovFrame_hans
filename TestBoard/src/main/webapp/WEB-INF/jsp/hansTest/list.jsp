@@ -103,7 +103,6 @@
           <div class="writer">글쓴이</div>
           <div class="date">등록일</div>
           <c:forEach items="${resultList}" var="result" varStatus="status">
-				<div data-id="${result.seqno}" class="board">${result.seqno}</div>
 				<div data-id="${result.seqno}" class="board">${result.title}</div>
 				<div data-id="${result.seqno}" class="board">${result.writer}</div>
 				<div data-id="${result.seqno}" class="board">${result.regdate}</div>
@@ -131,7 +130,7 @@
                </c:if>
                </ul>
             </div>
-      </div>
+      </div>	
       
       <!-- ==============================================================================> 유저 인터페이스 시작 -->
       <div class="item4">     

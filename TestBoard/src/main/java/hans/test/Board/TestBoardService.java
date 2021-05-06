@@ -1,5 +1,6 @@
 package hans.test.Board;
 
+import java.io.File;
 import java.util.List;
 
 import egovframework.let.cop.bbs.service.BoardVO;
@@ -54,5 +55,9 @@ public interface TestBoardService {
 	int update(TestBoardVO vo) throws Exception;
 	
 	int delete (Integer rno) throws Exception;
+	static void excelUpload(File destFile) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

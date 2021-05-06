@@ -18,9 +18,9 @@
             var index = $("#fontSize option").index($("#fontSize option:selected"));
             
             $('.submit').click(function() {
-            	
+    			editor_object.getById["educontent"].exec("UPDATE_CONTENTS_FIELD",[]);
             	//에디터에 값을 넣음
-            	editor_object.getById["educontent"].exec("UPDATE_CONTENTS_FIELD",[]);
+            	
                    
                 if ($('.writer').val() == "") {
                   alert("작성자를 입력해 주세요.")
